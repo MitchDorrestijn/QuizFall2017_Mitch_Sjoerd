@@ -25,20 +25,35 @@ yarn run dev-server
 ### Dependencies
 
 The Quizzer app currently uses the following dependencies:
+
 ```babel-cli``` version ```^6.24.1```: gives you access to the Babel command line.
+
 ```babel-core``` version ```^6.25.0```: adds the core of the Babel compiler.
+
 ```babel-loader``` version ```^7.1.1```: allows transpiling JavaScript files using Babel and webpack.
+
 ```babel-preset-env``` version ```1.5.2```: a Babel preset that compiles ES2015+ down to ES5.
+
 ```babel-preset-react``` version ```6.24.1```: a Babel preset for all React plugins.
+
 ```css-loader``` version ```^0.28.4```: required by sass-loader to load the converted css files.
+
 ```live-server``` version ```^1.2.0```: little development server with live reload capability (used for development purposes).
+
 ```node-sass``` version ```^4.5.3```: natively compiles .scss files to .css.
+
 ```normalize.css``` version ```^7.0.0```: resets the default browser styling.
+
 ```react``` version ```^15.6.1```: gives the Quizzer access to React.
+
 ```react-dom``` version ```^15.6.1```: serves as the entry point of the DOM-related rendering paths.
+
 ```sass-loader``` version ```^6.0.6```: loads a SASS/SCSS file and compiles it to CSS.
+
 ```style-loader``` version ```^0.18.2```: adds CSS to the DOM by injecting a <style> tag.
+
 ```webpack``` version ```^3.1.0```: bundles the Quizzer app assets.
+
 ```webpack-dev-server``` version ```^2.5.1```: a development server that provides live reloading.
 
 
