@@ -1,6 +1,7 @@
 # Server side design
 This document describes the data structure of the database, the API and most importantly, the API's intended use within the client applications. It also specifies the way that WebSockets are implemented.
 ## Data structure
+This is the data structure for the MongoDB database. All the `->` are references to an `_id` from the specified document.
 
 ### Questions
 ```
@@ -37,7 +38,7 @@ activeAnswer: ObjectId -> Answers
 ### Answers
 ```
 _id: ObjectId
-question: ObjectId
+question: ObjectId -> Questions
 closed: Boolean
 answers: [{
  team: ObjectId -> Teams
@@ -47,6 +48,13 @@ answers: [{
 ```
 
 ## API
+Note: all `POST`, `PUT` and `DELETE` APIs will return a message with the following structure, in addition to the response specified in the API's specification.
+```
+{
+ success: Boolean,
+ error: String
+}
+```
 ### QuizMaster
 #### How it will be used
 1. Start the quiz and open for applications.
@@ -81,7 +89,7 @@ answers: [{
        - `{closed: true}`
 
 #### POST /api/games
-**QuizMaster**: Start a new quiz night.
+Start a new quiz night.
 ##### Response
 ```
 {
@@ -90,7 +98,7 @@ answers: [{
 ```
 
 #### PUT /api/games
-**QuizMaster**: End the quiz night.
+End the quiz night.
 ##### Request
 ```
 {
@@ -99,20 +107,20 @@ answers: [{
 ```
 
 #### GET /api/games/:gameId/teams
-**QuizMaster**: Check which teams have applied to the game.
+Check which teams have applied to the game.
 ##### Response
 ```
 [
  {
-  _id: ObjectId
-  name: String
+  _id: ObjectId,
+  name: String,
   approved: Boolean
  }
 ]
 ```
 
 #### PUT /api/games/:gameId/teams/:teamId
-**QuizMaster**: Approve a team's request to play.
+Approve a team's request to play.
 ##### Request
 ```
 {
@@ -121,19 +129,19 @@ answers: [{
 ```
 
 #### GET /api/categories
-**QuizMaster**: Get all available categories.
+Get all available categories.
 ##### Response
 ```
 [
  {
-  _id: ObjectId
+  _id: ObjectId,
   name: String
  }
 ]
 ```
 
 #### GET /api/categories/:categoryId/questions
-**QuizMaster**: Get all questions within a certain category.
+Get all questions within a certain category.
 ##### Request
 ```
 {
@@ -145,14 +153,14 @@ Game password is passed to make sure no questions are returned that have already
 ```
 [
  {
-  _id: ObjectId
+  _id: ObjectId,
   name: String
  }
 ]
 ```
 
 #### POST /api/games/:gameId/rounds
-**QuizMaster**: Start a new round.
+Start a new round.
 ##### Response
 ```
 {
@@ -161,144 +169,164 @@ Game password is passed to make sure no questions are returned that have already
 ```
 
 #### POST /api/games/:gameId/rounds/:roundId/questions
-**QuizMaster**: Add a question to the round.
+Add a question to the round.
 ##### Request
 ```
 {
  questionId: ObjectId
 }
 ```
-##### Response
-```
-{
- success: Boolean
- error: String
-}
-```
 
 #### GET /api/games/:gameId/rounds/:roundId/questions
-**QuizMaster**: Get all the questions in the round and their right answer.
+Get all the questions in the round and their right answer.
 ##### Response
 ```
 [
  {
-  questionId: ObjectId
-  question: String
+  questionId: ObjectId,
+  question: String,
   answer: String
  }
 ]
 ```
 
 #### GET /api/games/:gameId/rounds/:roundId/questions/current
-**QuizMaster**: Get the current question and its right answer.
+Get the current question.
 ##### Response
 ```
 {
- questionId: ObjectId
+ questionId: ObjectId,
  question: String
- answer: String
 }
 ```
 
 #### PUT /api/games/:gameId/rounds/:roundId/questions/current
-**QuizMaster**: Close the current question.
+Close the current question.
 ##### Request
 ```
 {
  close: Boolean
 }
 ```
+
+#### GET /api/games/:gameId/rounds/:roundId/answers/:questionId
+Get all answers from all teams for a question within a round, as well as the right answer to the question.
 ##### Response
 ```
 {
- success: Boolean
- error: String
-}
-```
-
-#### GET /api/games/:gameId/rounds/:roundId/answers/:questionId
-**QuizMaster**: Get all answers from all teams for a question within a round.
-##### Response
-```
-[
- {
-  team: String
-  answer: String
+ answer: String,
+ teamAnswers: [{
+  team: String,
+  answer: String,
   correct: Boolean
- }
-]
+ }]
+}
 ```
 
 #### PUT /api/games/:gameId/rounds/:roundId/answers/:questionId
-**QuizMaster**: Mark an answer as correct or incorrect.
+Mark an answer as correct or incorrect.
 ##### Request
 ```
 {
- team: String
+ team: String,
  correct: Boolean
-}
-```
-##### Response
-```
-{
- success: Boolean
- error: String
 }
 ```
 
 #### PUT /api/games/:gameId/rounds/:roundId
-**QuizMaster**: Change to the next question.
+Change to the next question.
 ##### Request
 ```
 {
  nextQuestion: Boolean
 }
 ```
-##### Response
-```
-{
- success: Boolean
- error: String
-}
-```
 
 ### QuizApp
+
+#### How it will be used
+1. Apply as a team for the quiz night
+   - `POST /api/games/:gameId/teams`
+     - `{name: String}`
+2. Await approval from the quiz master
+   - `GET /api/games/:gameId/teams/:teamId`
+3. Display the current question
+   - `GET /api/games/:gameId/rounds/current`
+   - `GET /api/games/:gameId/rounds/:roundId/questions/current`
+4. Give or change an answer to the question
+   - `PUT /api/games/:gameId/rounds/:roundId/questions/:questionId`
+
 #### POST /api/games/:gameId/teams
-**QuizApp**: Apply for a game.
+Apply for a game.
 ##### Request
 ```
 {
  name: String
- password: String
 }
 ```
+
+#### GET /api/games/:gameId/teams/:teamId
+Check whether the team application has been approved
 ##### Response
 ```
 {
- success: Boolean
- error: String
+ approved: Boolean
+}
+```
+
+#### GET /api/games/:gameId/rounds/current
+Get the current round ID.
+##### Response
+```
+{
+ _id: ObjectId
+}
+```
+
+#### GET /api/games/:gameId/rounds/:roundId/questions/current
+Get the current question.
+##### Response
+```
+{
+ questionId: ObjectId,
+ question: String
+}
+```
+
+#### PUT /api/games/:gameId/rounds/:roundId/answers/:questionId
+Give or change an answer to a certain question.
+##### Request
+```
+{
+ team: String,
+ answer: String
 }
 ```
 
 ### QuizScore
+#### How it will be used
+1. Enter the password to show the correct game.
+   - `GET /api/games/:gameId/scores`
+
 #### GET /api/games/:gameId/scores
-**QuizScore**: Fetch the information for the scoreboard.
+Fetch the information for the scoreboard.
 ##### Response
 ```
 {
- roundNumber: Number
- questionNumber: Number
+ roundNumber: Number,
+ questionNumber: Number,
  scores: [{
-  team: String
-  correctAnswers: Number
+  team: String,
+  correctAnswers: Number,
   roundPoints: Number
- }]
+ }],
  currentQuestion: {
-  name: String
-  category: String
+  name: String,
+  category: String,
+  closed: Boolean,
   teamsAnswered: [{
-   team: String
-   answer: String //only when question has been closed
+   team: String,
+   answer: String,
    approved: Boolean
   }]
  }
