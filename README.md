@@ -60,8 +60,11 @@ The Quizzer app currently uses the following dependencies:
 ## Commands
 
 Currently you can run the following commands:
+
 ```serve```: serves the Quizzer app using the live-server dependency.
+
 ```build```: builds the webpack bundle file.
+
 ```dev-server```: runs the webpack development server and compiles the assets in bundle.js
 
 
