@@ -67,21 +67,20 @@ Note: all `POST`, `PUT` and `DELETE` APIs will return a message with the followi
    - `POST /api/games/:gameId/rounds`
 4. Start a quiz round (12 questions) by selecting three categories and pressing the start round button.
    - `GET /api/categories`
-   - `GET /api/categories/:categoryId/questions`
-5. Select the next question.
    - `POST /api/games/:gameId/rounds/:roundId/questions`
-     - `{questionId: ObjectId}`
-6. Start the selected question by pressing a button.
+     - `{catagories: [String, String, ...]`
+5. Select the next question and start the selected question by pressing a button.
+   - `GET /api/games/:gameId/rounds/:roundId/questions`
    - `PUT /api/games/:gameId/rounds/:roundId`
-     - `{nextQuestion: true}`
-7. Close the current question.
+     - `{nextQuestion: ObjectId}`
+6. Close the current question.
    - `PUT /api/games/:gameId/rounds/:roundId/questions/current`
      - `{close: true}`
-8. Read the answers that the teams have submitted and validate their correctness.
+7. Read the answers that the teams have submitted and validate their correctness.
    - `GET /api/games/:gameId/rounds/:roundId/answers/:questionId`
    - `PUT /api/games/:gameId/rounds/:roundId/answers/:questionId`
      - `{team: String, correct: Boolean}`
-9. After a quiz round, decide whether to
+8. After a quiz round, decide whether to
    - play another round
      - `POST /api/games/:gameId/rounds`
    - or end the quiz night.
@@ -140,25 +139,6 @@ Get all available categories.
 ]
 ```
 
-#### GET /api/categories/:categoryId/questions
-Get all questions within a certain category.
-##### Request
-```
-{
- password: String
-}
-```
-Game password is passed to make sure no questions are returned that have already been asked.
-##### Response
-```
-[
- {
-  _id: ObjectId,
-  name: String
- }
-]
-```
-
 #### POST /api/games/:gameId/rounds
 Start a new round.
 ##### Response
@@ -169,11 +149,11 @@ Start a new round.
 ```
 
 #### POST /api/games/:gameId/rounds/:roundId/questions
-Add a question to the round.
+Add questions from a category to the round.
 ##### Request
 ```
 {
- questionId: ObjectId
+ categories: [String]
 }
 ```
 
@@ -234,11 +214,11 @@ Mark an answer as correct or incorrect.
 ```
 
 #### PUT /api/games/:gameId/rounds/:roundId
-Change to the next question.
+Change to another question.
 ##### Request
 ```
 {
- nextQuestion: Boolean
+ nextQuestion: ObjectId
 }
 ```
 
