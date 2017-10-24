@@ -4,7 +4,10 @@ let questionModel = require ("./questions.js").model;
 let Schema = mongoose.Schema;
 
 let gameSchema = new Schema ({
-	_id: String,
+	_id: {
+		type: String,
+		required: true
+	},
 	closed: {
 		type: Boolean,
 		required: true,
