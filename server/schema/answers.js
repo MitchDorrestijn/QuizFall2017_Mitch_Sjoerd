@@ -1,24 +1,7 @@
 let mongoose = require ("mongoose");
 let questionModel = require ("./questions.js").model;
+let teamAnswerSchema = require ("./teamAnswers.js").schema;
 let Schema = mongoose.Schema;
-
-let teamAnswerSchema = new Schema ({
-	team: {
-		type: Schema.Types.ObjectId,
-		ref: 'Team',
-		required: true
-	},
-	answer: {
-		type: String,
-		required: true,
-		default: ""
-	},
-	approved: {
-		type: Boolean,
-		required: true,
-		default: false
-	}
-});
 
 let answerSchema = new Schema ({
 	_id: Schema.Types.ObjectId,
