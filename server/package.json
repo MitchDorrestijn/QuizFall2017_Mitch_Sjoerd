@@ -13,6 +13,7 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "mocha": "^4.0.1",
-    "mongoose": "^4.12.4"
+    "mongoose": "^4.12.4",
+    "randomstring": "^1.1.5"
   }
 }
