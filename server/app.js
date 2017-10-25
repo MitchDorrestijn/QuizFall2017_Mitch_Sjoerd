@@ -27,6 +27,7 @@ app.use (cors ({
 
 // QuizzMaster
 app.post ("/api/games", (req, res) => {
+	// TODO unit test
 	let password;
 	let firstRound = true;
 	loop = () => {
@@ -56,11 +57,17 @@ app.post ("/api/games", (req, res) => {
 			});
 			return promise2;
 		}).then (() => {
-			res.json ({password: password});
+			res.json ({
+				success: true,
+				error: null,
+				password: password
+			});
 		}).catch ((err) => {
-			console.log (err);
 			if (err) {
-				res.send (err);
+				res.send ({
+					success: false,
+					error: err
+				});
 			} else {
 				loop ();
 			}
