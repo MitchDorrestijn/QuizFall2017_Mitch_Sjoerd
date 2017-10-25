@@ -1,12 +1,12 @@
 let assert = require ("assert");
 let mongoose = require ("mongoose");
 let Schema = mongoose.Schema;
-let Team = require ("./schema/teams.js").model;
-let TeamAnswer = require ("./schema/teamAnswers.js").model;
-let Answer = require ("./schema/answers.js").model;
-let Question = require ("./schema/questions.js").model;
-let Round = require ("./schema/rounds.js").model;
-let Game = require ("./schema/games.js").model;
+let Team = require ("../schema/teams.js").model;
+let TeamAnswer = require ("../schema/teamAnswers.js").model;
+let Answer = require ("../schema/answers.js").model;
+let Question = require ("../schema/questions.js").model;
+let Round = require ("../schema/rounds.js").model;
+let Game = require ("../schema/games.js").model;
 
 // Disable DeprecationWarning
 mongoose.Promise = global.Promise;
