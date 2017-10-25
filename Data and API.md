@@ -47,9 +47,6 @@ activeRound: Number
 _id: ObjectId
 ```
 
-## WebSocket API
-The WebSocket API uses the `message` event for communication. The `connect` event is only used for verifying the connection. The content of the message is to be parsed as a JSON object.
-
 ### QuizApp
 The following WebSocket is expected to be opened after the user applies to the quiz.
 ```
@@ -59,22 +56,22 @@ http://SERVERNAME/ws/PASSWORD/team/TEAMNAME
 #### Application accepted
 Event: `joinGame`
 
-Message: `{ joinAllowed: true }`
+Message: `{ joinGame: true }`
 
 #### Application denied
 Event: `joinGame`
 
-Message: `{ joinAllowed: false }`
+Message: `{ joinGame: false }`
 
 #### Next round
 Event: `changeRound`
 
-Message: `{ nextRound: true }`
+Message: `{ changeRound: true }`
 
 #### Next question
 Event: `changeQuestion`
 
-Message: `{ nextQuestion: true }`
+Message: `{ changeQuestion: true }`
 
 #### Question closed
 Event: `closeQuestion`
