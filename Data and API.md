@@ -47,7 +47,73 @@ activeRound: Number
 _id: ObjectId
 ```
 
-## API
+## WebSocket API
+The WebSocket API uses the `message` event for communication. The `connect` event is only used for verifying the connection. The content of the message is to be parsed as a JSON object.
+
+### QuizApp
+The following WebSocket is expected to be opened after the user applies to the quiz.
+```
+http://SERVERNAME/ws/PASSWORD/team/TEAMNAME
+```
+
+#### Application accepted
+Event: `joinGame`
+
+Message: `{ joinAllowed: true }`
+
+#### Application denied
+Event: `joinGame`
+
+Message: `{ joinAllowed: false }`
+
+#### Next round
+Event: `changeRound`
+
+Message: `{ nextRound: true }`
+
+#### Next question
+Event: `changeQuestion`
+
+Message: `{ nextQuestion: true }`
+
+#### Question closed
+Event: `closeQuestion`
+
+Message: `{ closeQuestion: true }`
+
+#### Round closed
+Event: `closeRound`
+
+Message: `{ closeRound: true }`
+
+### QuizMaster
+The following WebSocket is expected to be opened after the user opens the game for applications.
+```
+http://SERVERNAME/ws/PASSWORD/master
+```
+
+#### Update applications
+Event: `updateApplications`
+
+Message: `{ updateApplications: true }`
+
+#### Update answers
+Event: `updateAnswers`
+
+Message: `{ updateAnswers: true }`
+
+### QuizScore
+The following WebSocket is expected to be opened after the game has been opened for applications.
+```
+http://SERVERNAME/ws/PASSWORD/scores
+```
+
+#### Update scores
+Event: `updateScores`
+
+Messages: `{ updateScores: true }`
+
+## REST API
 Note: all `POST`, `PUT` and `DELETE` APIs will return a message with the following structure, in addition to the response specified in the API's specification.
 ```
 {
