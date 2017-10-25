@@ -12,7 +12,7 @@ let teamSchema = new Schema ({
 		type: String,
 		required: true
 	}
-});
+}, {collection: 'Teams'});
 
 module.exports = {
 	schema: teamSchema,

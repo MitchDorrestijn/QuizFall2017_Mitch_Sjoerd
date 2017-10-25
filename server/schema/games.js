@@ -29,7 +29,7 @@ let gameSchema = new Schema ({
 		type: Schema.Types.ObjectId,
 		ref: 'Round'
 	}
-});
+}, {collection: 'Games'});
 
 module.exports = {
 	schema: gameSchema,

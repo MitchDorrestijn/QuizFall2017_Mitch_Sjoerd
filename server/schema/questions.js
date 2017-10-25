@@ -15,7 +15,7 @@ let questionSchema = new Schema ({
 		type: String,
 		required: true
 	}
-});
+}, {collection: 'Questions'});
 
 module.exports = {
 	schema: questionSchema,

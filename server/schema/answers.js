@@ -15,7 +15,7 @@ let answerSchema = new Schema ({
 		required: true
 	},
 	answers: [teamAnswerSchema]
-});
+}, {collection: 'Answers'});
 
 module.exports = {
 	schema: answerSchema,

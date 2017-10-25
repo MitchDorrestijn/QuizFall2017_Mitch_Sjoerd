@@ -13,7 +13,7 @@ let roundSchema = new Schema ({
 		ref: 'Answer',
 		default: null
 	}
-});
+}, {collection: 'Rounds'});
 
 module.exports = {
 	schema: roundSchema,
