@@ -133,7 +133,6 @@ Get all available categories.
 ```
 [
  {
-  _id: ObjectId,
   name: String
  }
 ]
