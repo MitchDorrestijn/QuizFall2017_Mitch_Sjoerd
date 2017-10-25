@@ -42,11 +42,6 @@ rounds: [{
 activeRound: Number
 ```
 
-### Answers
-```
-_id: ObjectId
-```
-
 ### QuizApp
 The following WebSocket is expected to be opened after the user applies to the quiz.
 ```
