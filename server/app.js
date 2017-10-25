@@ -112,9 +112,19 @@ app.post ("/api/games/:gameId/teams", (req, res) => {
 				if (err) {
 					reject (err.toString ());
 				} else if (result) {
-					resolve ();
+					let success = true;
+					for (let elem of result.teams) {
+						if (req.body.name === elem.name) {
+							success = false;
+						}
+					}
+					if (success) {
+						resolve ();
+					} else {
+						reject ("Team has already been accepted into the game");
+					}
 				} else {
-					reject ("Game does not exist");
+					reject ("Game not found");
 				}
 			})
 		}).then (() => {
@@ -131,7 +141,7 @@ app.post ("/api/games/:gameId/teams", (req, res) => {
 			});
 			return promise2;
 		}).then (() => {
-			let promise3 = new Promise ((resolve, reject) => {
+			let promise4 = new Promise ((resolve, reject) => {
 				team.save ((err) => {
 					if (err) {
 						reject (err.toString ());
@@ -148,6 +158,70 @@ app.post ("/api/games/:gameId/teams", (req, res) => {
 			});
 		}).catch ((err) => {
 			res.send ({
+				success: false,
+				error: err
+			});
+		});
+	}
+});
+
+app.get ("/api/games/:gameId/teams", (req, res) => {
+	// TODO unit test
+	// TODO test accepted teams
+	if (!req.params.gameId) {
+		res.json ({
+			success: false,
+			error: "No gameID specified"
+		});
+	} else {
+		let promise = new Promise ((resolve, reject) => {
+			let entries = [];
+			teams.find ({appliedGame: req.params.gameId}, (err, result) => {
+				if (err) {
+					reject (err.toString ());
+				} else {
+					if (result) {
+						for (let i = 0; i < result.length; i++) {
+							let entry = result [i].toObject ();
+							delete entry.appliedGame;
+							delete entry.__v;
+							entry.approved = false;
+							entries.push (entry);
+						}
+					}
+					resolve (entries);
+				}
+			});
+		}).then ((entries) => {
+			let promise2 = new Promise ((resolve, reject) => {
+				games.findOne ({_id: req.params.gameId}, (err, result) => {
+					if (err) {
+						reject (err.toString ());
+					} else if (!result) {
+						reject ("Game not found");
+					} else {
+						for (let elem of result.teams) {
+							let entry = elem.toObject ();
+							entry.approved = true;
+							entries.push (entry);
+						}
+						resolve (entries);
+					}
+				});
+			});
+			return promise2;
+		}).then ((entries) => {
+			let promise3 = new Promise ((resolve, reject) => {
+				if (entries.length > 0) {
+					res.json (entries);
+					resolve ();
+				} else {
+					reject ("No teams have applied yet");
+				}
+			});
+			return promise3;
+		}).catch ((err) => {
+			res.json ({
 				success: false,
 				error: err
 			});
