@@ -6,6 +6,7 @@ let Schema = mongoose.Schema;
 let gameSchema = new Schema ({
 	_id: {
 		type: String,
+		minlength: 1,
 		required: true
 	},
 	closed: {

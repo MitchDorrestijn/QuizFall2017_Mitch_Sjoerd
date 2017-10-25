@@ -9,6 +9,7 @@ let teamAnswerSchema = new Schema ({
 	},
 	answer: {
 		type: String,
+		minlength: 1,
 		required: true,
 		default: ""
 	},
