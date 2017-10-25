@@ -4,7 +4,6 @@ let teamAnswerSchema = require ("./teamAnswers.js").schema;
 let Schema = mongoose.Schema;
 
 let answerSchema = new Schema ({
-	_id: Schema.Types.ObjectId,
 	question: {
 		type: Schema.Types.ObjectId,
 		ref: 'Question',

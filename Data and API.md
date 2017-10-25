@@ -11,7 +11,7 @@ answer: String
 category: String
 ```
 
-### Teams
+### Team
 ```
 _id: ObjectId
 appliedGame: String -> Games
@@ -23,28 +23,28 @@ name: String
 _id: String
 closed: Boolean
 playedQuestions: [ObjectId -> Questions]
-teams: [ObjectId -> Teams]
-rounds: [ObjectId -> Rounds]
-activeRound: ObjectId -> Rounds
-```
-
-### Rounds
-```
-_id: ObjectId
-answers: [ObjectId -> Answers]
-activeAnswer: ObjectId -> Answers
+teams: [{
+ name: String,
+ roundPoints: Number
+}]
+rounds: [{
+ answers: [{
+  question: ObjectId -> Questions
+  closed: Boolean
+  answers: [{
+   team: String
+   answer: String
+   approved: Boolean
+  }]
+ }]
+ activeAnswer: Number
+}]
+activeRound: Number
 ```
 
 ### Answers
 ```
 _id: ObjectId
-question: ObjectId -> Questions
-closed: Boolean
-answers: [{
- team: ObjectId -> Teams
- answer: String
- approved: Boolean
-}]
 ```
 
 ## API

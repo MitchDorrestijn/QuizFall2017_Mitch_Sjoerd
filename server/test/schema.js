@@ -118,37 +118,11 @@ describe ('Schema', () => {
 			});
 		});
 
-		it ("Answers can not be null", (done) => {
-			let teamAnswer = new TeamAnswer ({
-				team: objectIdMock,
-				answer: null,
-				approved: false,
-			});
-			teamAnswer.validate ((err) => {
-				assert.ok (err.errors.answer);
-				done ();
-			});
-		});
-
-		it ("Approved can not be null", (done) => {
-			let teamAnswer = new TeamAnswer ({
-				team: objectIdMock,
-				answer: "Een antwoord",
-				approved: null,
-			});
-			teamAnswer.validate ((err) => {
-				assert.ok (err.errors.approved);
-				done ();
-			});
-		});
-
 		it ("Valid case", (done) => {
 			let teamAnswer = new TeamAnswer ({
-				team: objectIdMock,
-				answer: "Een antwoord",
-				approved: false,
+				team: "Een team"
 			});
-			teamAnswer.validate ((err) => {
+			teamAnswer.validate ((err, res) => {
 				assert.ok (!err);
 				done ();
 			});
@@ -228,7 +202,7 @@ describe ('Schema', () => {
 
 	describe ("Round", () => {
 
-		it ("Answers may not be anything other than an ObjectId", (done) => {
+		it ("Answers may not be Strings", (done) => {
 			let round = new Round ({
 				answers: ["A string"],
 				activeAnswer: "A string"
@@ -253,8 +227,14 @@ describe ('Schema', () => {
 
 		it ("Valid case", (done) => {
 			let round = new Round ({
-				answers: [objectIdMock],
-				activeAnswer: objectIdMock
+				answers: [{
+					question: objectIdMock,
+					closed: false,
+					answers: [{
+						team: "Een team"
+					}]
+				}],
+				activeAnswer: 0
 			});
 			round.validate ((err) => {
 				assert.ok (!err);
@@ -298,9 +278,20 @@ describe ('Schema', () => {
 			let game = new Game ({
 				_id: "A string",
 				playedQuestions: [objectIdMock],
-				teams: [objectIdMock],
-				rounds: [objectIdMock],
-				activeRound: objectIdMock
+				teams: [{
+					name: "Een team"
+				}],
+				rounds: [{
+					answers: [{
+						question: objectIdMock,
+						closed: false,
+						answers: [{
+							team: "Een team"
+						}]
+					}],
+					activeAnswer: 0
+				}],
+				activeRound: 0
 			});
 			game.validate ((err) => {
 				assert.ok (!err);
@@ -308,7 +299,7 @@ describe ('Schema', () => {
 			});
 		});
 
-		it ("Other fields must be ObjectId", (done) => {
+		it ("Other fields may not be Strings", (done) => {
 			let game = new Game ({
 				_id: "A string",
 				playedQuestions: ["A string"],

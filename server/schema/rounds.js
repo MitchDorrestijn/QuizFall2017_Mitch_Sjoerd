@@ -1,16 +1,14 @@
 let mongoose = require ("mongoose");
-let answerModel = require ("./answers.js").model;
+let answerSchema = require ("./answers.js").schema;
 let Schema = mongoose.Schema;
 
 let roundSchema = new Schema ({
-	_id: Schema.Types.ObjectId,
-	answers: [{
-		type: Schema.Types.ObjectId,
-		ref: 'Answer'
-	}],
+	answers: {
+		type: [answerSchema],
+		default: null
+	},
 	activeAnswer: {
-		type: Schema.Types.ObjectId,
-		ref: 'Answer',
+		type: Number,
 		default: null
 	}
 }, {collection: 'Rounds'});

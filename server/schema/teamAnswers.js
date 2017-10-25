@@ -3,19 +3,15 @@ let Schema = mongoose.Schema;
 
 let teamAnswerSchema = new Schema ({
 	team: {
-		type: Schema.Types.ObjectId,
-		ref: 'Team',
+		type: String,
 		required: true
 	},
 	answer: {
 		type: String,
-		minlength: 1,
-		required: true,
 		default: ""
 	},
 	approved: {
 		type: Boolean,
-		required: true,
 		default: false
 	}
 });

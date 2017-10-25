@@ -1,6 +1,8 @@
 let mongoose = require ("mongoose");
 let answerModel = require ("./answers.js").model;
 let questionModel = require ("./questions.js").model;
+let appliedTeamSchema = require ("./appliedTeams.js").schema;
+let roundSchema = require ("./rounds.js").schema;
 let Schema = mongoose.Schema;
 
 let gameSchema = new Schema ({
@@ -18,17 +20,17 @@ let gameSchema = new Schema ({
 		type: Schema.Types.ObjectId,
 		ref: 'Question'
 	}],
-	teams: [{
-		type: Schema.Types.ObjectId,
-		ref: 'Team'
-	}],
-	rounds: [{
-		type: Schema.Types.ObjectId,
-		ref: 'Round'
-	}],
+	teams: {
+		type: [appliedTeamSchema],
+		default: []
+	},
+	rounds:{
+		type: [roundSchema],
+		default: []
+	},
 	activeRound: {
-		type: Schema.Types.ObjectId,
-		ref: 'Round'
+		type: Number,
+		default: null
 	}
 }, {collection: 'Games'});
 
