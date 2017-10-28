@@ -424,7 +424,8 @@ app.post ("/api/games/:gameId/teams", (req, res) => {
 			}).then (() => {
 				res.send ({
 					success: true,
-					error: null
+					error: null,
+					teamId: team._id
 				});
 			}).catch ((err) => {
 				res.send ({
