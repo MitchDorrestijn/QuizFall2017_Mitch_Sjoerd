@@ -303,6 +303,12 @@ Apply for a game.
  name: String
 }
 ```
+##### Response
+```
+{
+ teamId: ObjectId
+}
+```
 
 #### GET /api/games/:gameId/teams/:teamId
 Check whether the team application has been approved
