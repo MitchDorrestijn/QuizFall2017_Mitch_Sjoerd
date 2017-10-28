@@ -50,7 +50,7 @@ app.post ("/api/games", (req, res) => {
 				}
 			})
 		}).then (() => {
-			let promise2 = new Promise ((resolve, reject) => {
+			return new Promise ((resolve, reject) => {
 				let game = new games ({_id: password});
 				game.save ((err) => {
 					if (err) {
@@ -60,7 +60,6 @@ app.post ("/api/games", (req, res) => {
 					}
 				});
 			});
-			return promise2;
 		}).then (() => {
 			res.json ({
 				success: true,
