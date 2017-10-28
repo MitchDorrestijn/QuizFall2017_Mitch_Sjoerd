@@ -302,14 +302,11 @@ app.post ("/api/games/:gameId/teams", (req, res) => {
 			name: req.body.name,
 			appliedGame: req.params.gameId
 		});
-		let promise = new Promise ((resolve, reject) => {
-			games.findOne ({_id: req.params.gameId}, (err, result) => {
-				// Check whether the team has already been accepted into the game
-				if (err) {
-					reject (err.toString ());
-				} else if (result) {
+		let promise = gameExists (req.params.gameId)
+			.then ((game) => {
+				return new Promise ((resolve, reject) => {
 					let success = true;
-					for (let elem of result.teams) {
+					for (let elem of game.teams) {
 						if (req.body.name === elem.name) {
 							success = false;
 						}
@@ -319,44 +316,41 @@ app.post ("/api/games/:gameId/teams", (req, res) => {
 					} else {
 						reject ("Team has already been accepted into the game");
 					}
-				} else {
-					reject ("Game not found");
-				}
-			})
-		}).then (() => {
-			return new Promise ((resolve, reject) => {
-				teams.findOne ({appliedGame: req.params.gameId, name: req.body.name}, (err, result) => {
-					// Check whether the team has already applied to the game
-					if (err) {
-						reject (err.toString ());
-					} else if (result) {
-						reject ("Team has already applied for this game");
-					} else {
-						resolve ();
-					}
+				})
+			}).then (() => {
+				return new Promise ((resolve, reject) => {
+					teams.findOne ({appliedGame: req.params.gameId, name: req.body.name}, (err, result) => {
+						// Check whether the team has already applied to the game
+						if (err) {
+							reject (err.toString ());
+						} else if (result) {
+							reject ("Team has already applied for this game");
+						} else {
+							resolve ();
+						}
+					});
+				});
+			}).then (() => {
+				return new Promise ((resolve, reject) => {
+					team.save ((err) => {
+						if (err) {
+							reject (err.toString ());
+						} else {
+							resolve ();
+						}
+					});
+				});
+			}).then (() => {
+				res.send ({
+					success: true,
+					error: null
+				});
+			}).catch ((err) => {
+				res.send ({
+					success: false,
+					error: err
 				});
 			});
-		}).then (() => {
-			return new Promise ((resolve, reject) => {
-				team.save ((err) => {
-					if (err) {
-						reject (err.toString ());
-					} else {
-						resolve ();
-					}
-				});
-			});
-		}).then (() => {
-			res.send ({
-				success: true,
-				error: null
-			});
-		}).catch ((err) => {
-			res.send ({
-				success: false,
-				error: err
-			});
-		});
 	}
 });
 
