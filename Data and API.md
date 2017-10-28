@@ -156,7 +156,7 @@ Start a new quiz night.
 }
 ```
 
-#### PUT /api/games
+#### PUT /api/games/:gameId
 End the quiz night.
 ##### Request
 ```

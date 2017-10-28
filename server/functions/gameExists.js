@@ -6,7 +6,11 @@ let gameExists = (password) => {
 			if (err) {
 				reject (err.toString ());
 			} else if (result) {
-				resolve (result);
+				if (result.closed) {
+					reject ("Game is closed and cannot be reopened");
+				} else {
+					resolve (result);
+				}
 			} else {
 				reject ("Game does not exist");
 			}

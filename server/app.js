@@ -84,6 +84,48 @@ app.post ("/api/games", (req, res) => {
 	}
 });
 
+app.put ("/api/games/:gameId", (req, res) => {
+	if (!req.body.hasOwnProperty ('closed')) {
+		res.send ({
+			success: false,
+			error: "No closed flag specified"
+		});
+	} else if (!req.params.gameId) {
+		res.send ({
+			success: false,
+			error: "No game ID specified"
+		});
+	} else {
+		let promise = gameExists (req.params.gameId)
+			.then ((game) => {
+				return new Promise ((resolve, reject) => {
+					if (req.body.closed) {
+						game.closed = true;
+						game.save ((err) => {
+							if (err) {
+								reject (err.toString ());
+							} else {
+								resolve ();
+							}
+						});
+					} else {
+						reject ("This game is already open");
+					}
+				});
+			}).then (() => {
+				res.send ({
+					success: true,
+					error: null
+				});
+			}).catch ((err) => {
+				res.send ({
+					success: false,
+					error: err
+				});
+			});
+	}
+});
+
 app.get ("/api/categories", (req, res) => {
 	questions.find ().distinct ('category', (err, categories) => {
 		let response = [];
