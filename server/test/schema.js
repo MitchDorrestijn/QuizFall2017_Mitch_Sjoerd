@@ -279,6 +279,7 @@ describe ('Schema', () => {
 				_id: "A string",
 				playedQuestions: [objectIdMock],
 				teams: [{
+					_id: objectIdMock,
 					name: "Een team"
 				}],
 				rounds: [{
