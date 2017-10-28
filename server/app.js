@@ -2,6 +2,7 @@ let randomstring = require ("randomstring");
 let express = require ("express");
 let bodyParser = require ("body-parser");
 let mongoose = require ("mongoose");
+let gameExists = require ("./functions/gameExists.js");
 let questions = require ("./schema/questions.js").model;
 let games = require ("./schema/games.js").model;
 let teams = require ("./schema/teams.js").model;
@@ -39,7 +40,7 @@ app.post ("/api/games", (req, res) => {
 		let promise = new Promise ((resolve, reject) => {
 			games.findOne ({_id: password}, (err, result) => {
 				if (err) {
-					reject (err);
+					reject (err.toString ());
 				} else {
 					if (!result) {
 						resolve ();
@@ -53,7 +54,7 @@ app.post ("/api/games", (req, res) => {
 				let game = new games ({_id: password});
 				game.save ((err) => {
 					if (err) {
-						reject (err);
+						reject (err.toString ());
 					} else {
 						resolve ();
 					}
@@ -85,7 +86,11 @@ app.post ("/api/games", (req, res) => {
 
 app.get ("/api/categories", (req, res) => {
 	questions.find ().distinct ('category', (err, categories) => {
-		res.json (categories);
+		let response = [];
+		for (let elem of categories) {
+			response.push ({name: elem});
+		}
+		res.json (response);
 	});
 });
 
@@ -117,25 +122,23 @@ app.get ("/api/games/:gameId/teams", (req, res) => {
 				}
 			});
 		}).then ((entries) => {
-			let promise2 = new Promise ((resolve, reject) => {
-				games.findOne ({_id: req.params.gameId}, (err, result) => {
-					if (err) {
-						reject (err.toString ());
-					} else if (!result) {
-						reject ("Game not found");
-					} else {
-						for (let elem of result.teams) {
+			return new Promise ((resolve, reject) => {
+				let gameExistsP = gameExists (req.params.gameId)
+					.then ((game) => {
+						for (let elem of game.teams) {
 							let entry = elem.toObject ();
+							delete entry.__v;
+							delete entry.roundPoints;
 							entry.approved = true;
 							entries.push (entry);
 						}
 						resolve (entries);
-					}
-				});
+					}).catch ((err) => {
+						reject (err);
+					});
 			});
-			return promise2;
 		}).then ((entries) => {
-			let promise3 = new Promise ((resolve, reject) => {
+			return new Promise ((resolve, reject) => {
 				if (entries.length > 0) {
 					res.json (entries);
 					resolve ();
@@ -143,7 +146,6 @@ app.get ("/api/games/:gameId/teams", (req, res) => {
 					reject ("No teams have applied yet");
 				}
 			});
-			return promise3;
 		}).catch ((err) => {
 			res.json ({
 				success: false,
@@ -171,133 +173,114 @@ app.put ("/api/games/:gameId/teams/:teamId", (req, res) => {
 		});
 	} else if (req.body.approved) {
 		// Approving a team works!
-		let promise = new Promise ((resolve, reject) => {
-			// Check whether the game exists
-			games.findOne ({_id: req.params.gameId}, (err, result) => {
-				if (err) {
-					reject (err.toString);
-				} else if (!result) {
-					reject ("Game not found");
-				} else {
-					resolve (result);
-				}
-			});
-		}).then ((game) => {
-			return new Promise ((resolve, reject) => {
-				// Check whether the team ID has applied to the game
-				teams.findOne ({_id: req.params.teamId, appliedGame: req.params.gameId}, (err, result) => {
-					if (err) {
-						reject (err.toString);
-					} else if (!result) {
-						reject ("Team not found, or has already been accepted");
-					} else {
-						resolve ([game, result]);
-					}
+		let promise = gameExists (req.params.gameId)
+			.then ((game) => {
+				return new Promise ((resolve, reject) => {
+					// Check whether the team ID has applied to the game
+					teams.findOne ({_id: req.params.teamId, appliedGame: req.params.gameId}, (err, result) => {
+						if (err) {
+							reject (err.toString);
+						} else if (!result) {
+							reject ("Team not found, or has already been accepted");
+						} else {
+							resolve ([game, result]);
+						}
+					});
+				});
+			}).then ((gameAndTeam) => {
+				return new Promise ((resolve, reject) => {
+					let team = gameAndTeam [1];
+					teams.deleteOne ({_id: team._id}, (err) => {
+						if (err) {
+							reject (err.toString ());
+						} else {
+							resolve (gameAndTeam);
+						}
+					});
+				});
+			}).then ((gameAndTeam) => {
+				return new Promise ((resolve, reject) => {
+					let game = gameAndTeam [0];
+					let team = gameAndTeam [1].toObject ();
+					delete team.appliedGame;
+					team.roundPoints = 0;
+					game.teams.push (team);
+					game.save ((err) => {
+						if (err) {
+							reject (err.toString ());
+						} else {
+							resolve ();
+						}
+					});
+				});
+			}).then (() => {
+				res.json ({
+					success: true,
+					error: null
+				});
+			}).catch ((err) => {
+				res.json ({
+					success: false,
+					error: err
 				});
 			});
-		}).then ((gameAndTeam) => {
-			return new Promise ((resolve, reject) => {
-				let team = gameAndTeam [1];
-				teams.deleteOne ({_id: team._id}, (err) => {
-					if (err) {
-						reject (err.toString ());
-					} else {
-						resolve (gameAndTeam);
-					}
-				});
-			});
-		}).then ((gameAndTeam) => {
-			return new Promise ((resolve, reject) => {
-				let game = gameAndTeam [0];
-				let team = gameAndTeam [1].toObject ();
-				delete team.appliedGame;
-				team.roundPoints = 0;
-				game.teams.push (team);
-				game.save ((err) => {
-					if (err) {
-						reject (err.toString ());
-					} else {
-						resolve ();
-					}
-				});
-			});
-		}).then (() => {
-			res.json ({
-				success: true,
-				error: null
-			});
-		}).catch ((err) => {
-			res.json ({
-				success: false,
-				error: err
-			});
-		});
 	} else if (!req.body.approved) {
-		let promise = new Promise ((resolve, reject) => {
-			games.findOne ({_id: req.params.gameId}, (err, result) => {
-				if (err) {
-					reject (err.toString);
-				} else if (!result) {
-					reject ("Game not found");
-				} else {
-					resolve (result);
-				}
-			});
-		}).then ((game) => {
-			return new Promise ((resolve, reject) => {
-				let success = false;
-				let removedTeam;
-				for (let i = 0; i < game.teams.length; i++) {
-					if (game.teams [i]._id.toString () === req.params.teamId) {
-						removedTeam = game.teams [i].toObject ();
-						game.teams.splice (i, 1);
-						success = true;
-						i--;
+		let promise = gameExists (req.params.gameId)
+			.then ((game) => {
+				return new Promise ((resolve, reject) => {
+					let success = false;
+					let removedTeam;
+					for (let i = 0; i < game.teams.length; i++) {
+						if (game.teams [i]._id.toString () === req.params.teamId) {
+							removedTeam = game.teams [i].toObject ();
+							game.teams.splice (i, 1);
+							success = true;
+							i--;
+						}
 					}
-				}
-				if (success) {
-					resolve ([game, removedTeam]);
-				} else {
-					reject ("Team not found in game");
-				}
-			});
-		}).then ((gameAndTeam) => {
-			return new Promise ((resolve, reject) => {
-				let game = gameAndTeam [0];
-				let removedTeam = gameAndTeam [1];
-				delete removedTeam.roundPoints;
-				delete removedTeam.__v;
-				removedTeam.appliedGame = game._id;
-				let team = new teams (removedTeam);
-				team.save ((err) => {
-					if (err) {
-						reject (err.toString ());
+					if (success) {
+						resolve ([game, removedTeam]);
 					} else {
-						resolve (game);
+						reject ("Team not found in game");
 					}
 				});
-			});
-		}).then ((game) => {
-			return new Promise ((resolve, reject) => {
-				game.save ((err) => {
-					if (err) {
-						reject (err.toString ());
-					} else {
-						resolve ();
-					}
+			}).then ((gameAndTeam) => {
+				return new Promise ((resolve, reject) => {
+					let game = gameAndTeam [0];
+					let removedTeam = gameAndTeam [1];
+					delete removedTeam.roundPoints;
+					delete removedTeam.__v;
+					removedTeam.appliedGame = game._id;
+					let team = new teams (removedTeam);
+					team.save ((err) => {
+						if (err) {
+							reject (err.toString ());
+						} else {
+							resolve (game);
+						}
+					});
+				});
+			}).then ((game) => {
+				return new Promise ((resolve, reject) => {
+					game.save ((err) => {
+						if (err) {
+							reject (err.toString ());
+						} else {
+							resolve ();
+						}
+					});
+				});
+			}).then (() => {
+				res.json ({
+					success: true,
+					error: null
+				});
+			}).catch ((err) => {
+				res.json ({
+					success: false,
+					error: err
 				});
 			});
-		}).then (() => {
-			res.json ({
-				success: true,
-				error: null
-			});
-		}).catch ((err) => {
-			res.json ({
-				success: false,
-				error: err
-			});
-		});
 	}
 });
 
@@ -341,7 +324,7 @@ app.post ("/api/games/:gameId/teams", (req, res) => {
 				}
 			})
 		}).then (() => {
-			let promise2 = new Promise ((resolve, reject) => {
+			return new Promise ((resolve, reject) => {
 				teams.findOne ({appliedGame: req.params.gameId, name: req.body.name}, (err, result) => {
 					// Check whether the team has already applied to the game
 					if (err) {
@@ -353,9 +336,8 @@ app.post ("/api/games/:gameId/teams", (req, res) => {
 					}
 				});
 			});
-			return promise2;
 		}).then (() => {
-			let promise4 = new Promise ((resolve, reject) => {
+			return new Promise ((resolve, reject) => {
 				team.save ((err) => {
 					if (err) {
 						reject (err.toString ());
@@ -364,7 +346,6 @@ app.post ("/api/games/:gameId/teams", (req, res) => {
 					}
 				});
 			});
-			return promise3;
 		}).then (() => {
 			res.send ({
 				success: true,
