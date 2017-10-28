@@ -203,7 +203,7 @@ Start a new round.
 ##### Response
 ```
 {
- roundId: ObjectId
+ roundId: Number
 }
 ```
 

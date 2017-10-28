@@ -325,6 +325,46 @@ app.put ("/api/games/:gameId/teams/:teamId", (req, res) => {
 	}
 });
 
+app.post ("/api/games/:gameId/rounds", (req, res) => {
+	if (!req.params.gameId) {
+		res.json ({
+			success: false,
+			error: "No game ID specified"
+		});
+	} else {
+		let promise = gameExists (req.params.gameId)
+			.then ((game) => {
+				return new Promise ((resolve, reject) => {
+					let round = {
+						answers: [],
+						activeAnswer: null
+					};
+					game.rounds.push (round);
+					let roundNumber = game.rounds.length - 1;
+					game.activeRound = roundNumber;
+					game.save ((err) => {
+						if (err) {
+							reject (err);
+						} else {
+							resolve (roundNumber);
+						}
+					});
+				});
+			}).then ((roundNumber) => {
+				res.json ({
+					success: true,
+					error: null,
+					roundId: roundNumber
+				});
+			}).catch ((err) => {
+				res.json ({
+					success: false,
+					error: err
+				});
+			});
+	}
+});
+
 // QuizApp
 app.post ("/api/games/:gameId/teams", (req, res) => {
 	// TODO unit test
