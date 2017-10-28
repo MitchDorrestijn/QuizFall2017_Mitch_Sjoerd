@@ -24,6 +24,7 @@ _id: String
 closed: Boolean
 playedQuestions: [ObjectId -> Questions]
 teams: [{
+ _id: ObjectId,
  name: String,
  roundPoints: Number
 }]
