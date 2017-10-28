@@ -320,11 +320,11 @@ Check whether the team application has been approved
 ```
 
 #### GET /api/games/:gameId/rounds/current
-Get the current round ID.
+Get the current round number.
 ##### Response
 ```
 {
- _id: ObjectId
+ roundNumber: Number
 }
 ```
 
