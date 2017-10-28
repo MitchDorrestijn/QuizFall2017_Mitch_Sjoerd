@@ -472,5 +472,30 @@ app.get ("/api/games/:gameId/teams/:teamId", (req, res) => {
 	}
 });
 
+app.get ("/api/games/:gameId/rounds/current", (req, res) => {
+	if (!req.params.gameId) {
+		res.json ({
+			success: false,
+			error: "No game ID specified"
+		});
+	} else {
+		let promise = gameExists (req.params.gameId)
+			.then ((game) => {
+				return new Promise ((resolve) => {
+					resolve (game.activeRound);
+				});
+			}).then ((activeRound) => {
+				res.json ({
+					activeRound: activeRound
+				});
+			}).catch ((err) => {
+				res.json ({
+					success: false,
+					error: err
+				});
+			});
+	}
+});
+
 // Start the server
 app.listen (port, () => console.log (`Server listening on port ${port}`));
