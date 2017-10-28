@@ -164,6 +164,11 @@ app.put ("/api/games/:gameId/teams/:teamId", (req, res) => {
 			success: false,
 			error: "No team ID specified"
 		});
+	} else if (!req.body.hasOwnProperty ('approved')) {
+		res.json ({
+			success: false,
+			error: "No approved flag specified"
+		});
 	} else if (req.body.approved) {
 		// Approving a team works!
 		let promise = new Promise ((resolve, reject) => {
@@ -253,7 +258,7 @@ app.put ("/api/games/:gameId/teams/:teamId", (req, res) => {
 				if (success) {
 					resolve ([game, removedTeam]);
 				} else {
-					reject ("Team not found");
+					reject ("Team not found in game");
 				}
 			});
 		}).then ((gameAndTeam) => {
@@ -292,11 +297,6 @@ app.put ("/api/games/:gameId/teams/:teamId", (req, res) => {
 				success: false,
 				error: err
 			});
-		});
-	} else {
-		res.json ({
-			success: false,
-			error: "No approved flag specified"
 		});
 	}
 });
