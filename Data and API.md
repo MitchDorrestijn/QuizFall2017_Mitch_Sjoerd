@@ -43,6 +43,7 @@ rounds: [{
 activeRound: Number
 ```
 
+## WebSockets API
 ### QuizApp
 The following WebSocket is expected to be opened after the user applies to the quiz.
 ```
