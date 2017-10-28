@@ -1,0 +1,27 @@
+//THIS FILE CONTAINS THE TWEAKABLE OPTIONS TO TWEAK THE QUIZZER APP TO YOUR OWN PREFERENCE.
+
+//IMPORTS.
+@import url('https://fonts.googleapis.com/css?family=Chewy|Open+Sans:400,700');
+
+//WIDTH SETTINGS.
+$maxAppWidth: 66rem;
+$responsiveBreakPoint: 33rem;
+
+//FONT SETTINGS.
+$defaultFont: 'Open Sans', sans-serif;
+$biggestTitleFont: 'Chewy', cursive;
+$biggestTitle: 3rem;
+
+//COLOR SETTINGS.
+$regularFontColor: #444;
+$hoverColor: #F0F0D8;
+$errorColor: #E74C3C;
+$succesColor: #27AE60;
+
+//SPACING SETTINGS.
+$defaultSpacing: 1.5rem;
+$defaultRadius: 0.3rem;
+$headerLetterSpacing: 0.1rem;
+
+//ANIMATION SETTINGS.
+$animationSpeed: 0.3s;

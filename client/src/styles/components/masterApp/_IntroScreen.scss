@@ -1,0 +1,26 @@
+//THIS FILE CONTAINS ALL STYLES FOR THE IntroScreen COMPONENT.
+
+.teamList {
+  list-style: none;
+  margin: $defaultSpacing/2 0 0 0;
+  padding: 0;
+  span:before {
+    content: '\2022 '
+  }
+  button {
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+  button:hover {
+    background: none;
+  }
+  button:hover:after {
+    content: ' \261C'
+  }
+}
+
+.URL {
+  display: block;
+  margin: $defaultSpacing 0;
+}

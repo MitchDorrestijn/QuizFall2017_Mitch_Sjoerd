@@ -1,0 +1,18 @@
+//THIS FILE CONTAINS ALL STYLES FOR THE IntroScreen COMPONENT.
+
+@import './CreateTeam';
+@import './GameRules';
+
+.intro--header{
+  display: table;
+  width: 100%;
+  height: 85vh;
+  h1 {
+    font-family: $biggestTitleFont;
+  }
+  .inner--header {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+}

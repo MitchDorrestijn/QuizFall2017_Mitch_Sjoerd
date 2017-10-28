@@ -1,0 +1,45 @@
+//THIS FILE CONTAINS ALL THE STYLING FOR THE ManageQuestions COMPONENT.
+
+@import './QuestionIsServedScreen';
+@import './ShowGivenAwnsersScreen';
+@import './WinnerScreen';
+
+.questionList {
+  text-align: left;
+  list-style: none;
+  padding-left: $defaultSpacing*3;
+  li {
+    label {
+      margin-left: $defaultSpacing - 0.2rem; //Width of checkbox - spacing between label
+      display: block;
+      input[type="radio"]{
+        margin-right: $defaultSpacing/2 - 0.2rem;
+        margin-left: -($defaultSpacing); //Width of checkbox - spacing between label
+      }
+    }
+  }
+}
+
+.question--wrapper {
+  span:last-of-type {
+    margin-bottom: $defaultSpacing;
+    display: block;
+  }
+  button {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.showAwnser--wrapper {
+  .selectField {
+    margin-top: $defaultSpacing;
+    margin-bottom: $defaultSpacing;
+  }
+}
+
+@media screen and(max-width: $responsiveBreakPoint){
+  .questionList {
+    padding-left: 0;
+  }
+}

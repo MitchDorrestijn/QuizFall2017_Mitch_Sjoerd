@@ -1,0 +1,22 @@
+//THIS FILE CONTAINS ALL STYLES FOR THE createTeam COMPONENT.
+
+.createTeam {
+  margin: $defaultSpacing*1.5 0 0 0;
+  input[type="text"] {
+    width: 25%;
+    padding: $defaultSpacing/2 $defaultSpacing;
+    border: $defaultRadius - 0.2rem solid $regularFontColor;
+    border-radius: $defaultRadius;
+    margin: $defaultSpacing/2 0px;
+  }
+  input[type="submit"] {
+    margin-left: -0.4rem;
+    border: $defaultRadius - 0.2rem solid $regularFontColor;
+    padding: $defaultSpacing - 0.75rem;
+    border-radius: 0 $defaultRadius $defaultRadius 0;
+    background-color: $hoverColor;
+  }
+  input[type="submit"]:hover {
+    cursor: pointer;
+  }
+}

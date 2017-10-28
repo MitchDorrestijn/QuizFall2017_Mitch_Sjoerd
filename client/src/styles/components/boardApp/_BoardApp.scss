@@ -1,0 +1,57 @@
+.scorebord--wrapper {
+  max-width: 80%;
+  margin: $defaultSpacing 10%;
+  box-sizing: border-box;
+  .questionStatus {
+    display: block;
+    text-align: center;
+  }
+  .question {
+    font-family: $biggestTitleFont;
+    text-align: center;
+  }
+  .teamScores {
+    list-style: none;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    h4 {
+      font-family: $biggestTitleFont;
+      margin: $defaultSpacing 0 $defaultSpacing 0;
+    }
+    .singleTeam{
+      float: left;
+      width: 33.333%;
+      box-sizing: border-box;
+      padding: $defaultSpacing;
+      overflow: auto;
+      margin-bottom: $defaultSpacing;
+      .awnser{
+        display: block;
+        margin-bottom: $defaultSpacing;
+      }
+      .rightOrWrong {
+        margin: $defaultSpacing/2 0;
+        display: block;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        span, strong {
+          display: block;
+        }
+      }
+      @media screen and (max-width: $responsiveBreakPoint){
+        width: 100%;
+        margin-bottom: 0;
+        padding: $defaultSpacing/2 $defaultSpacing;
+      }
+    }
+  }
+  .roundInfo {
+    display: block;
+    text-align: center;
+  }
+}

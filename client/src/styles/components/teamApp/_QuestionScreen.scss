@@ -1,0 +1,12 @@
+//THIS FILE CONTAINS ALL STYLES FOR THE QuestionScreen COMPONENT.
+
+.question--wrapper {
+  h1 {
+    @extend .question;
+  }
+  .block {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: $defaultSpacing;
+  }
+}

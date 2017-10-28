@@ -1,0 +1,70 @@
+//THIS FILE CONTAINS ALL THE STYLING FOR THE SelectCategoryScreen COMPONENT.
+
+.selectField {
+  border: $defaultRadius - 0.2rem solid $regularFontColor;
+  border-radius: $defaultRadius;
+  width: 80%;
+  margin: $defaultSpacing/2 10% 0 10%;
+}
+
+span.Select-arrow:before {
+    content: '\261F '
+}
+
+.is-open span.Select-arrow:before {
+  content: '\261D '
+}
+
+//DEFAULT STYLING OVERWRITE FROM THE SELECT COMPONENT.
+.Select-placeholder {
+  color:inherit;
+}
+
+.Select-arrow {
+  border: none;
+}
+
+.Select--multi .Select-value {
+  color: $regularFontColor;
+  border: 1px solid $regularFontColor;
+  background: $hoverColor;
+}
+
+.Select--multi .Select-value-icon {
+  border-right: 1px solid $regularFontColor;
+}
+
+.Select-control {
+  border: none
+}
+
+.has-value.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
+.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus,
+.Select--multi .Select-value,
+.Select--multi a.Select-value-label {
+  color: $regularFontColor;
+}
+
+.Select-option {
+  @extend .animation;
+}
+.Select-option.is-focused  {
+  background-color: $hoverColor;
+}
+
+.Select-menu-outer {
+  margin-top: 10px;
+}
+
+.Select--multi .Select-value-icon:active,
+.Select--multi .Select-value-icon:hover {
+  background-color: $regularFontColor;
+  color:#fff;
+  @extend .animation;
+}
+
+.Select-arrow-zone {
+  padding-right: $defaultSpacing;
+}

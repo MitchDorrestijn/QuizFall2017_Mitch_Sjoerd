@@ -1,0 +1,115 @@
+// THIS FILE CONTAINS  ALL THE BASE STYLING FOR THE ENTIRE QUIZZER APP.
+
+body {
+  font-family: $defaultFont;
+  color: $regularFontColor;
+  background-color: #FFFFFF;
+  background-image: linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px), linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
+  line-height: 25px;
+}
+
+a, button, .animation {
+  -webkit-transition: all $animationSpeed ease-in-out;
+  -moz-transition: all $animationSpeed ease-in-out;
+  -o-transition: all $animationSpeed ease-in-out;
+  transition: all $animationSpeed ease-in-out;
+  color: $regularFontColor;
+}
+
+.letterSpacing {
+  letter-spacing: $headerLetterSpacing;
+}
+
+h1 {
+  font-size: $biggestTitle;
+  @extend .letterSpacing;
+  @extend .question;
+}
+
+h2 {
+  font-size: $biggestTitle - 0.5rem;
+  @extend .letterSpacing;
+}
+
+h3 {
+  font-size: $biggestTitle - 1rem;
+  @extend .letterSpacing;
+}
+
+h4 {
+  font-size: $biggestTitle - 1.5rem;
+  @extend .letterSpacing;
+}
+
+button, .btnLink {
+  padding: ($defaultSpacing/2) ($defaultSpacing);
+  background: none;
+  border: $defaultRadius - 0.1rem dashed $regularFontColor;
+  border-radius: $defaultRadius;
+  margin: $defaultSpacing/2;
+}
+
+.btnLink {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: $defaultSpacing;
+}
+
+button:hover {
+  background: $hoverColor;
+  cursor: pointer;
+}
+
+:focus {
+  outline: none;
+}
+
+.underH1 {
+  margin-top: $defaultSpacing*2;
+}
+
+.error {
+  color: $errorColor;
+}
+
+.success {
+  color: $succesColor;
+}
+
+.intro--header{
+  max-width: ($maxAppWidth) - ($defaultSpacing*4);
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 $defaultSpacing*2;
+}
+
+.full-width-form input[type="text"] {
+  width: 70% !important;
+}
+
+.spacingBelow {
+  margin-bottom: $defaultSpacing;
+  display: inline-block;
+}
+
+.spacingUp {
+  margin-top: $defaultSpacing;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.question {
+  line-height: $defaultSpacing*2.5;
+  @media screen and(max-width: $responsiveBreakPoint){
+    line-height: $defaultSpacing*1.5;
+  }
+}
+
+@media screen and(max-width: $responsiveBreakPoint){
+  h1 {
+    font-size: $biggestTitle/2;
+  }
+}
