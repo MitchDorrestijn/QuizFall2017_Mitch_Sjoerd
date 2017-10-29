@@ -1,97 +1,91 @@
-# fall2017-quizz-MitchEnSjoerd
+<h1 align="center">
+  <br>
+  <img src="https://github.com/HANICA-DWA/fall2017-quizz-MitchEnSjoerd/blob/master/quizzerLogo.png?raw=true" alt="Quizzer" width="500">
+  <br><br>
+  fall2017-quizz-MitchEnSjoerd
+  <br>
+</h1>
 
-The Quizzer is a web application that can be used in bars, sports canteens and maybe even prisons to play quizzes as a team. A pub quiz, basically.
+<h4 align="center">A quiz application built with React, Express and MongoDB.</h4>
 
-## Getting Started
+---
 
-To get up and running download the latest Quizzer from this repository. Once downloaded navigate to the folder and run:
+## Key Features
+
+* Build with modern techniques
+  - React, SCSS, Express and MongoDB
+* Create multiple quizzes
+* Approve or reject teams
+* Select your own categories
+* Separate scoreboard
+* User friendly
+* Adjustable to your preferences
+* API based
+* No page refresh between questions
+* Cross browser
+  - Safari, Chrome, Firefox and Opera ready
+* Challenging questions :blush:
+
+
+## How To Use
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/HANICA-DWA/fall2017-quizz-MitchEnSjoerd.git
+
+# Go into the repository
+$ cd fall2017-quizz-MitchEnSjoerd
+
+# Install dependencies
+$ npm install
+
+# Run the Quizzer
+$ npm run dev-server
 ```
-npm install
-```
-or
-```
-yarn install
-```
 
-Once all dependencies are installed start the Quizzer by typing:
-```
-npm run dev-server
-```
-or (if you use Yarn)
-```
-yarn run dev-server
-```
-
-### Dependencies
-
-The Quizzer app currently uses the following dependencies:
-
-```babel-cli``` version ```^6.24.1```: gives you access to the Babel command line.
-
-```babel-core``` version ```^6.25.0```: adds the core of the Babel compiler.
-
-```babel-loader``` version ```^7.1.1```: allows transpiling JavaScript files using Babel and webpack.
-
-```babel-preset-env``` version ```1.5.2```: a Babel preset that compiles ES2015+ down to ES5.
-
-```babel-preset-react``` version ```6.24.1```: a Babel preset for all React plugins.
-
-```css-loader``` version ```^0.28.4```: required by sass-loader to load the converted css files.
-
-```live-server``` version ```^1.2.0```: little development server with live reload capability (used for development purposes).
-
-```node-sass``` version ```^4.5.3```: natively compiles .scss files to .css.
-
-```normalize.css``` version ```^7.0.0```: resets the default browser styling.
-
-```react``` version ```^15.6.1```: gives the Quizzer access to React.
-
-```react-dom``` version ```^15.6.1```: serves as the entry point of the DOM-related rendering paths.
-
-```sass-loader``` version ```^6.0.6```: loads a SASS/SCSS file and compiles it to CSS.
-
-```style-loader``` version ```^0.18.2```: adds CSS to the DOM by injecting a <style> tag.
-
-```webpack``` version ```^3.1.0```: bundles the Quizzer app assets.
-
-```webpack-dev-server``` version ```^2.5.1```: a development server that provides live reloading.
+Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` / `yarn` from the command prompt.
 
 
-## Commands
+## Download
 
-Currently you can run the following commands:
+You can [download](https://github.com/HANICA-DWA/fall2017-quizz-MitchEnSjoerd/releases) latest installable version of this Quizzer for Windows, macOS and Linux.
 
-```serve```: serves the Quizzer app using the live-server dependency.
+## Credits
 
-```build```: builds the webpack bundle file.
-
-```dev-server```: runs the webpack development server and compiles the assets in bundle.js
-
-
-## Deployment
-
-[GIT server explaination]
-
-## Built With
-
-* [React](https://reactjs.org/) - The client side framework used.
-* [Express](https://expressjs.com/) - The server side framework used (in the future).
-* [SCSS](http://sass-lang.com/) - The CSS preprocessor used.
-* [MongoDB](https://www.mongodb.com/) - The database behind the Quizzer app (in the future).
-* [Mongoose](http://mongoosejs.com/) - The object modeling package for MongoDB (in the future).
-* [SocketIO](https://socket.io/) - The extention used for real-time bidirectional event-based communication.
+This software uses code from several open source packages.
+- [React](https://reactjs.org/) - The client side framework used.
+- [Express](https://expressjs.com/) - The server side framework used.
+- [SCSS](http://sass-lang.com/) - The CSS preprocessor used.
+- [MongoDB](https://www.mongodb.com/) - The database behind the Quizzer app.
+- [Mongoose](http://mongoosejs.com/) - The object modeling package for MongoDB.
+- [SocketIO](https://socket.io/) - The extension used for real-time bidirectional event-based communication.
+- [Babeljs](https://babeljs.io/) - The javascript compiler used.
+- [Webpack](https://webpack.js.org/) - The module bundler used.
 
 
-## Versioning
 
-Currently this is the first stable release of the Quizzer app.
+## Why these packages?
+
+- [React](https://reactjs.org/) - Was required for the assignment.
+- [Express](https://expressjs.com/) - Was required for the assignment.
+- [SCSS](http://sass-lang.com/) - To organize CSS and for variable support.
+- [MongoDB](https://www.mongodb.com/) - Was required for the assignment.
+- [Mongoose](http://mongoosejs.com/) - To add data validation and because it will abstract away most of the mongoDB code.
+- [SocketIO](https://socket.io/) - For user friendliness and fallbacks.
+- [Babeljs](https://babeljs.io/) - To convert React and ES6 code to es5 so non-ES6 browsers can use it.
+- [Webpack](https://webpack.js.org/) - To make the app faster.
 
 ## Authors
 
-* **Mitch Dorrestijn** - *Mostly client-side development* - [MitchDorrestijn](https://github.com/MitchDorrestijn)
-* **Sjoerd Scheffer** - *Mostly server-side development* - [ixnas](https://github.com/ixnas)
+* Mitch Dorrestijn - *Mostly client-side development* - [MitchDorrestijn](https://github.com/MitchDorrestijn)
+* Sjoerd Scheffer - *Mostly server-side development* - [ixnas](https://github.com/ixnas)
+
+## Sidenotes
+The Quizzer application is created in commissioned by the Hogeschool van Arnhem en Nijmegen for the SWD/CWD courses.
 
 
-## License
+#### License
 
-Copyright 2017 all rights reserved.
+MIT
