@@ -833,6 +833,132 @@ app.get ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
 	}
 });
 
+// QuizzApp and QuizzMaster
+app.put ("/api/games/:gameId/rounds/:roundId/answers/current", (req, res) => {
+	if (!req.params.roundId) {
+		res.json ({
+			success: false,
+			error: "No game ID specified"
+		});
+	} else if (!req.params.roundId) {
+		res.json ({
+			success: false,
+			error: "No round ID specified"
+		});
+	} else {
+		if (req.body.team && req.body.hasOwnProperty ("correct")) {
+			let promise = gameExists (req.params.gameId)
+				.then ((game) => {
+					return new Promise ((resolve, reject) => {
+						let roundId = parseInt (req.params.roundId, 10);
+						if (game.rounds [roundId]) {
+							let activeAnswer = game.rounds [roundId].activeAnswer;
+							if (activeAnswer !== null) {
+								if (game.rounds [roundId].answers [activeAnswer].closed) {
+									let success = false;
+									for (let i = 0; i < game.rounds [roundId].answers [activeAnswer].answers.length; i++) {
+										if (game.rounds [roundId].answers [activeAnswer].answers [i].team === req.body.team) {
+											game.rounds [roundId].answers [activeAnswer].answers [i].approved = req.body.correct;
+											success = true;
+										}
+									}
+									if (success) {
+										resolve (game);
+									} else {
+										reject ("Team not found");
+									}
+								} else {
+									reject ("Question is not closed");
+								}
+							} else {
+								reject ("No question is active");
+							}
+						} else {
+							reject ("Round doesn't exist");
+						}
+					});
+				}).then ((game) => {
+					return new Promise ((resolve, reject) => {
+						game.save ((err) => {
+							if (err) {
+								reject (err.toString ());
+							} else {
+								resolve ();
+							}
+						});
+					});
+				}).then (() => {
+					res.json ({
+						success: true,
+						error: null
+					});
+				}).catch ((err) => {
+					res.json ({
+						success: false,
+						error: err
+					});
+				});
+		} else if (req.body.team && req.body.answer) {
+			let promise = gameExists (req.params.gameId)
+				.then ((game) => {
+					return new Promise ((resolve, reject) => {
+						let roundId = parseInt (req.params.roundId, 10);
+						if (game.rounds [roundId]) {
+							let activeAnswer = game.rounds [roundId].activeAnswer;
+							if (activeAnswer !== null) {
+								if (!game.rounds [roundId].answers [activeAnswer].closed) {
+									let success = false;
+									for (let i = 0; i < game.rounds [roundId].answers [activeAnswer].answers.length; i++) {
+										if (game.rounds [roundId].answers [activeAnswer].answers [i].team === req.body.team) {
+											game.rounds [roundId].answers [activeAnswer].answers [i].answer = req.body.answer;
+											success = true;
+										}
+									}
+									if (success) {
+										resolve (game);
+									} else {
+										reject ("Team not found");
+									}
+								} else {
+									reject ("Question is closed");
+								}
+							} else {
+								reject ("No question is active");
+							}
+						} else {
+							reject ("Round doesn't exist");
+						}
+					});
+				}).then ((game) => {
+					return new Promise ((resolve, reject) => {
+						game.save ((err) => {
+							if (err) {
+								reject (err.toString ());
+							} else {
+								resolve ();
+							}
+						});
+					});
+				}).then (() => {
+					res.json ({
+						success: true,
+						error: null
+					});
+				}).catch ((err) => {
+					res.json ({
+						success: false,
+						error: err
+					});
+				});
+		} else {
+			res.json ({
+				success: false,
+				error: "No flag or answer specified"
+			});
+		}
+	}
+});
+
 // QuizzScore
 app.get ("/api/games/:gameId/scores", (req, res) => {
 	if (!req.params.gameId) {
