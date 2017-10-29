@@ -280,6 +280,15 @@ Change to another question.
 }
 ```
 
+#### PUT /api/games/:gameId/rounds/:roundId
+Close the round. This is useful if before you end the quiz night, you still want to be able to project the score board.
+##### Request
+```
+{
+ close: true
+}
+```
+
 ### QuizApp
 
 #### How it will be used
