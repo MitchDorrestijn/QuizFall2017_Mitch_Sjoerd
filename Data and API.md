@@ -137,8 +137,8 @@ Note: all `POST`, `PUT` and `DELETE` APIs will return a message with the followi
    - `PUT /api/games/:gameId/rounds/:roundId/questions/current`
      - `{close: true}`
 7. Read the answers that the teams have submitted and validate their correctness.
-   - `GET /api/games/:gameId/rounds/:roundId/answers/:questionId`
-   - `PUT /api/games/:gameId/rounds/:roundId/answers/:questionId`
+   - `GET /api/games/:gameId/rounds/:roundId/answers/current`
+   - `PUT /api/games/:gameId/rounds/:roundId/answers/current`
      - `{team: String, correct: Boolean}`
 8. After a quiz round, decide whether to
    - play another round
@@ -292,7 +292,7 @@ Change to another question.
    - `GET /api/games/:gameId/rounds/current`
    - `GET /api/games/:gameId/rounds/:roundId/questions/current`
 4. Give or change an answer to the question
-   - `PUT /api/games/:gameId/rounds/:roundId/questions/:questionId`
+   - `PUT /api/games/:gameId/rounds/:roundId/answers/current`
 
 #### POST /api/games/:gameId/teams
 Apply for a game.
