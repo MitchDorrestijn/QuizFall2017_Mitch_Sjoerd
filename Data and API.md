@@ -360,6 +360,7 @@ Fetch the information for the scoreboard.
 {
  roundNumber: Number,
  questionNumber: Number,
+ maxQuestions: Number,
  scores: [{
   team: String,
   correctAnswers: Number,
