@@ -705,6 +705,59 @@ app.get ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
 	}
 });
 
+app.get ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
+	if (!req.params.roundId) {
+		res.json ({
+			success: false,
+			error: "No game ID specified"
+		});
+	} else if (!req.params.roundId) {
+		res.json ({
+			success: false,
+			error: "No round ID specified"
+		});
+	} else {
+		let promise = gameExists (req.params.gameId)
+			.then ((game) => {
+				return new Promise ((resolve, reject) => {
+					let roundId = parseInt (req.params.roundId);
+					if (game.rounds [roundId]) {
+						let activeAnswer = game.rounds [roundId].activeAnswer;
+						if (activeAnswer !== null) {
+							resolve (game.rounds [roundId].answers [activeAnswer].question);
+						} else {
+							reject ("No question is active");
+						}
+					} else {
+						reject ("Round doesn't exist");
+					}
+				});
+			}).then ((questionId) => {
+				return new Promise ((resolve, reject) => {
+					questions.findOne ({_id: questionId}, (err, result) => {
+						if (err) {
+							reject (err.toString ());
+						} else if (result) {
+							resolve ({
+								questionId: questionId,
+								question: result.question
+							});
+						} else {
+							reject ("Question not found");
+						}
+					});
+				});
+			}).then ((result) => {
+				res.json (result);
+			}).catch ((err) => {
+				res.json ({
+					success: false,
+					error: err
+				});
+			});
+	}
+});
+
 // QuizzScore
 app.get ("/api/games/:gameId/scores", (req, res) => {
 	if (!req.params.gameId) {
