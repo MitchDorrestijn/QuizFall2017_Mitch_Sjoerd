@@ -101,6 +101,16 @@ app.put ("/api/games/:gameId", (req, res) => {
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
 					if (req.body.closed) {
+						if (game.activeRound !== null) {
+							let roundId = game.activeRound;
+							let activeAnswer = game.rounds [roundId].activeAnswer;
+							if (game.rounds [roundId].activeAnswer !== null) {
+								game.playedQuestions.push (game.rounds [roundId].answers [activeAnswer].question);
+								game.rounds [roundId].activeAnswer = null;
+							}
+							game = calculateScores (game);
+							game.activeRound = null;
+						}
 						game.closed = true;
 						game.save ((err) => {
 							if (err) {
@@ -676,7 +686,7 @@ app.put ("/api/games/:gameId/rounds/:roundId", (req, res) => {
 			success: false,
 			error: "No round ID specified"
 		});
-	} else if (!req.body.nextQuestion && !req.body.hasOwnProperty ('close')) {
+	} else if (!req.body.nextQuestion) {
 		res.json ({
 			success: false,
 			error: "No question or close flag specified"
@@ -734,41 +744,6 @@ app.put ("/api/games/:gameId/rounds/:roundId", (req, res) => {
 							resolve ();
 						}
 					});
-				});
-			}).then (() => {
-				res.json ({
-					success: true,
-					error: null
-				});
-			}).catch ((err) => {
-				res.json ({
-					success: false,
-					error: err
-				});
-			});
-	} else {
-		let promise = gameExists (req.params.gameId)
-			.then ((game) => {
-				return new Promise ((resolve, reject) => {
-					if (game.activeRound !== null) {
-						let roundId = parseInt (req.params.roundId, 10);
-						let activeAnswer = game.rounds [roundId].activeAnswer;
-						if (game.rounds [roundId].activeAnswer !== null) {
-							game.playedQuestions.push (game.rounds [roundId].answers [activeAnswer].question);
-							game.rounds [roundId].activeAnswer = null;
-						}
-						game = calculateScores (game);
-						game.activeRound = null;
-						game.save ((err) => {
-							if (err) {
-								reject (err.toString ());
-							} else {
-								resolve ();
-							}
-						});
-					} else {
-						reject ("There is no round to be closed");
-					}
 				});
 			}).then (() => {
 				res.json ({
@@ -1102,7 +1077,7 @@ app.get ("/api/games/:gameId/scores", (req, res) => {
 			error: "No gameID specified"
 		});
 	} else {
-		let promise = gameExists (req.params.gameId)
+		let promise = gameExists (req.params.gameId, true)
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
 					let result = {};
