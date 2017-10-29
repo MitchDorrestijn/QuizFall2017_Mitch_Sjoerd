@@ -527,6 +527,71 @@ app.get ("/api/games/:gameId/rounds/:roundId/questions", (req, res) => {
 	}
 });
 
+app.put ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
+	if (!req.params.gameId) {
+		res.json ({
+			success: false,
+			error: "No game ID specified"
+		});
+	} else if (!req.params.roundId) {
+		res.json ({
+			success: false,
+			error: "No round ID specified"
+		});
+	} else if (!req.body.hasOwnProperty ('close')) {
+		res.json ({
+			success: false,
+			error: "No close flag specified"
+		});
+	} else {
+		let promise = gameExists (req.params.gameId)
+			.then ((game) => {
+				return new Promise ((resolve, reject) => {
+					let roundId = parseInt (req.params.roundId, 10);
+					if (game.rounds [roundId]) {
+						let activeAnswer = game.rounds [roundId].activeAnswer;
+						if (activeAnswer !== null) {
+							if (req.body.close) {
+								if (game.rounds [roundId].answers [activeAnswer].closed) {
+									reject ("Question is already closed");
+								} else {
+									game.rounds [roundId].answers [activeAnswer].closed = true;
+									resolve (game);
+								}
+							} else {
+								reject ("You cannot reopen a question");
+							}
+						} else {
+							reject ("There is no active question");
+						}
+					} else {
+						reject ("Round doesn't exist");
+					}
+				});
+			}).then ((game) => {
+				return new Promise ((resolve, reject) => {
+					game.save ((err) => {
+						if (err) {
+							reject (err.toString ());
+						} else {
+							resolve ();
+						}
+					})
+				});
+			}).then (() => {
+				res.json ({
+					success: true,
+					error: null
+				});
+			}).catch ((err) => {
+				res.json ({
+					success: false,
+					error: err
+				});
+			});
+	}
+});
+
 // QuizzApp
 app.post ("/api/games/:gameId/teams", (req, res) => {
 	// TODO unit test
