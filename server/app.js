@@ -654,5 +654,52 @@ app.get ("/api/games/:gameId/rounds/current", (req, res) => {
 	}
 });
 
+app.get ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
+	if (!req.params.gameId) {
+		res.json ({
+			success: false,
+			error: "No game ID specified"
+		});
+	} else if (!req.params.roundId) {
+		res.json ({
+			success: false,
+			error: "No round ID specified"
+		});
+	} else {
+		let promise = gameExists (req.params.gameId)
+			.then ((game) => {
+				return new Promise ((resolve, reject) => {
+					let result = {};
+					if (game.rounds [parseInt (req.params.roundId, 10)]) {
+						if (game.rounds [parseInt (req.params.roundId, 10)].activeAnswer !== null) {
+							let activeAnswer = game.rounds [parseInt (req.params.roundId)].answers [game.rounds [parseInt (req.params.roundId)].activeAnswer];
+							result.questionId = activeAnswer.question;
+							questions.findOne ({_id: result.questionId}, (err, question) => {
+								if (err) {
+									reject (err.toString ());
+								} else {
+									result.question = question.question;
+									resolve (result);
+								}
+							});
+						} else {
+							reject ("There is no active question");
+						}
+					} else {
+						reject ("The round does not exist");
+					}
+				});
+			}).then ((result) => {
+				res.json (result);
+			}).catch ((err) => {
+				res.json ({
+					success: false,
+					error: err
+				});
+			});
+	}
+});
+
+
 // Start the server
 app.listen (port, () => console.log (`Server listening on port ${port}`));
