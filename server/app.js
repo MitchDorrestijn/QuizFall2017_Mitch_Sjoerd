@@ -9,6 +9,7 @@ let teams = require ("./schema/teams.js").model;
 let cors = require ("cors");
 
 let port = 8080;
+let questionsPerRound = 12;
 
 let app = express ();
 
@@ -401,7 +402,7 @@ app.post ("/api/games/:gameId/rounds/:roundId/questions", (req, res) => {
 					questions.findRandom (
 						{_id: { $nin: game.playedQuestions }, category: { $in: req.body.categories }},
 						{},
-						{limit: 12},
+						{limit: questionsPerRound},
 						(err, result) => {
 							if (err) {
 								reject (err.toString ());
@@ -467,17 +468,21 @@ app.get ("/api/games/:gameId/rounds/:roundId/questions", (req, res) => {
 		let promise = gameExists (req.params.gameId)
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
-					let roundQuestions = [];
-					for (let answer of game.rounds [parseInt (req.params.roundId, 10)].answers) {
-						roundQuestions.push ({
-							questionId : answer.question
+					if (game.rounds [parseInt (req.params.roundId, 10)]) {
+						let roundQuestions = [];
+						for (let answer of game.rounds [parseInt (req.params.roundId, 10)].answers) {
+							roundQuestions.push ({
+								questionId: answer.question
+							});
+						}
+						let playedQuestions = game.playedQuestions.map ((elem) => {
+							return elem.toString ();
 						});
+						roundQuestions = roundQuestions.filter (val => !playedQuestions.includes (val.questionId.toString ()));
+						resolve (roundQuestions);
+					} else {
+						reject ("Round doesn't exist");
 					}
-					let playedQuestions = game.playedQuestions.map ((elem) => {
-						return elem.toString ();
-					});
-					roundQuestions = roundQuestions.filter (val => !playedQuestions.includes (val.questionId.toString ()));
-					resolve (roundQuestions);
 				});
 			}).then ((roundQuestions) => {
 				return new Promise ((resolve, reject) => {
