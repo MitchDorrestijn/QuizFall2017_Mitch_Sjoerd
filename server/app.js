@@ -365,6 +365,93 @@ app.post ("/api/games/:gameId/rounds", (req, res) => {
 	}
 });
 
+app.post ("/api/games/:gameId/rounds/:roundId/questions", (req, res) => {
+	if (!req.params.gameId) {
+		res.json ({
+			success: false,
+			error: "No game ID specified"
+		});
+	} else if (!req.params.roundId) {
+		res.json ({
+			success: false,
+			error: "No round ID specified"
+		});
+	} else if (!req.body.categories) {
+		res.json ({
+			success: false,
+			error: "No game ID specified"
+		});
+	} else if (req.body.categories.length < 3) {
+		res.json ({
+			success: false,
+			error: "You need to specify three categories"
+		});
+	} else {
+		let promise = gameExists (req.params.gameId)
+			.then ((game) => {
+				return new Promise ((resolve, reject) => {
+					if (game.activeRound !== parseInt (req.params.roundId, 10)) {
+						reject ("You can only add questions to the active round");
+					} else {
+						resolve (game);
+					}
+				});
+			}).then ((game) => {
+				return new Promise ((resolve, reject) => {
+					questions.findRandom (
+						{_id: { $nin: game.playedQuestions }, category: { $in: req.body.categories }},
+						{},
+						{limit: 12},
+						(err, result) => {
+							if (err) {
+								reject (err.toString ());
+							} else {
+								let gameAndQuestions = [game, result];
+								resolve (gameAndQuestions);
+							}
+						});
+				});
+			}).then ((gameAndQuestions) => {
+				return new Promise ((resolve, reject) => {
+					let game = gameAndQuestions [0];
+					let questions = gameAndQuestions [1];
+					let teamAnswers = [];
+					for (let elem of game.teams) {
+						teamAnswers.push ({
+							team: elem.name,
+							answer: "",
+							approved: false
+						});
+					}
+					for (let elem of questions) {
+						game.rounds [parseInt (req.params.roundId, 10)].answers.push ({
+							question: elem._id,
+							closed: false,
+							answers: teamAnswers
+						});
+					}
+					game.save ((err) => {
+						if (err) {
+							reject (err.toString ());
+						} else {
+							resolve ();
+						}
+					});
+				});
+			}).then (() => {
+				res.json ({
+					success: true,
+					error: null
+				});
+			}).catch ((err) => {
+				res.json ({
+					success: false,
+					error: err
+				});
+			});
+	}
+});
+
 // QuizApp
 app.post ("/api/games/:gameId/teams", (req, res) => {
 	// TODO unit test

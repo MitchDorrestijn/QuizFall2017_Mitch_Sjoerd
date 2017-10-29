@@ -11,7 +11,7 @@ let roundSchema = new Schema ({
 		type: Number,
 		default: null
 	}
-}, {_id: false, collection: 'Rounds'});
+}, {_id: false});
 
 module.exports = {
 	schema: roundSchema,

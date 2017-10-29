@@ -14,7 +14,7 @@ let teamAnswerSchema = new Schema ({
 		type: Boolean,
 		default: false
 	}
-});
+}, {_id: false});
 
 module.exports = {
 	schema: teamAnswerSchema,
