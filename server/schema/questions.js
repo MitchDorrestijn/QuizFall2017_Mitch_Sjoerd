@@ -1,4 +1,5 @@
 let mongoose = require ("mongoose");
+let mongooseRandom = require ("mongoose-simple-random");
 let Schema = mongoose.Schema;
 
 let questionSchema = new Schema ({
@@ -19,6 +20,8 @@ let questionSchema = new Schema ({
 		required: true
 	}
 }, {collection: 'Questions'});
+
+questionSchema.plugin (mongooseRandom);
 
 module.exports = {
 	schema: questionSchema,
