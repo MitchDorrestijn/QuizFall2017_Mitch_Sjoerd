@@ -815,7 +815,6 @@ app.get ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
 							reject (err.toString ());
 						} else if (result) {
 							resolve ({
-								questionId: questionId,
 								question: result.question
 							});
 						} else {

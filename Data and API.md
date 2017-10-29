@@ -234,7 +234,6 @@ Get the current question.
 ##### Response
 ```
 {
- questionId: ObjectId,
  question: String
 }
 ```
@@ -248,8 +247,8 @@ Close the current question.
 }
 ```
 
-#### GET /api/games/:gameId/rounds/:roundId/answers/:questionId
-Get all answers from all teams for a question within a round, as well as the right answer to the question.
+#### GET /api/games/:gameId/rounds/:roundId/answers/current
+Get all answers from all teams for the current question within a round, as well as the right answer to the question.
 ##### Response
 ```
 {
@@ -262,7 +261,7 @@ Get all answers from all teams for a question within a round, as well as the rig
 }
 ```
 
-#### PUT /api/games/:gameId/rounds/:roundId/answers/:questionId
+#### PUT /api/games/:gameId/rounds/:roundId/answers/current
 Mark an answer as correct or incorrect.
 ##### Request
 ```
@@ -333,12 +332,11 @@ Get the current question.
 ##### Response
 ```
 {
- questionId: ObjectId,
  question: String
 }
 ```
 
-#### PUT /api/games/:gameId/rounds/:roundId/answers/:questionId
+#### PUT /api/games/:gameId/rounds/:roundId/answers/current
 Give or change an answer to a certain question.
 ##### Request
 ```
