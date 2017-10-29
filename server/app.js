@@ -752,6 +752,11 @@ app.put ("/api/games/:gameId/rounds/:roundId", (req, res) => {
 				return new Promise ((resolve, reject) => {
 					if (game.activeRound !== null) {
 						let roundId = parseInt (req.params.roundId, 10);
+						let activeAnswer = game.rounds [roundId].activeAnswer;
+						if (game.rounds [roundId].activeAnswer !== null) {
+							game.playedQuestions.push (game.rounds [roundId].answers [activeAnswer].question);
+							game.rounds [roundId].activeAnswer = null;
+						}
 						game = calculateScores (game);
 						game.activeRound = null;
 						game.save ((err) => {
