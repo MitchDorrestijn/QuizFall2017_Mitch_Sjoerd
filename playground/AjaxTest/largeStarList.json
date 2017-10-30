@@ -1,0 +1,2063 @@
+[
+   {
+      "name": "Johnny",
+      "surname": "Ace",
+      "age": 25,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/1/12/Johnny_Ace_photo.jpg/220px-Johnny_Ace_photo.jpg"
+   },
+   {
+      "name": "Nick",
+      "surname": "Acland",
+      "band": "Lush",
+      "age": 30,
+      "why": "Suicide"
+   },
+   {
+      "name": "GG",
+      "surname": "Allin",
+      "age": 36,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/d/dc/GGConcert.jpg/220px-GGConcert.jpg"
+   },
+   {
+      "name": "Luther",
+      "surname": "Allison",
+      "age": 58,
+      "why": "Brain tumor",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/5/56/LutherAllison1996.jpg/220px-LutherAllison1996.jpg"
+   },
+   {
+      "name": "Duane",
+      "surname": "Allman",
+      "band": "Allman Brothers Band",
+      "age": 24,
+      "why": "Motorcycle accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Duane_Allmann.jpg/220px-Duane_Allmann.jpg"
+   },
+   {
+      "name": "Matthew",
+      "surname": "Ashman",
+      "band": "Bow Wow Wow",
+      "age": 35,
+      "why": "Diabetes"
+   },
+   {
+      "name": "Chet",
+      "surname": "Baker",
+      "age": 58,
+      "why": "Fell out window",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/d/df/Getz%26BakerSandvika1983x.jpg/220px-Getz%26BakerSandvika1983x.jpg"
+   },
+   {
+      "name": "Florence",
+      "surname": "Ballard",
+      "band": "Supremes",
+      "age": 32,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Florence_Ballard_%281965%29.jpg/220px-Florence_Ballard_%281965%29.jpg"
+   },
+   {
+      "name": "Carlton",
+      "surname": "Barrett",
+      "band": "Wailers",
+      "age": 37,
+      "why": "Murdered"
+   },
+   {
+      "name": "Stiv",
+      "surname": "Bators",
+      "band": "Dead Boys",
+      "age": 40,
+      "why": "Hit by a Car",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/1/17/Stiv_Bators.jpg/159px-Stiv_Bators.jpg"
+   },
+   {
+      "name": "Paul",
+      "surname": "Beaver",
+      "band": "Beaver and Krause",
+      "age": 50,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Chris",
+      "surname": "Bell",
+      "band": "Big Star",
+      "age": 27,
+      "why": "Car accident"
+   },
+   {
+      "name": "Jesse",
+      "surname": "Belvin",
+      "band": "Jesse & Marvin",
+      "age": 26,
+      "why": "Car Accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/a/a2/Jessebelvin.jpg/220px-Jessebelvin.jpg"
+   },
+   {
+      "name": "Duster",
+      "surname": "Bennett",
+      "age": 29,
+      "why": "Car accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/3/34/John_Mayall_and_Duster_Bennett_1970.JPG/200px-John_Mayall_and_Duster_Bennett_1970.JPG"
+   },
+   {
+      "name": "Bert",
+      "surname": "Berns",
+      "band": "(producer)",
+      "age": 38,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Bobby",
+      "surname": "Bloom",
+      "age": 28,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/7/79/Bobby_Bloom.png/250px-Bobby_Bloom.png"
+   },
+   {
+      "name": "Mike",
+      "surname": "Bloomfield",
+      "age": 37,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/9/9d/Mike_Bloomfield_1960.jpg/250px-Mike_Bloomfield_1960.jpg"
+   },
+   {
+      "name": "Marc",
+      "surname": "Bolan",
+      "band": "T-Rex",
+      "age": 30,
+      "why": "Car accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/0/0f/BolanMarc.jpg/230px-BolanMarc.jpg"
+   },
+   {
+      "name": "Tommy",
+      "surname": "Bolin",
+      "band": "Deep Purple",
+      "age": 25,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Tommy_Bolin_with_a_Yamaha_SX.jpg/220px-Tommy_Bolin_with_a_Yamaha_SX.jpg"
+   },
+   {
+      "name": "Graham",
+      "surname": "Bond",
+      "age": 36,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/b/b1/Graham_Bond.jpg/220px-Graham_Bond.jpg"
+   },
+   {
+      "name": "John",
+      "surname": "Bonham",
+      "band": "Led Zeppelin",
+      "age": 32,
+      "why": "Alcohol overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/4/4c/John_Bonham_1975.jpg/220px-John_Bonham_1975.jpg"
+   },
+   {
+      "name": "Dennes",
+      "surname": "Boon",
+      "band": "Minutemen",
+      "age": 27,
+      "why": "Car Accident"
+   },
+   {
+      "name": "David",
+      "surname": "Box",
+      "band": "Crickets",
+      "age": 21,
+      "why": "Airplane Crash"
+   },
+   {
+      "name": "Lee",
+      "surname": "Brilleaux",
+      "band": "Dr. Feelgood",
+      "age": 41,
+      "why": "Medical"
+   },
+   {
+      "name": "Jo (Jonas)",
+      "surname": "Bruce",
+      "band": "Afro Celt Sound System",
+      "age": 28,
+      "why": "Asthma"
+   },
+   {
+      "name": "Roy",
+      "surname": "Buchanan",
+      "age": 48,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/e/e6/RoyBuchananPerforming_flip.jpg/220px-RoyBuchananPerforming_flip.jpg"
+   },
+   {
+      "name": "Jeff",
+      "surname": "Buckley",
+      "age": 30,
+      "why": "Drowned",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/a/a4/Jeff-buckley-4.jpeg/200px-Jeff-buckley-4.jpeg"
+   },
+   {
+      "name": "Tim",
+      "surname": "Buckley",
+      "age": 28,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/1/17/Tim-Buckley.jpg/300px-Tim-Buckley.jpg"
+   },
+   {
+      "name": "Johnny",
+      "surname": "Burnette",
+      "age": 30,
+      "why": "Drowned",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/8/88/Rock_Rock_Rock%281956%29.ogv/330px-seek%3D3844-Rock_Rock_Rock%281956%29.ogv.jpg"
+   },
+   {
+      "name": "Cliff",
+      "surname": "Burton",
+      "band": "Metallica",
+      "age": 25,
+      "why": "Traffic accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/0/0c/Bass_burton.jpg/220px-Bass_burton.jpg"
+   },
+   {
+      "name": "Paul",
+      "surname": "Butterfield",
+      "band": "Butterfield Blues Band",
+      "age": 44,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Paul_Butterfield_79.jpg/220px-Paul_Butterfield_79.jpg"
+   },
+   {
+      "name": "Glenn",
+      "surname": "Buxton",
+      "band": "Alice Cooper",
+      "age": 49,
+      "why": "Pneumonia",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/e/ef/Glen_Buxton.jpg/220px-Glen_Buxton.jpg"
+   },
+   {
+      "name": "David",
+      "surname": "Byron",
+      "band": "Uriah Heep",
+      "age": 38,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/d/dd/David_Byron.jpg/220px-David_Byron.jpg"
+   },
+   {
+      "name": "Ronnie",
+      "surname": "Caldwell",
+      "band": "Bar-Kays",
+      "age": 19,
+      "why": "Airplane crash",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/1/16/Nuvola_apps_kcmmidi.png/30px-Nuvola_apps_kcmmidi.png"
+   },
+   {
+      "name": "Tommy",
+      "surname": "Caldwell",
+      "band": "Marshall Tucker Band",
+      "age": 30,
+      "why": "Car accident"
+   },
+   {
+      "name": "Randy",
+      "surname": "California",
+      "band": "Spirit",
+      "age": 45,
+      "why": "Drowned"
+   },
+   {
+      "name": "Robert",
+      "surname": "Calvert",
+      "band": "Hawkwind",
+      "age": 42,
+      "why": "Heart attack"
+   },
+   {
+      "name": "John",
+      "surname": "Campbell",
+      "age": 41,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Karen",
+      "surname": "Carpenter",
+      "band": "Carpenters",
+      "age": 33,
+      "why": "Anorexia",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/1/14/Karen_Carpenter.jpg/200px-Karen_Carpenter.jpg"
+   },
+   {
+      "name": "Eric",
+      "surname": "Carr",
+      "band": "Kiss",
+      "age": 41,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/b/b6/Carr-promo.jpg/220px-Carr-promo.jpg"
+   },
+   {
+      "name": "Chas",
+      "surname": "Chandler",
+      "band": "Animals",
+      "age": 58,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Harry",
+      "surname": "Chapin",
+      "age": 38,
+      "why": "Car accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/3/33/Harry_Chapin-1980.jpg/220px-Harry_Chapin-1980.jpg"
+   },
+   {
+      "name": "Bill",
+      "surname": "Chase",
+      "band": "Chase",
+      "age": 39,
+      "why": "Airplane crash"
+   },
+   {
+      "name": "John",
+      "surname": "Cipollina",
+      "band": "Quicksilver Messenger Service",
+      "age": 45,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/a/af/John_Cipollina_121976.gif/220px-John_Cipollina_121976.gif"
+   },
+   {
+      "name": "Gene",
+      "surname": "Clark",
+      "band": "Byrds",
+      "age": 49,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/8/8f/GeneClarkImg.jpg/220px-GeneClarkImg.jpg"
+   },
+   {
+      "name": "Steve",
+      "surname": "Clark",
+      "band": "Def Leppard",
+      "age": 30,
+      "why": "Alcohol",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/4/41/Steve-clark.jpg/220px-Steve-clark.jpg"
+   },
+   {
+      "name": "Walter",
+      "surname": "Clark",
+      "band": "Chase",
+      "age": 25,
+      "why": "Airplane crash"
+   },
+   {
+      "name": "Michael",
+      "surname": "Clarke",
+      "band": "Byrds",
+      "age": 50,
+      "why": "Medical"
+   },
+   {
+      "name": "Kurt",
+      "surname": "Cobain",
+      "band": "Nirvana",
+      "age": 27,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/1/19/Nirvana_around_1992.jpg/275px-Nirvana_around_1992.jpg"
+   },
+   {
+      "name": "Eddie",
+      "surname": "Cochran",
+      "age": 21,
+      "why": "Car accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Eddie_Cochran.jpg/220px-Eddie_Cochran.jpg"
+   },
+   {
+      "name": "Brian",
+      "surname": "Cole",
+      "band": "Association",
+      "age": 28,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/8/8b/EbassUS.jpg/40px-EbassUS.jpg"
+   },
+   {
+      "name": "Nat 'King'",
+      "surname": "Cole",
+      "age": 48,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/8/83/Nat_King_Cole_%28Gottlieb_01511%29.jpg/220px-Nat_King_Cole_%28Gottlieb_01511%29.jpg"
+   },
+   {
+      "name": "Allen",
+      "surname": "Collins",
+      "band": "Lynyrd Skynyrd",
+      "age": 37,
+      "why": "Pneumonia",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/3/3c/Allen_Collins.jpg/220px-Allen_Collins.jpg"
+   },
+   {
+      "name": "Rob",
+      "surname": "Collins",
+      "band": "Charlatans",
+      "age": 32,
+      "why": "Car accident"
+   },
+   {
+      "name": "Brian",
+      "surname": "Connolly",
+      "band": "Sweet",
+      "age": 52,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/5/52/Brianconnolly.GIF/220px-Brianconnolly.GIF"
+   },
+   {
+      "name": "Sam",
+      "surname": "Cooke",
+      "age": 33,
+      "why": "Murdered",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/9/90/Sam_Cooke_2.jpg/220px-Sam_Cooke_2.jpg"
+   },
+   {
+      "name": "Vincent",
+      "surname": "Crane",
+      "band": "Atomic Rooster",
+      "age": 44,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/1/16/Nuvola_apps_kcmmidi.png/30px-Nuvola_apps_kcmmidi.png"
+   },
+   {
+      "name": "Darby",
+      "surname": "Crash",
+      "band": "Germs",
+      "age": 22,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/6/65/Darby_Crash.jpg/220px-Darby_Crash.jpg"
+   },
+   {
+      "name": "Jim",
+      "surname": "Croce",
+      "age": 30,
+      "why": "Airplane crash",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jim-Croce-r01.jpg/220px-Jim-Croce-r01.jpg"
+   },
+   {
+      "name": "Carl",
+      "surname": "Cunningham",
+      "band": "Bar-Kays",
+      "age": 18,
+      "why": "Airplane crash"
+   },
+   {
+      "name": "Ian",
+      "surname": "Curtis",
+      "band": "Joy Division",
+      "age": 23,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/0/06/Ian_Curtis_Joy_Division_1979.jpg/220px-Ian_Curtis_Joy_Division_1979.jpg"
+   },
+   {
+      "name": "King",
+      "surname": "Curtis",
+      "age": 37,
+      "why": "Murdered",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/b/b5/King_Curtis.png/220px-King_Curtis.png"
+   },
+   {
+      "name": "",
+      "surname": "Dalida",
+      "age": 53,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/9/91/Dalida_1960s_%28cropped%29.jpg/220px-Dalida_1960s_%28cropped%29.jpg"
+   },
+   {
+      "name": "Bobby",
+      "surname": "Darin",
+      "age": 37,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Bobby_Darin_1959.JPG/220px-Bobby_Darin_1959.JPG"
+   },
+   {
+      "name": "Cyril",
+      "surname": "Davies",
+      "band": "Blues Incorporated",
+      "age": 31,
+      "why": "Leukemia"
+   },
+   {
+      "name": "Louise",
+      "surname": "Dean",
+      "band": "Shiva",
+      "age": 24,
+      "why": "Car accident"
+   },
+   {
+      "name": "Zenon",
+      "surname": "DeFleur",
+      "band": "Count Bishops",
+      "age": 28,
+      "why": "Car accident"
+   },
+   {
+      "name": "Sandy",
+      "surname": "Denny",
+      "band": "Fairport Convention",
+      "age": 31,
+      "why": "Fall",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/0/06/Sandy_Denny_by_David_Bailey_1972_wiki.jpg/220px-Sandy_Denny_by_David_Bailey_1972_wiki.jpg"
+   },
+   {
+      "name": "John",
+      "surname": "Denver",
+      "age": 53,
+      "why": "Airplane crash",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/5/5d/John_Denver_1973.jpg/220px-John_Denver_1973.jpg"
+   },
+   {
+      "name": "Nicholas",
+      "surname": "Dingley",
+      "band": "Hanoi Rocks",
+      "age": 24,
+      "why": "Car accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/d/de/Razzle_Hanoi.jpg/220px-Razzle_Hanoi.jpg"
+   },
+   {
+      "name": "Tom",
+      "surname": "Donahue",
+      "age": 46,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Nick",
+      "surname": "Drake",
+      "age": 26,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/6/61/Nick_Drake_%281971%29.png/220px-Nick_Drake_%281971%29.png"
+   },
+   {
+      "name": "Cass",
+      "surname": "Elliot",
+      "band": "Mamas and Papas",
+      "age": 32,
+      "why": "Choked",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Cass_Elliot_%281972%29.png/220px-Cass_Elliot_%281972%29.png"
+   },
+   {
+      "name": "John",
+      "surname": "Emma",
+      "band": "Chase",
+      "age": 22,
+      "why": "Airplane crash"
+   },
+   {
+      "name": "Tom",
+      "surname": "Evans",
+      "band": "Badfinger",
+      "age": 36,
+      "why": "Suicide"
+   },
+   {
+      "name": "(Hans Holzl)",
+      "surname": "Falco",
+      "age": 40,
+      "why": "Car accident"
+   },
+   {
+      "name": "Pete",
+      "surname": "Farndon",
+      "band": "Pretenders",
+      "age": 30,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/3/33/Farndon_Dec81.JPG"
+   },
+   {
+      "name": "Jimmy",
+      "surname": "Fernandez",
+      "band": "God Machine",
+      "age": 29,
+      "why": "Medical"
+   },
+   {
+      "name": "Matthew",
+      "surname": "Fletcher",
+      "band": "Heavenly",
+      "age": 26,
+      "why": "Suicide"
+   },
+   {
+      "name": "Tom",
+      "surname": "Fogerty",
+      "band": "Creedence Clearwater Revival",
+      "age": 49,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/4/44/Tom_Fogerty.jpg"
+   },
+   {
+      "name": "Rhett",
+      "surname": "Forrester",
+      "band": "Riot",
+      "age": 37,
+      "why": "Murdered"
+   },
+   {
+      "name": "Melvin",
+      "surname": "Franklin",
+      "band": "Temptations",
+      "age": 52,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/a/a8/Melvin_Franklin_on_Ed_Sullivan_Show.jpg"
+   },
+   {
+      "name": "Bobby",
+      "surname": "Fuller",
+      "band": "Bobby Fuller 4",
+      "age": 22,
+      "why": "Murdered",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/c/c4/Bobbyfuller.jpg/220px-Bobbyfuller.jpg"
+   },
+   {
+      "name": "Billy",
+      "surname": "Fury",
+      "age": 41,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Billy_Fury_statue_-_face.jpg/220px-Billy_Fury_statue_-_face.jpg"
+   },
+   {
+      "name": "Steven",
+      "surname": "Gaines",
+      "band": "Lynyrd Skynyrd",
+      "age": 28,
+      "why": "Airplane crash"
+   },
+   {
+      "name": "Rory",
+      "surname": "Gallagher",
+      "age": 47,
+      "why": "Alcohol",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Rory_Gallagher_1982.jpg/200px-Rory_Gallagher_1982.jpg"
+   },
+   {
+      "name": "Jerry",
+      "surname": "Garcia",
+      "band": "Grateful Dead",
+      "age": 53,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Grateful_Dead_-_Jerry_Garcia.jpg/300px-Grateful_Dead_-_Jerry_Garcia.jpg"
+   },
+   {
+      "name": "Danny",
+      "surname": "Gatton",
+      "band": "(session musician)",
+      "age": 49,
+      "why": "Suicide"
+   },
+   {
+      "name": "Marvin",
+      "surname": "Gaye",
+      "age": 45,
+      "why": "Murdered",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Marvin_Gaye_%281973%29.png/220px-Marvin_Gaye_%281973%29.png"
+   },
+   {
+      "name": "Lowell",
+      "surname": "George",
+      "band": "Little Feet",
+      "age": 34,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/d/d1/Lowell-george.jpg"
+   },
+   {
+      "name": "Andy",
+      "surname": "Gibb",
+      "age": 30,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/c/cd/Andy_Gibb.JPG/220px-Andy_Gibb.JPG"
+   },
+   {
+      "name": "Ray",
+      "surname": "Gillen",
+      "band": "Black Sabbath, Badlands",
+      "age": 33,
+      "why": "Cancer"
+   },
+   {
+      "name": "Steve",
+      "surname": "Gilpin",
+      "band": "MI-sex",
+      "age": 41,
+      "why": "Car accident"
+   },
+   {
+      "name": "John",
+      "surname": "Glascock",
+      "band": "Jethro Tull",
+      "age": 28,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/9/9d/John_Glascock.jpg/220px-John_Glascock.jpg"
+   },
+   {
+      "name": "Keith",
+      "surname": "Godchaux",
+      "band": "Grateful Dead",
+      "age": 32,
+      "why": "Car accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/d/d2/Steal_your_square_icon.jpg/28px-Steal_your_square_icon.jpg"
+   },
+   {
+      "name": "Dwayne",
+      "surname": "Goettel",
+      "band": "Skinny Puppy",
+      "age": 31,
+      "why": "Drug overdose"
+   },
+   {
+      "name": "Steve",
+      "surname": "Goodman",
+      "age": 36,
+      "why": "Leukemia",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/0/09/19830430_Steve_Goodman.gif/300px-19830430_Steve_Goodman.gif"
+   },
+   {
+      "name": "Bill",
+      "surname": "Graham",
+      "band": "(concert promotor)",
+      "age": 60,
+      "why": "Helicopter crash"
+   },
+   {
+      "name": "Ric",
+      "surname": "Grech",
+      "band": "Family, Blind Faith",
+      "age": 44,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/f/fa/Ric_Grech.jpg/230px-Ric_Grech.jpg"
+   },
+   {
+      "name": "Albert",
+      "surname": "Grossman",
+      "age": 59,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Woody",
+      "surname": "Guthrie",
+      "age": 55,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/0/09/Woody_Guthrie_2.jpg/220px-Woody_Guthrie_2.jpg"
+   },
+   {
+      "name": "Paul",
+      "surname": "Hackman",
+      "band": "Helix",
+      "age": 39,
+      "why": "Car accident (tour bus)"
+   },
+   {
+      "name": "Bill",
+      "surname": "Haley",
+      "age": 56,
+      "why": "Alcohol",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/d/df/Bill_Haley_%281974%29.jpg/220px-Bill_Haley_%281974%29.jpg"
+   },
+   {
+      "name": "Ollie",
+      "surname": "Hallsall",
+      "band": "Patto, Timebox, Boxer",
+      "age": 43,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Pete",
+      "surname": "Ham",
+      "band": "Badfinger",
+      "age": 28,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Peteham.jpg/220px-Peteham.jpg"
+   },
+   {
+      "name": "Roy",
+      "surname": "Hamilton",
+      "age": 40,
+      "why": "Heart Attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Roy_Hamilton_1957.JPG/220px-Roy_Hamilton_1957.JPG"
+   },
+   {
+      "name": "Tim",
+      "surname": "Hardin",
+      "age": 39,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/6/67/Tim_Hardin.png/250px-Tim_Hardin.png"
+   },
+   {
+      "name": "Slim",
+      "surname": "Harpo",
+      "age": 43,
+      "why": "Heart Attack"
+   },
+   {
+      "name": "Alex",
+      "surname": "Harvey",
+      "band": "Sensational Alex Harvey Band",
+      "age": 46,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Les",
+      "surname": "Harvey",
+      "band": "Stone The Crows",
+      "age": 27,
+      "why": "Electrocuted",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/c/c2/Crystal_Clear_app_Login_Manager_2.png/30px-Crystal_Clear_app_Login_Manager_2.png"
+   },
+   {
+      "name": "Donny",
+      "surname": "Hathway",
+      "age": 33,
+      "why": "Suicide"
+   },
+   {
+      "name": "Ted",
+      "surname": "Hawkins",
+      "age": 58,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/a/a6/Ted_Hawkins.jpg/220px-Ted_Hawkins.jpg"
+   },
+   {
+      "name": "Sean",
+      "surname": "Hayes",
+      "age": 49,
+      "why": "Aids"
+   },
+   {
+      "name": "Eddie",
+      "surname": "Hazel",
+      "band": "Parliament, Funkadelic",
+      "age": 42,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/1/19/Ehpalladium.jpg/220px-Ehpalladium.jpg"
+   },
+   {
+      "name": "",
+      "surname": "Helno",
+      "band": "Les Negresses Vertes",
+      "age": 29,
+      "why": "Drug overdose"
+   },
+   {
+      "name": "Jimi",
+      "surname": "Hendrix",
+      "age": 27,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Jimi_Hendrix_1967.png/220px-Jimi_Hendrix_1967.png"
+   },
+   {
+      "name": "Jay",
+      "surname": "Hening",
+      "band": "Demolition 23",
+      "age": 23,
+      "why": "Suicide"
+   },
+   {
+      "name": "Gregory",
+      "surname": "Herbert",
+      "band": "Blood, Sweat & Tears",
+      "age": 28,
+      "why": "Drug overdose"
+   },
+   {
+      "name": "Bob",
+      "surname": "Hite",
+      "band": "Canned Heat",
+      "age": 36,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Bob-Hite_of_Canned_Heat.jpg/220px-Bob-Hite_of_Canned_Heat.jpg"
+   },
+   {
+      "name": "Eldon",
+      "surname": "Hoke (El Duce)",
+      "band": "the Mentors",
+      "age": 38,
+      "why": "Hit by Train"
+   },
+   {
+      "name": "Buddy",
+      "surname": "Holly",
+      "age": 22,
+      "why": "Airplane crash",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/1/14/Buddy_Holly_cropped.JPG/220px-Buddy_Holly_cropped.JPG"
+   },
+   {
+      "name": "James",
+      "surname": "Honeyman-Scott",
+      "band": "Pretenders",
+      "age": 25,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/9/99/JHS_Dec81.JPG"
+   },
+   {
+      "name": "Shannon",
+      "surname": "Hoon",
+      "band": "Blind Melon",
+      "age": 28,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/8/89/Shanon_hoon.jpg/220px-Shanon_hoon.jpg"
+   },
+   {
+      "name": "Nicky",
+      "surname": "Hopkins",
+      "band": "(session musician)",
+      "age": 50,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Nicky_Hopkins.png/250px-Nicky_Hopkins.png"
+   },
+   {
+      "name": "Keith",
+      "surname": "Hudson",
+      "age": 38,
+      "why": "Cancer"
+   },
+   {
+      "name": "Glenn",
+      "surname": "Hughes",
+      "band": "Village People",
+      "age": 51,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Glenn_Hughes_2015.JPG/220px-Glenn_Hughes_2015.JPG"
+   },
+   {
+      "name": "Michael",
+      "surname": "Hutchence",
+      "band": "INXS",
+      "age": 37,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Michael-hutchence-INXS-1986.jpg/220px-Michael-hutchence-INXS-1986.jpg"
+   },
+   {
+      "name": "Phyllis",
+      "surname": "Hyman",
+      "age": 44,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/7/79/Phyllis_Hyman.jpg/260px-Phyllis_Hyman.jpg"
+   },
+   {
+      "name": "O'Kelly",
+      "surname": "Isley",
+      "band": "Isley Brothers",
+      "age": 48,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Al",
+      "surname": "Jackson",
+      "band": "Booker T. and the MGs",
+      "age": 39,
+      "why": "Murdered"
+   },
+   {
+      "name": "Paul Avron",
+      "surname": "Jeffreys",
+      "band": "Cockney Rebel",
+      "age": 36,
+      "why": "Airplane crash"
+   },
+   {
+      "name": "Little Willie",
+      "surname": "John",
+      "age": 30,
+      "why": "Pneumonia(in prison)",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/b/b5/Little_Willie_John.jpg/220px-Little_Willie_John.jpg"
+   },
+   {
+      "name": "Robert",
+      "surname": "Johnson",
+      "age": 27,
+      "why": "Poisoned",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/b/b3/Robert_Johnson.png/220px-Robert_Johnson.png"
+   },
+   {
+      "name": "Billy",
+      "surname": "Jones",
+      "band": "Outlaws",
+      "age": 45,
+      "why": "Suicide"
+   },
+   {
+      "name": "Brian",
+      "surname": "Jones",
+      "band": "Rolling Stones",
+      "age": 27,
+      "why": "Drowned",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c1/BrainJonesMandolin.jpg/220px-BrainJonesMandolin.jpg"
+   },
+   {
+      "name": "Phalin",
+      "surname": "Jones",
+      "band": "Bar-Kays",
+      "age": 18,
+      "why": "Airplane crash"
+   },
+   {
+      "name": "Janis",
+      "surname": "Joplin",
+      "age": 27,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/9/94/Janis_Joplin_seated_1970.JPG/220px-Janis_Joplin_seated_1970.JPG"
+   },
+   {
+      "name": "Wong",
+      "surname": "Ka Kui",
+      "band": "Beyond",
+      "age": 31,
+      "why": "Accident"
+   },
+   {
+      "name": "Terry",
+      "surname": "Kath",
+      "band": "Chicago",
+      "age": 32,
+      "why": "Gun accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/6/61/Terry_Kath.jpg/220px-Terry_Kath.jpg"
+   },
+   {
+      "name": "Tim",
+      "surname": "Kelly",
+      "band": "Slaughter",
+      "age": 34,
+      "why": "Car accident"
+   },
+   {
+      "name": "Wells",
+      "surname": "Kelly",
+      "band": "Orleans, Meat Loaf",
+      "age": 35,
+      "why": "Choked",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/2/21/Fenway_Crop.jpg/220px-Fenway_Crop.jpg"
+   },
+   {
+      "name": "Eddie",
+      "surname": "Kendricks",
+      "band": "Temptations",
+      "age": 52,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Eddie_Kendricks_%281972%29.png/250px-Eddie_Kendricks_%281972%29.png"
+   },
+   {
+      "name": "Frankie",
+      "surname": "Kennedy",
+      "band": "Altan",
+      "age": 38,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/0/07/FrankieKennedy.jpg/220px-FrankieKennedy.jpg"
+   },
+   {
+      "name": "Johnny",
+      "surname": "Kidd",
+      "age": 27,
+      "why": "Car accident"
+   },
+   {
+      "name": "Freddie",
+      "surname": "King",
+      "age": 43,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/4/47/Freddie_King.jpg"
+   },
+   {
+      "name": "Jimmy",
+      "surname": "King",
+      "band": "Bar-Kays",
+      "age": 18,
+      "why": "Airplane crash",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Jimmy_King_Michigan_1993.jpg/220px-Jimmy_King_Michigan_1993.jpg"
+   },
+   {
+      "name": "Sam",
+      "surname": "Kinison",
+      "age": 38,
+      "why": "Car accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/0/0b/Sam_Kinison_%26_Rodney_Dangerfield.jpg/220px-Sam_Kinison_%26_Rodney_Dangerfield.jpg"
+   },
+   {
+      "name": "Helmut",
+      "surname": "Koellen",
+      "band": "Triumvirat",
+      "age": 27,
+      "why": "Poisoning (accidential)"
+   },
+   {
+      "name": "Alexis",
+      "surname": "Korner",
+      "band": "Blues Incorporated",
+      "age": 56,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/6/67/Alexis-Korner.jpg/220px-Alexis-Korner.jpg"
+   },
+   {
+      "name": "Paul",
+      "surname": "Kossoff",
+      "band": "Free",
+      "age": 26,
+      "why": "Heart Attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/4/43/Pkossoff.jpg"
+   },
+   {
+      "name": "Fela",
+      "surname": "Kuti",
+      "age": 58,
+      "why": "Aids",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/b/b6/Fela_Kuti.jpg"
+   },
+   {
+      "name": "Martin",
+      "surname": "Lamble",
+      "band": "Fairport Convention",
+      "age": 19,
+      "why": "Car accident"
+   },
+   {
+      "name": "Ronnie 'Plonk'",
+      "surname": "Lane",
+      "band": "Small Faces",
+      "age": 51,
+      "why": "Multiple Sclerosis"
+   },
+   {
+      "name": "Nicolette",
+      "surname": "Larson",
+      "age": 45,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/8/83/Nicolette_Larson_1985.jpg/220px-Nicolette_Larson_1985.jpg"
+   },
+   {
+      "name": "Peter",
+      "surname": "Laughner",
+      "band": "Pere Ubu",
+      "age": 24,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/b/bc/Plaughner_right.gif"
+   },
+   {
+      "name": "John",
+      "surname": "Lennon",
+      "band": "Beatles",
+      "age": 40,
+      "why": "Murdered",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/5/51/JohnLennonpeace.jpg/220px-JohnLennonpeace.jpg"
+   },
+   {
+      "name": "Philip",
+      "surname": "Lithman",
+      "band": "Snakefinger",
+      "age": 38,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Trevor",
+      "surname": "Lucas",
+      "band": "Fairport Convention",
+      "age": 45,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/1/18/Trevor_Lucas_Wilsons_Promontory_in_Victoria_1985.jpg/220px-Trevor_Lucas_Wilsons_Promontory_in_Victoria_1985.jpg"
+   },
+   {
+      "name": "Frankie",
+      "surname": "Lymon",
+      "band": "The Teenagers",
+      "age": 25,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/9/91/Frankie%2BLymon.jpg"
+   },
+   {
+      "name": "Phil",
+      "surname": "Lynott",
+      "band": "Thin Lizzy",
+      "age": 35,
+      "why": "Drug Abuse",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/1/13/Thin_lizzy_22041980_01_400.jpg/250px-Thin_lizzy_22041980_01_400.jpg"
+   },
+   {
+      "name": "Billy",
+      "surname": "MacKenzie",
+      "band": "Associates",
+      "age": 39,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/2/28/Billy-Mackenzie-Dundee-Scotland-1985.jpg/174px-Billy-Mackenzie-Dundee-Scotland-1985.jpg"
+   },
+   {
+      "name": "Richard",
+      "surname": "Manual",
+      "band": "The Band",
+      "age": 42,
+      "why": "Suicide"
+   },
+   {
+      "name": "Bob",
+      "surname": "Marley",
+      "age": 36,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Bob-Marley.jpg/220px-Bob-Marley.jpg"
+   },
+   {
+      "name": "Steve",
+      "surname": "Marriott",
+      "band": "Small Faces, Humble Pie",
+      "age": 43,
+      "why": "Fire",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Steve_Marriott_%28Humble_Pie%29.jpg/220px-Steve_Marriott_%28Humble_Pie%29.jpg"
+   },
+   {
+      "name": "Van",
+      "surname": "McCoy",
+      "age": 38,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/f/ff/Van_McCoy.jpg"
+   },
+   {
+      "name": "Jimmy",
+      "surname": "McCulloch",
+      "band": "Wings",
+      "age": 27,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/2/24/Jimmy_McCulloch_-_Wings_-_1976.jpg/220px-Jimmy_McCulloch_-_Wings_-_1976.jpg"
+   },
+   {
+      "name": "Sean",
+      "surname": "McDonnell",
+      "band": "Surgery",
+      "age": 29,
+      "why": "Medical"
+   },
+   {
+      "name": "Robbie",
+      "surname": "McIntosh",
+      "band": "Average White Band",
+      "age": 23,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Robbie_McIntosh.jpg/240px-Robbie_McIntosh.jpg"
+   },
+   {
+      "name": "Ron 'Pigpen'",
+      "surname": "McKernan",
+      "band": "Grateful Dead",
+      "age": 27,
+      "why": "Alcohol"
+   },
+   {
+      "name": "Clyde",
+      "surname": "McPhatter",
+      "band": "Drifters",
+      "age": 38,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Clyde_McPhatter_1959.JPG/220px-Clyde_McPhatter_1959.JPG"
+   },
+   {
+      "name": "Don",
+      "surname": "McPherson",
+      "band": "Main Ingredient",
+      "age": 39,
+      "why": "Leukemia",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Don_McPherson_-_NYSFair.jpg/150px-Don_McPherson_-_NYSFair.jpg"
+   },
+   {
+      "name": "Joe",
+      "surname": "Meek",
+      "band": "(producer)",
+      "age": 38,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/9/9e/JoeMeek.jpg/220px-JoeMeek.jpg"
+   },
+   {
+      "name": "Jonathan",
+      "surname": "Melvoin",
+      "band": "Smashing Pumpkins",
+      "age": 34,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/b/ba/Jonathan_Melvoin.jpg/220px-Jonathan_Melvoin.jpg"
+   },
+   {
+      "name": "Freddie",
+      "surname": "Mercury",
+      "band": "Queen",
+      "age": 45,
+      "why": "Aids",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg/220px-Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg"
+   },
+   {
+      "name": "Jimmy",
+      "surname": "Miller",
+      "band": "(producer)",
+      "age": 52,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Stones_ad_1965-2.jpg/80px-Stones_ad_1965-2.jpg"
+   },
+   {
+      "name": "Country' Dick",
+      "surname": "Montana",
+      "band": "Beat Farmers",
+      "age": 40,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Keith",
+      "surname": "Moon",
+      "band": "Who",
+      "age": 32,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Keith_Moon_4_-_The_Who_-_1975-2.jpg/220px-Keith_Moon_4_-_The_Who_-_1975-2.jpg"
+   },
+   {
+      "name": "Jim",
+      "surname": "Morrison",
+      "band": "Doors",
+      "age": 27,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/9/97/Jim_Morrison_in_Ukrainian_embroidery.jpg/220px-Jim_Morrison_in_Ukrainian_embroidery.jpg"
+   },
+   {
+      "name": "Sterling",
+      "surname": "Morrison",
+      "band": "Velvet Underground",
+      "age": 53,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/b/b1/Sterling_Morrison.jpg"
+   },
+   {
+      "name": "Bill",
+      "surname": "Murcia",
+      "band": "New York Dolls",
+      "age": 21,
+      "why": "Drug overdose"
+   },
+   {
+      "name": "Dee",
+      "surname": "Murray",
+      "band": "Elton John",
+      "age": 45,
+      "why": "Stroke",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Dee_Murray_1971.jpg/220px-Dee_Murray_1971.jpg"
+   },
+   {
+      "name": "Brent",
+      "surname": "Mydland",
+      "band": "Grateful Dead",
+      "age": 38,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/d/d2/Steal_your_square_icon.jpg/28px-Steal_your_square_icon.jpg"
+   },
+   {
+      "name": "Don",
+      "surname": "Myrick",
+      "band": "Earth, Wind & Fire",
+      "age": 53,
+      "why": "Murdered"
+   },
+   {
+      "name": "Rick",
+      "surname": "Nelson",
+      "age": 45,
+      "why": "Airplane crash",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/a/af/Ricky_Nelson_free.jpg/220px-Ricky_Nelson_free.jpg"
+   },
+   {
+      "name": "(Christa Paffgen)",
+      "surname": "Nico",
+      "band": "Velvet Underground",
+      "age": 44,
+      "why": "Cerebral Hemorrhage"
+   },
+   {
+      "name": "Harry",
+      "surname": "Nilsson",
+      "age": 52,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/4/4f/Harry_Nilsson.jpg/220px-Harry_Nilsson.jpg"
+   },
+   {
+      "name": "Jerry",
+      "surname": "Nolan",
+      "band": "New York Dolls, Heartbreakers",
+      "age": 45,
+      "why": "Stroke"
+   },
+   {
+      "name": "",
+      "surname": "Notorious BIG",
+      "age": 24,
+      "why": "Murdered",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/5/51/The_Notorious_B.I.G.jpg/275px-The_Notorious_B.I.G.jpg"
+   },
+   {
+      "name": "Bradley",
+      "surname": "Nowell",
+      "band": "Sublime",
+      "age": 28,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/0/03/BradNowell11.jpg/220px-BradNowell11.jpg"
+   },
+   {
+      "name": "",
+      "surname": "Nusrat Fateh Ali Khan",
+      "age": 48,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/5/59/Nusrat_Fateh_Ali_Khan_03_1987_Royal_Albert_Hall.jpg/250px-Nusrat_Fateh_Ali_Khan_03_1987_Royal_Albert_Hall.jpg"
+   },
+   {
+      "name": "Laura",
+      "surname": "Nyro",
+      "age": 49,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/4/44/LauraNyro.jpg/292px-LauraNyro.jpg"
+   },
+   {
+      "name": "Berry",
+      "surname": "Oakley",
+      "band": "Allman Brothers Band",
+      "age": 24,
+      "why": "Motorcycle accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/a/af/Berry_Oakley.jpg/220px-Berry_Oakley.jpg"
+   },
+   {
+      "name": "Phil",
+      "surname": "Ochs",
+      "age": 35,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/f/f3/PhilOchs3.gif/250px-PhilOchs3.gif"
+   },
+   {
+      "name": "Roy",
+      "surname": "Orbison",
+      "age": 52,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/5/53/Roy_Orbison_crop.png/250px-Roy_Orbison_crop.png"
+   },
+   {
+      "name": "Malcolm",
+      "surname": "Owen",
+      "band": "Ruts",
+      "age": 24,
+      "why": "Drug overdose"
+   },
+   {
+      "name": "John",
+      "surname": "Panozzo",
+      "band": "Styx",
+      "age": 47,
+      "why": "Alcohol"
+   },
+   {
+      "name": "Felix",
+      "surname": "Pappalardi",
+      "band": "Mountain",
+      "age": 43,
+      "why": "Murdered",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/2/2a/FelixPappalardi.jpg/220px-FelixPappalardi.jpg"
+   },
+   {
+      "name": "Junior",
+      "surname": "Parker",
+      "age": 44,
+      "why": "Brain Tumor",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/0/04/Junior_Parker.jpg/220px-Junior_Parker.jpg"
+   },
+   {
+      "name": "Gram",
+      "surname": "Parsons",
+      "band": "Byrds",
+      "age": 26,
+      "why": "Drug Overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/7/76/Gram_Parsons_promo.jpg"
+   },
+   {
+      "name": "John 'Jaco'",
+      "surname": "Pastorius",
+      "band": "Weather Report",
+      "age": 35,
+      "why": "Murdered"
+   },
+   {
+      "name": "Mike",
+      "surname": "Patto",
+      "band": "Patto, Spooky Tooth",
+      "age": 36,
+      "why": "Medical"
+   },
+   {
+      "name": "Lawrence",
+      "surname": "Payton",
+      "band": "Four Tops",
+      "age": 59,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Lawrence_Payton.jpg/220px-Lawrence_Payton.jpg"
+   },
+   {
+      "name": "Tracy",
+      "surname": "Pew",
+      "band": "Birthday Party",
+      "age": 28,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/c/ce/Tracy_Pew.jpg"
+   },
+   {
+      "name": "Kristen",
+      "surname": "Pfaff",
+      "band": "Hole",
+      "age": 24,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/c/cf/Kristen_Pfaff.jpg"
+   },
+   {
+      "name": "John",
+      "surname": "Phillips",
+      "band": "Mammas and Papas",
+      "age": 65,
+      "why": "Heart Failure"
+   },
+   {
+      "name": "Kenny",
+      "surname": "Pickett",
+      "band": "Creation",
+      "age": 49,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Jeffrey Lee",
+      "surname": "Pierce",
+      "band": "Gun Club",
+      "age": 37,
+      "why": "Stroke",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Jeffrey_Lee_Pierce_cropped.jpg/220px-Jeffrey_Lee_Pierce_cropped.jpg"
+   },
+   {
+      "name": "Robert",
+      "surname": "Pilatus",
+      "band": "Milli Vanilli",
+      "age": 32,
+      "why": "Medical"
+   },
+   {
+      "name": "Jeff",
+      "surname": "Porcaro",
+      "band": "Toto",
+      "age": 38,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Jeff_Porcaro_Toto_Fahrenheit_World_Tour_1986.jpg/220px-Jeff_Porcaro_Toto_Fahrenheit_World_Tour_1986.jpg"
+   },
+   {
+      "name": "Cozy",
+      "surname": "Powell",
+      "band": "Rainbow, Whitesnake, etc.",
+      "age": 50,
+      "why": "Car accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/6/63/Cozypowell2.jpg/220px-Cozypowell2.jpg"
+   },
+   {
+      "name": "Elvis",
+      "surname": "Presley",
+      "age": 42,
+      "why": "Drug Overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/9/99/Elvis_Presley_promoting_Jailhouse_Rock.jpg/220px-Elvis_Presley_promoting_Jailhouse_Rock.jpg"
+   },
+   {
+      "name": "Rainer",
+      "surname": "Ptacek",
+      "band": "Rainer & Das Combo",
+      "age": 43,
+      "why": "Cancer"
+   },
+   {
+      "name": "Carl",
+      "surname": "Radle",
+      "band": "Derek and the Dominos",
+      "age": 38,
+      "why": "Medical"
+   },
+   {
+      "name": "Bobby",
+      "surname": "Ramirez",
+      "band": "Edgar Winter's White Trash",
+      "age": 23,
+      "why": "Murdered"
+   },
+   {
+      "name": "Joey",
+      "surname": "Ramone",
+      "band": "Ramones",
+      "age": 49,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/1/15/Joey_Ramone.jpg/220px-Joey_Ramone.jpg"
+   },
+   {
+      "name": "Otis",
+      "surname": "Redding",
+      "age": 26,
+      "why": "Airplane crash",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Otis_Redding_%282%29.png/250px-Otis_Redding_%282%29.png"
+   },
+   {
+      "name": "Keith",
+      "surname": "Relf",
+      "band": "Yardbirds, Renaissance",
+      "age": 33,
+      "why": "Electrocuted",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/0/05/KeithRelf1966.jpg/220px-KeithRelf1966.jpg"
+   },
+   {
+      "name": "Randy",
+      "surname": "Rhoades",
+      "band": "Quiet Riot, Ozzy Osbourne",
+      "age": 26,
+      "why": "Airplane crash"
+   },
+   {
+      "name": "J.P.",
+      "surname": "Richardson",
+      "band": "(The Big Bopper)",
+      "age": 24,
+      "why": "Airplane crash",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/4/44/The_Big_Bopper.jpg/220px-The_Big_Bopper.jpg"
+   },
+   {
+      "name": "Minnie",
+      "surname": "Ripperton",
+      "age": 30,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/8/83/Minnie_Riperton_1977.jpg"
+   },
+   {
+      "name": "Mick",
+      "surname": "Ronson",
+      "band": "David Bowie",
+      "age": 47,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Mick_Ronson_%26_Ian_Hunter.jpg/220px-Mick_Ronson_%26_Ian_Hunter.jpg"
+   },
+   {
+      "name": "John",
+      "surname": "Rostill",
+      "band": "Shadows",
+      "age": 31,
+      "why": "Electrocuted"
+   },
+   {
+      "name": "Dave",
+      "surname": "Rowbotham",
+      "band": "Durutti Column",
+      "age": 34,
+      "why": "Accident"
+   },
+   {
+      "name": "David",
+      "surname": "Ruffin",
+      "band": "Temptations",
+      "age": 50,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/0/09/David-Ruffin-700.jpg/220px-David-Ruffin-700.jpg"
+   },
+   {
+      "name": "Stefanie",
+      "surname": "Sargent",
+      "band": "7 Year Bitch",
+      "age": 24,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/c/c2/Crystal_Clear_app_Login_Manager_2.png/30px-Crystal_Clear_app_Login_Manager_2.png"
+   },
+   {
+      "name": "David",
+      "surname": "Savoy Jr.",
+      "band": "Husker Du",
+      "age": 25,
+      "why": "Suicide"
+   },
+   {
+      "name": "Ingo",
+      "surname": "Schwichtenberg",
+      "band": "Helloween",
+      "age": 29,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/4/42/IngoSchwichtenberg.jpg"
+   },
+   {
+      "name": "Bon",
+      "surname": "Scott",
+      "band": "AC/DC",
+      "age": 33,
+      "why": "Alcohol",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Bon_Scott_sepia.jpg/245px-Bon_Scott_sepia.jpg"
+   },
+   {
+      "name": "",
+      "surname": "Selena",
+      "age": 23,
+      "why": "Murdered",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/4/40/Selena_Quintanilla-P%C3%A9rez.jpg"
+   },
+   {
+      "name": "Tupac",
+      "surname": "Shakur",
+      "age": 25,
+      "why": "Murdered",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/1/13/Tupac_Shakur_%28rapper%29%2C_performing_live.jpg/220px-Tupac_Shakur_%28rapper%29%2C_performing_live.jpg"
+   },
+   {
+      "name": "Del",
+      "surname": "Shannon",
+      "age": 51,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Del_Shannon_1965.jpg/220px-Del_Shannon_1965.jpg"
+   },
+   {
+      "name": "Will",
+      "surname": "Shatter",
+      "band": "Flipper",
+      "age": 31,
+      "why": "Drug Overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/6/68/Flipper_930club.jpg/220px-Flipper_930club.jpg"
+   },
+   {
+      "name": "James",
+      "surname": "Sheppard",
+      "band": "Shep & the Limelights",
+      "age": 24,
+      "why": "Murdered",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c9/James_Sheppard_2009.JPG/230px-James_Sheppard_2009.JPG"
+   },
+   {
+      "name": "Guitar",
+      "surname": "Slim",
+      "age": 32,
+      "why": "Pneumonia"
+   },
+   {
+      "name": "Hillel",
+      "surname": "Slovak",
+      "band": "Red Hot Chili Peppers",
+      "age": 25,
+      "why": "Drug Overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/f/fc/HillelSlovak1983.jpg/250px-HillelSlovak1983.jpg"
+   },
+   {
+      "name": "Fred 'Sonic'",
+      "surname": "Smith",
+      "band": "MC5",
+      "age": 45,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Vivian",
+      "surname": "Stanshall",
+      "band": "Bonzo Dog Band",
+      "age": 51,
+      "why": "Fire",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Towpath2.jpg/250px-Towpath2.jpg"
+   },
+   {
+      "name": "Ian",
+      "surname": "Steward",
+      "band": "Rolling Stones",
+      "age": 47,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Bob",
+      "surname": "Stinson",
+      "band": "Replacements",
+      "age": 35,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/c/c8/Bob_Stinson.png/220px-Bob_Stinson.png"
+   },
+   {
+      "name": "Rory",
+      "surname": "Storm",
+      "band": "Rory Storm and the Hurricanes",
+      "age": 32,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/f/f5/Rory_Storm_photo.jpg/220px-Rory_Storm_photo.jpg"
+   },
+   {
+      "name": "Lynn",
+      "surname": "Strait",
+      "band": "Snot",
+      "age": 30,
+      "why": "Car Accident"
+   },
+   {
+      "name": "Stu",
+      "surname": "Sutcliff",
+      "band": "Beatles",
+      "age": 21,
+      "why": "Medical"
+   },
+   {
+      "name": "Vinnie",
+      "surname": "Taylor",
+      "band": "Sha Na Na",
+      "age": 25,
+      "why": "Drug overdose"
+   },
+   {
+      "name": "Biggie",
+      "surname": "Tempo",
+      "band": "Bhundu Boys",
+      "age": 37,
+      "why": "Suicide"
+   },
+   {
+      "name": "Tammi",
+      "surname": "Terrell",
+      "age": 24,
+      "why": "Brain Tumor",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/f/f9/Tammi_duet_with_Marvin_Gaye.jpg/220px-Tammi_duet_with_Marvin_Gaye.jpg"
+   },
+   {
+      "name": "Joe",
+      "surname": "Tex",
+      "age": 49,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Joe_Tex.png/250px-Joe_Tex.png"
+   },
+   {
+      "name": "Gary",
+      "surname": "Thain",
+      "band": "Uriah Heep",
+      "age": 27,
+      "why": "Drug overdose"
+   },
+   {
+      "name": "Jason",
+      "surname": "Thirsk",
+      "band": "Pennywise",
+      "age": 27,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/0/05/Jason_Matthew_Thirsk.jpg"
+   },
+   {
+      "name": "Johnny",
+      "surname": "Thunders",
+      "band": "New York Dolls",
+      "age": 38,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/d/da/Johnny_thunders2.jpg/220px-Johnny_thunders2.jpg"
+   },
+   {
+      "name": "Steve",
+      "surname": "Took",
+      "band": "T-Rex",
+      "age": 31,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/3/3d/Steve_Peregrin_Took.jpg/220px-Steve_Peregrin_Took.jpg"
+   },
+   {
+      "name": "Peter",
+      "surname": "Tosh",
+      "age": 42,
+      "why": "Murdered",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/5/5b/BushDoctor1978.jpg/260px-BushDoctor1978.jpg"
+   },
+   {
+      "name": "Nicholas",
+      "surname": "Traina",
+      "band": "Link 80",
+      "age": 19,
+      "why": "Suicide (overdose)",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/d/dc/Nick_Traina.jpg"
+   },
+   {
+      "name": "Arnie",
+      "surname": "Treffers",
+      "band": "Long Tall Ernie & the Shakers",
+      "age": 48,
+      "why": "Cancer"
+   },
+   {
+      "name": "Rob",
+      "surname": "Tyner",
+      "band": "MC5",
+      "age": 46,
+      "why": "Heart attack",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/c/cb/Rob_Tyner.jpg/220px-Rob_Tyner.jpg"
+   },
+   {
+      "name": "Richie",
+      "surname": "Valens",
+      "age": 17,
+      "why": "Airplane crash",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/1/10/Ritchie_Valens_Promotional_Photo.jpg"
+   },
+   {
+      "name": "Townes",
+      "surname": "Van Zandt",
+      "age": 52,
+      "why": "Alcohol",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/4/4e/Towneshwhw.jpg/220px-Towneshwhw.jpg"
+   },
+   {
+      "name": "Ronnie",
+      "surname": "Van Zant",
+      "band": "Lynyrd Skynyrd",
+      "age": 29,
+      "why": "Airplane crash",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/4/45/RonnieVanZant.gif/220px-RonnieVanZant.gif"
+   },
+   {
+      "name": "Stevie Ray",
+      "surname": "Vaughan",
+      "age": 35,
+      "why": "Helicopter crash",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/3/30/Svaughan.jpg/220px-Svaughan.jpg"
+   },
+   {
+      "name": "Henry",
+      "surname": "Vestine",
+      "band": "Canned Heat",
+      "age": 52,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/8/8e/Henry_Vestine.jpg/220px-Henry_Vestine.jpg"
+   },
+   {
+      "name": "Sid",
+      "surname": "Vicious",
+      "band": "Sex Pistols",
+      "age": 21,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Vicious.jpg/260px-Vicious.jpg"
+   },
+   {
+      "name": "Gene",
+      "surname": "Vincent",
+      "age": 36,
+      "why": "Alcohol",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/d/d9/Gene_Vincent.jpg/220px-Gene_Vincent.jpg"
+   },
+   {
+      "name": "Jr.",
+      "surname": "Walker",
+      "age": 53,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Junior_Walker.png/250px-Junior_Walker.png"
+   },
+   {
+      "name": "Clarence",
+      "surname": "White",
+      "band": "Byrds",
+      "age": 29,
+      "why": "Car accident",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/0/01/Clarence_White01.jpg/220px-Clarence_White01.jpg"
+   },
+   {
+      "name": "Danny",
+      "surname": "Whitten",
+      "band": "Crazy Horse",
+      "age": 29,
+      "why": "Drug overdose",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/d/d3/Danny_ray_whitten.jpg/250px-Danny_ray_whitten.jpg"
+   },
+   {
+      "name": "Paul",
+      "surname": "Williams",
+      "band": "Temptations",
+      "age": 34,
+      "why": "Suicide"
+   },
+   {
+      "name": "Tony",
+      "surname": "Williams",
+      "band": "Tony Williams Lifetime Band",
+      "age": 52,
+      "why": "Heart attack"
+   },
+   {
+      "name": "Wendy O.",
+      "surname": "Williams",
+      "band": "Plasmatics",
+      "age": 48,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/en/thumb/a/ab/Wendy_O_Williams.jpg/220px-Wendy_O_Williams.jpg"
+   },
+   {
+      "name": "Chuck",
+      "surname": "Willis",
+      "age": 30,
+      "why": "Car Accident"
+   },
+   {
+      "name": "Al",
+      "surname": "Wilson",
+      "band": "Canned Heat",
+      "age": 27,
+      "why": "Suicide",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Al_Wilson_of_the_Denver_Broncos_%282006-11-19%29.jpg/275px-Al_Wilson_of_the_Denver_Broncos_%282006-11-19%29.jpg"
+   },
+   {
+      "name": "Barrie B.J.",
+      "surname": "Wilson",
+      "band": "Procol Harum",
+      "age": 43,
+      "why": "Car accident"
+   },
+   {
+      "name": "Carl",
+      "surname": "Wilson",
+      "band": "Beach Boys",
+      "age": 51,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Carl_Wilson.jpg/220px-Carl_Wilson.jpg"
+   },
+   {
+      "name": "Dennis",
+      "surname": "Wilson",
+      "band": "Beach Boys",
+      "age": 39,
+      "why": "Drowned",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Dennis_Wilson_1971_cropped.jpg/220px-Dennis_Wilson_1971_cropped.jpg"
+   },
+   {
+      "name": "Jackie",
+      "surname": "Wilson",
+      "age": 49,
+      "why": "Medical",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Jackie_Wilson_1961.jpg/220px-Jackie_Wilson_1961.jpg"
+   },
+   {
+      "name": "Ricky",
+      "surname": "Wilson",
+      "band": "B-52's",
+      "age": 32,
+      "why": "Cancer"
+   },
+   {
+      "name": "Kurt",
+      "surname": "Winter",
+      "band": "Guess Who",
+      "age": 51,
+      "why": "Liver failure"
+   },
+   {
+      "name": "John Christian",
+      "surname": "Wolters",
+      "band": "Dr. Hook",
+      "age": 52,
+      "why": "Cancer"
+   },
+   {
+      "name": "Andrew",
+      "surname": "Wood",
+      "band": "Mother Love Bone",
+      "age": 24,
+      "why": "Drug overdose"
+   },
+   {
+      "name": "Chris",
+      "surname": "Wood",
+      "band": "Traffic",
+      "age": 39,
+      "why": "Medical"
+   },
+   {
+      "name": "Wallace",
+      "surname": "Yohn",
+      "band": "Chase",
+      "age": 27,
+      "why": "Airplane crash"
+   },
+   {
+      "name": "Frank",
+      "surname": "Zappa",
+      "band": "Mothers of Invention",
+      "age": 52,
+      "why": "Cancer",
+      "imageURL": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Zappa_16011977_01_300.jpg/220px-Zappa_16011977_01_300.jpg"
+   }
+]
