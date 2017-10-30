@@ -3,6 +3,7 @@ let express = require ("express");
 let bodyParser = require ("body-parser");
 let mongoose = require ("mongoose");
 let gameExists = require ("./functions/gameExists.js");
+let calculateScores = require ("./functions/calculateScores.js");
 let questions = require ("./schema/questions.js").model;
 let games = require ("./schema/games.js").model;
 let teams = require ("./schema/teams.js").model;
@@ -100,6 +101,16 @@ app.put ("/api/games/:gameId", (req, res) => {
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
 					if (req.body.closed) {
+						if (game.activeRound !== null) {
+							let roundId = game.activeRound;
+							let activeAnswer = game.rounds [roundId].activeAnswer;
+							if (game.rounds [roundId].activeAnswer !== null) {
+								game.playedQuestions.push (game.rounds [roundId].answers [activeAnswer].question);
+								game.rounds [roundId].activeAnswer = null;
+							}
+							game = calculateScores (game);
+							game.activeRound = null;
+						}
 						game.closed = true;
 						game.save ((err) => {
 							if (err) {
@@ -336,20 +347,27 @@ app.post ("/api/games/:gameId/rounds", (req, res) => {
 		let promise = gameExists (req.params.gameId)
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
-					let round = {
-						answers: [],
-						activeAnswer: null
-					};
-					game.rounds.push (round);
-					let roundNumber = game.rounds.length - 1;
-					game.activeRound = roundNumber;
-					game.save ((err) => {
-						if (err) {
-							reject (err);
-						} else {
-							resolve (roundNumber);
+					if (game.teams.length > 1) {
+						let round = {
+							answers: [],
+							activeAnswer: null
+						};
+						if (game.activeRound !== null) {
+							game = calculateScores (game);
 						}
-					});
+						game.rounds.push (round);
+						let roundNumber = game.rounds.length - 1;
+						game.activeRound = roundNumber;
+						game.save ((err) => {
+							if (err) {
+								reject (err);
+							} else {
+								resolve (roundNumber);
+							}
+						});
+					} else {
+						reject ("You need at least two teams to start a round");
+					}
 				});
 			}).then ((roundNumber) => {
 				res.json ({
@@ -358,6 +376,7 @@ app.post ("/api/games/:gameId/rounds", (req, res) => {
 					roundId: roundNumber
 				});
 			}).catch ((err) => {
+				console.log (err);
 				res.json ({
 					success: false,
 					error: err
@@ -393,6 +412,8 @@ app.post ("/api/games/:gameId/rounds/:roundId/questions", (req, res) => {
 				return new Promise ((resolve, reject) => {
 					if (game.activeRound !== parseInt (req.params.roundId, 10)) {
 						reject ("You can only add questions to the active round");
+					} else if (game.rounds [parseInt (req.params.roundId, 10)].answers.length > 0) {
+						reject ("You've added questions to this round");
 					} else {
 						resolve (game);
 					}
@@ -598,6 +619,11 @@ app.get ("/api/games/:gameId/rounds/:roundId/answers/current", (req, res) => {
 			success: false,
 			error: "No game ID specified"
 		});
+	} else if (!req.params.roundId) {
+		res.json ({
+			success: false,
+			error: "No round ID specified"
+		});
 	} else {
 		let promise = gameExists (req.params.gameId)
 			.then ((game) => {
@@ -640,6 +666,90 @@ app.get ("/api/games/:gameId/rounds/:roundId/answers/current", (req, res) => {
 				});
 			}).then ((result) => {
 				res.json (result);
+			}).catch ((err) => {
+				res.json ({
+					success: false,
+					error: err
+				});
+			});
+	}
+});
+
+app.put ("/api/games/:gameId/rounds/:roundId", (req, res) => {
+	if (!req.params.gameId) {
+		res.json ({
+			success: false,
+			error: "No game ID specified"
+		});
+	} else if (!req.params.roundId) {
+		res.json ({
+			success: false,
+			error: "No round ID specified"
+		});
+	} else if (!req.body.nextQuestion) {
+		res.json ({
+			success: false,
+			error: "No question or close flag specified"
+		});
+	} else if (req.body.nextQuestion) {
+		let promise = gameExists (req.params.gameId)
+			.then ((game) => {
+				return new Promise ((resolve, reject) => {
+					let roundId = parseInt (req.params.roundId, 10);
+					if (game.rounds [roundId]) {
+						let activeAnswer = game.rounds [roundId].activeAnswer;
+						if (activeAnswer !== null) {
+							let activeQuestion = game.rounds [roundId].answers [activeAnswer];
+							if (activeQuestion.closed) {
+								game.playedQuestions.push (activeQuestion.question);
+								let success = false;
+								for (let i = 0; i < game.rounds [roundId].answers.length; i++) {
+									if (game.rounds [roundId].answers [i].question.toString () === req.body.nextQuestion) {
+										game.rounds [roundId].activeAnswer = i;
+										success = true;
+									}
+								}
+								if (success) {
+									resolve (game);
+								} else {
+									reject ("Couldn't change to new question");
+								}
+							} else {
+								reject ("Current question must be closed before you can move on");
+							}
+						} else {
+							let success = false;
+							for (let i = 0; i < game.rounds [roundId].answers.length; i++) {
+								if (game.rounds [roundId].answers [i].question.toString () === req.body.nextQuestion) {
+									game.rounds [roundId].activeAnswer = i;
+									success = true;
+								}
+							}
+							if (success) {
+								resolve (game);
+							} else {
+								reject ("Couldn't change to new question");
+							}
+						}
+					} else {
+						reject ("Round doesn't exist");
+					}
+				});
+			}).then ((game) => {
+				return new Promise ((resolve, reject) => {
+					game.save ((err) => {
+						if (err) {
+							reject (err.toString ());
+						} else {
+							resolve ();
+						}
+					});
+				});
+			}).then (() => {
+				res.json ({
+					success: true,
+					error: null
+				});
 			}).catch ((err) => {
 				res.json ({
 					success: false,
@@ -967,7 +1077,7 @@ app.get ("/api/games/:gameId/scores", (req, res) => {
 			error: "No gameID specified"
 		});
 	} else {
-		let promise = gameExists (req.params.gameId)
+		let promise = gameExists (req.params.gameId, true)
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
 					let result = {};
