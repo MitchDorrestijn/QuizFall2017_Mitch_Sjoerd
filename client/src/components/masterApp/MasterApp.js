@@ -34,6 +34,11 @@ export default class MasterApp extends React.Component {
   goToSelectQuestionScreen(e) {
     e.preventDefault();
     this.setState({introScreen: false, selectCategoryScreen: false, selectQuestionScreen: true});
+    let da = new DataAccess();
+    da.postData(`/games/${this.state.roomNumber}/rounds/current/questions`, {catagories: this.state.selectedCategories}, (err, res) => {
+      if(err) throw error();
+      console.log('Catagories toegevoegd');
+    });
   }
   stopGame(e){
     e.preventDefault();
@@ -44,11 +49,6 @@ export default class MasterApp extends React.Component {
   }
   getSelectedCategories(arr) {
     this.setState({ selectedCategories: arr });
-    let da = new DataAccess();
-    da.postData(`/games/${this.state.roomNumber}/rounds/current/questions`, this.state.selectedCategories, (err, res) => {
-      if(err) throw error();
-      console.log('Catagories toegevoegd');
-    });
   }
   render(){
     return (
