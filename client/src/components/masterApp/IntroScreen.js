@@ -1,13 +1,14 @@
 import React from 'react';
+import DataAccess from '../../scripts/DataAccess';
 
 export default class IntroScreen extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       quizIsOpen: false,
-      // TODO: GET JOINED TEAMS FROM THE DATABASE.
-      joinedTeams: ['Brogrammers', 'DigiMinds', 'Overdrive'],
-      approvedTeams: ['a']
+      joinedTeams: [],
+      approvedTeams: [],
+      roomNumber: ''
     }
     this.openQuiz = this.openQuiz.bind(this);
     this.handleOpenQuiz = this.handleOpenQuiz.bind(this);
@@ -15,9 +16,31 @@ export default class IntroScreen extends React.Component {
     this.manageTeams = this.manageTeams.bind(this);
     this.approveTeam = this.approveTeam.bind(this);
     this.rejectTeam = this.rejectTeam.bind(this);
+    this.getjoinedTeams = this.getjoinedTeams.bind(this);
+  }
+  getjoinedTeams(){
+    let da = new DataAccess();
+    da.getData(`/games/${this.state.roomNumber}/teams`, (err, res) => {
+      if(err) throw new error();
+      let approvedTeams = [];
+      let joinedTeams = [];
+      for (let i = 0; i < res.length; i++) {
+       if (res[i].approved){
+         approvedTeams.push(res[i]);
+       } else {
+         joinedTeams.push(res[i]);
+       }
+     }
+     console.log(res);
+     this.setState ({approvedTeams: approvedTeams, joinedTeams: joinedTeams});
+    });
   }
   handleOpenQuiz(){
-    this.setState((prevState) => {return ({quizIsOpen: !prevState.quizIsOpen})});
+    let da = new DataAccess();
+    da.postData(`/games`, {}, (err, res) => {
+      if (err) throw new error();
+      this.setState((prevState) => {return ({quizIsOpen: !prevState.quizIsOpen, roomNumber: res.password})});
+    });
   }
   openQuiz(){
     return (
@@ -28,25 +51,24 @@ export default class IntroScreen extends React.Component {
     );
   }
   generateRoomNumber(){
-    // TODO: GENARATE A STRONG PASSWORD AND PUT IT IN THE DATABASE.
     return (
       <div className="inline">
-        <strong className="success">AroomNumber</strong>
+        <strong className="success">{this.state.roomNumber}</strong>
       </div>
     )
   }
   manageTeams(){
     let teamNames = this.state.joinedTeams.map((teamName, index) => {
       return (
-        <li key={teamName}>
-          <button onClick={this.approveTeam.bind(this, teamName, index)}>{teamName} <span>Toelaten</span></button>
+        <li key={teamName.name}>
+          <button onClick={this.approveTeam.bind(this, teamName, index)}>{teamName.name} <span>Toelaten</span></button>
         </li>
       );
     });
     let approvedTeamNames = this.state.approvedTeams.map((teamName, index) => {
       return (
-        <li key={teamName}>
-          <button onClick={this.rejectTeam.bind(this, teamName, index)}>{teamName} <span>Weigeren</span></button>
+        <li key={teamName.name}>
+          <button onClick={this.rejectTeam.bind(this, teamName, index)}>{teamName.name} <span>Weigeren</span></button>
         </li>
       );
     });
@@ -72,12 +94,18 @@ export default class IntroScreen extends React.Component {
     );
   }
   approveTeam(teamName, index){
-    // TODO: PUT THE TEAMNAME IN THE DATABASE
-    console.log("Team " + teamName + " has an index of " + index + " and is approved.");
+    let da = new DataAccess();
+    da.putData(`/games/${this.state.roomNumber}/teams/${teamName._id}`, {approved: true}, (err, res) => {
+      if(err) throw error();
+      this.getjoinedTeams();
+    });
   }
   rejectTeam(teamName, index){
-    // TODO: REMOVE THE TEAMNAME FROM THE DATABASE (IF IT EXISTS)
-    console.log("Team " + teamName + " has an index of " + index + " and is rejected.");
+    let da = new DataAccess();
+    da.putData(`/games/${this.state.roomNumber}/teams/${teamName._id}`, {approved: false}, (err, res) => {
+      if(err) throw error();
+      this.getjoinedTeams();
+    });
   }
   continue(){
     return (
@@ -89,8 +117,9 @@ export default class IntroScreen extends React.Component {
   render(){
     return (
       <div>
+        <button onClick={this.getjoinedTeams}>refresh teams</button>
         {this.state.quizIsOpen ? this.manageTeams() : this.openQuiz()}
-        {this.state.approvedTeams.length >= 1 && this.continue()}
+        {this.state.approvedTeams.length >= 2 && this.continue()}
       </div>
     );
   }

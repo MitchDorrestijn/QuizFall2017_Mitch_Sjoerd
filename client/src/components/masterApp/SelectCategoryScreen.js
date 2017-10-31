@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from "react-select";
 import "react-select/dist/react-select.css";
+import DataAccess from '../../scripts/DataAccess';
 
 export default class SelectCategoryScreen extends React.Component {
   constructor(props){
