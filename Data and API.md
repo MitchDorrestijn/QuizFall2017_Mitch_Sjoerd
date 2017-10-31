@@ -127,18 +127,18 @@ Note: all `POST`, `PUT` and `DELETE` APIs will return a message with the followi
    - `POST /api/games/:gameId/rounds`
 4. Start a quiz round (12 questions) by selecting three categories and pressing the start round button.
    - `GET /api/categories`
-   - `POST /api/games/:gameId/rounds/:roundId/questions`
+   - `POST /api/games/:gameId/rounds/current/questions`
      - `{catagories: [String, String, ...]`
 5. Select the next question and start the selected question by pressing a button.
-   - `GET /api/games/:gameId/rounds/:roundId/questions`
-   - `PUT /api/games/:gameId/rounds/:roundId`
+   - `GET /api/games/:gameId/rounds/current/questions`
+   - `PUT /api/games/:gameId/rounds/current`
      - `{nextQuestion: ObjectId}`
 6. Close the current question.
-   - `PUT /api/games/:gameId/rounds/:roundId/questions/current`
+   - `PUT /api/games/:gameId/rounds/current/questions/current`
      - `{close: true}`
 7. Read the answers that the teams have submitted and validate their correctness.
-   - `GET /api/games/:gameId/rounds/:roundId/answers/current`
-   - `PUT /api/games/:gameId/rounds/:roundId/answers/current`
+   - `GET /api/games/:gameId/rounds/current/answers/current`
+   - `PUT /api/games/:gameId/rounds/current/answers/current`
      - `{team: String, correct: Boolean}`
 8. After a quiz round, decide whether to
    - play another round
@@ -207,7 +207,7 @@ Start a new round.
 }
 ```
 
-#### POST /api/games/:gameId/rounds/:roundId/questions
+#### POST /api/games/:gameId/rounds/current/questions
 Add questions from a category to the round.
 ##### Request
 ```
@@ -216,7 +216,7 @@ Add questions from a category to the round.
 }
 ```
 
-#### GET /api/games/:gameId/rounds/:roundId/questions
+#### GET /api/games/:gameId/rounds/current/questions
 Get all the questions in the round and their right answer.
 ##### Response
 ```
@@ -229,7 +229,7 @@ Get all the questions in the round and their right answer.
 ]
 ```
 
-#### GET /api/games/:gameId/rounds/:roundId/questions/current
+#### GET /api/games/:gameId/rounds/current/questions/current
 Get the current question.
 ##### Response
 ```
@@ -238,7 +238,7 @@ Get the current question.
 }
 ```
 
-#### PUT /api/games/:gameId/rounds/:roundId/questions/current
+#### PUT /api/games/:gameId/rounds/current/questions/current
 Close the current question.
 ##### Request
 ```
@@ -247,7 +247,7 @@ Close the current question.
 }
 ```
 
-#### GET /api/games/:gameId/rounds/:roundId/answers/current
+#### GET /api/games/:gameId/rounds/current/answers/current
 Get all answers from all teams for the current question within a round, as well as the right answer to the question.
 ##### Response
 ```
@@ -261,7 +261,7 @@ Get all answers from all teams for the current question within a round, as well 
 }
 ```
 
-#### PUT /api/games/:gameId/rounds/:roundId/answers/current
+#### PUT /api/games/:gameId/rounds/current/answers/current
 Mark an answer as correct or incorrect.
 ##### Request
 ```
@@ -271,7 +271,7 @@ Mark an answer as correct or incorrect.
 }
 ```
 
-#### PUT /api/games/:gameId/rounds/:roundId
+#### PUT /api/games/:gameId/rounds/current
 Change to another question.
 ##### Request
 ```
@@ -290,9 +290,9 @@ Change to another question.
    - `GET /api/games/:gameId/teams/:teamId`
 3. Display the current question
    - `GET /api/games/:gameId/rounds/current`
-   - `GET /api/games/:gameId/rounds/:roundId/questions/current`
+   - `GET /api/games/:gameId/rounds/current/questions/current`
 4. Give or change an answer to the question
-   - `PUT /api/games/:gameId/rounds/:roundId/answers/current`
+   - `PUT /api/games/:gameId/rounds/current/answers/current`
 
 #### POST /api/games/:gameId/teams
 Apply for a game.
@@ -327,7 +327,7 @@ Get the current round number.
 }
 ```
 
-#### GET /api/games/:gameId/rounds/:roundId/questions/current
+#### GET /api/games/:gameId/rounds/current/questions/current
 Get the current question.
 ##### Response
 ```
@@ -336,7 +336,7 @@ Get the current question.
 }
 ```
 
-#### PUT /api/games/:gameId/rounds/:roundId/answers/current
+#### PUT /api/games/:gameId/rounds/current/answers/current
 Give or change an answer to a certain question.
 ##### Request
 ```

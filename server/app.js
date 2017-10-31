@@ -410,16 +410,11 @@ app.post ("/api/games/:gameId/rounds", (req, res) => {
 	}
 });
 
-app.post ("/api/games/:gameId/rounds/:roundId/questions", (req, res) => {
+app.post ("/api/games/:gameId/rounds/current/questions", (req, res) => {
 	if (!req.params.gameId) {
 		res.json ({
 			success: false,
 			error: "No game ID specified"
-		});
-	} else if (!req.params.roundId) {
-		res.json ({
-			success: false,
-			error: "No round ID specified"
 		});
 	} else if (!req.body.categories) {
 		res.json ({
@@ -435,12 +430,14 @@ app.post ("/api/games/:gameId/rounds/:roundId/questions", (req, res) => {
 		let promise = gameExists (req.params.gameId)
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
-					if (game.activeRound !== parseInt (req.params.roundId, 10)) {
-						reject ("You can only add questions to the active round");
-					} else if (game.rounds [parseInt (req.params.roundId, 10)].answers.length > 0) {
-						reject ("You've added questions to this round");
+					if (game.activeRound !== null) {
+						if (game.rounds [game.activeRound].answers.length > 0) {
+							reject ("You've added questions to this round");
+						} else {
+							resolve (game);
+						}
 					} else {
-						resolve (game);
+						reject ("There's no active round");
 					}
 				});
 			}).then ((game) => {
@@ -471,7 +468,7 @@ app.post ("/api/games/:gameId/rounds/:roundId/questions", (req, res) => {
 						});
 					}
 					for (let elem of questions) {
-						game.rounds [parseInt (req.params.roundId, 10)].answers.push ({
+						game.rounds [game.activeRound].answers.push ({
 							question: elem._id,
 							closed: false,
 							answers: teamAnswers
@@ -499,24 +496,19 @@ app.post ("/api/games/:gameId/rounds/:roundId/questions", (req, res) => {
 	}
 });
 
-app.get ("/api/games/:gameId/rounds/:roundId/questions", (req, res) => {
+app.get ("/api/games/:gameId/rounds/current/questions", (req, res) => {
 	if (!req.params.gameId) {
 		res.json ({
 			success: false,
 			error: "No game ID specified"
 		});
-	} else if (!req.params.roundId) {
-		res.json ({
-			success: false,
-			error: "No round ID specified"
-		});
 	} else {
 		let promise = gameExists (req.params.gameId)
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
-					if (game.rounds [parseInt (req.params.roundId, 10)]) {
+					if (game.activeRound !== null) {
 						let roundQuestions = [];
-						for (let answer of game.rounds [parseInt (req.params.roundId, 10)].answers) {
+						for (let answer of game.rounds [game.activeRound].answers) {
 							roundQuestions.push ({
 								questionId: answer.question
 							});
@@ -573,16 +565,11 @@ app.get ("/api/games/:gameId/rounds/:roundId/questions", (req, res) => {
 	}
 });
 
-app.put ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
+app.put ("/api/games/:gameId/rounds/current/questions/current", (req, res) => {
 	if (!req.params.gameId) {
 		res.json ({
 			success: false,
 			error: "No game ID specified"
-		});
-	} else if (!req.params.roundId) {
-		res.json ({
-			success: false,
-			error: "No round ID specified"
 		});
 	} else if (!req.body.hasOwnProperty ('close')) {
 		res.json ({
@@ -593,8 +580,8 @@ app.put ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
 		let promise = gameExists (req.params.gameId)
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
-					let roundId = parseInt (req.params.roundId, 10);
-					if (game.rounds [roundId]) {
+					let roundId = game.activeRound;
+					if (roundId !== null) {
 						let activeAnswer = game.rounds [roundId].activeAnswer;
 						if (activeAnswer !== null) {
 							if (req.body.close) {
@@ -642,23 +629,18 @@ app.put ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
 	}
 });
 
-app.get ("/api/games/:gameId/rounds/:roundId/answers/current", (req, res) => {
+app.get ("/api/games/:gameId/rounds/current/answers/current", (req, res) => {
 	if (!req.params.gameId) {
 		res.json ({
 			success: false,
 			error: "No game ID specified"
 		});
-	} else if (!req.params.roundId) {
-		res.json ({
-			success: false,
-			error: "No round ID specified"
-		});
 	} else {
 		let promise = gameExists (req.params.gameId)
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
-					let roundId = parseInt (req.params.roundId, 10);
-					if (game.rounds [roundId]) {
+					let roundId = game.activeRound;
+					if (game.activeRound !== null) {
 						let activeAnswer = game.rounds [roundId].activeAnswer;
 						if (activeAnswer !== null) {
 							let result = {};
@@ -704,16 +686,11 @@ app.get ("/api/games/:gameId/rounds/:roundId/answers/current", (req, res) => {
 	}
 });
 
-app.put ("/api/games/:gameId/rounds/:roundId", (req, res) => {
+app.put ("/api/games/:gameId/rounds/current", (req, res) => {
 	if (!req.params.gameId) {
 		res.json ({
 			success: false,
 			error: "No game ID specified"
-		});
-	} else if (!req.params.roundId) {
-		res.json ({
-			success: false,
-			error: "No round ID specified"
 		});
 	} else if (!req.body.nextQuestion) {
 		res.json ({
@@ -724,8 +701,8 @@ app.put ("/api/games/:gameId/rounds/:roundId", (req, res) => {
 		let promise = gameExists (req.params.gameId)
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
-					let roundId = parseInt (req.params.roundId, 10);
-					if (game.rounds [roundId]) {
+					let roundId = game.activeRound;
+					if (roundId !== null) {
 						let activeAnswer = game.rounds [roundId].activeAnswer;
 						if (activeAnswer !== null) {
 							let activeQuestion = game.rounds [roundId].answers [activeAnswer];
@@ -929,23 +906,18 @@ app.get ("/api/games/:gameId/rounds/current", (req, res) => {
 	}
 });
 
-app.get ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
-	if (!req.params.roundId) {
+app.get ("/api/games/:gameId/rounds/current/questions/current", (req, res) => {
+	if (!req.params.gameId) {
 		res.json ({
 			success: false,
 			error: "No game ID specified"
-		});
-	} else if (!req.params.roundId) {
-		res.json ({
-			success: false,
-			error: "No round ID specified"
 		});
 	} else {
 		let promise = gameExists (req.params.gameId)
 			.then ((game) => {
 				return new Promise ((resolve, reject) => {
-					let roundId = parseInt (req.params.roundId);
-					if (game.rounds [roundId]) {
+					let roundId = game.activeRound;
+					if (roundId !== null) {
 						let activeAnswer = game.rounds [roundId].activeAnswer;
 						if (activeAnswer !== null) {
 							resolve (game.rounds [roundId].answers [activeAnswer].question);
@@ -982,24 +954,19 @@ app.get ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
 });
 
 // QuizzApp and QuizzMaster
-app.put ("/api/games/:gameId/rounds/:roundId/answers/current", (req, res) => {
-	if (!req.params.roundId) {
+app.put ("/api/games/:gameId/rounds/current/answers/current", (req, res) => {
+	if (!req.params.gameId) {
 		res.json ({
 			success: false,
 			error: "No game ID specified"
-		});
-	} else if (!req.params.roundId) {
-		res.json ({
-			success: false,
-			error: "No round ID specified"
 		});
 	} else {
 		if (req.body.team && req.body.hasOwnProperty ("correct")) {
 			let promise = gameExists (req.params.gameId)
 				.then ((game) => {
 					return new Promise ((resolve, reject) => {
-						let roundId = parseInt (req.params.roundId, 10);
-						if (game.rounds [roundId]) {
+						let roundId = game.activeRound;
+						if (roundId !== null) {
 							let activeAnswer = game.rounds [roundId].activeAnswer;
 							if (activeAnswer !== null) {
 								if (game.rounds [roundId].answers [activeAnswer].closed) {
@@ -1051,8 +1018,8 @@ app.put ("/api/games/:gameId/rounds/:roundId/answers/current", (req, res) => {
 			let promise = gameExists (req.params.gameId)
 				.then ((game) => {
 					return new Promise ((resolve, reject) => {
-						let roundId = parseInt (req.params.roundId, 10);
-						if (game.rounds [roundId]) {
+						let roundId = game.activeRound;
+						if (roundId !== null) {
 							let activeAnswer = game.rounds [roundId].activeAnswer;
 							if (activeAnswer !== null) {
 								if (!game.rounds [roundId].answers [activeAnswer].closed) {
