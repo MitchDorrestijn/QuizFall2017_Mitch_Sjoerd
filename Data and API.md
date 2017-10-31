@@ -47,7 +47,7 @@ activeRound: Number
 ### QuizApp
 The following WebSocket is expected to be opened after the user applies to the quiz.
 ```
-http://SERVERNAME/ws/PASSWORD/team/TEAMNAME
+http://SERVERNAME/ws/PASSWORD/teams/TEAMID
 ```
 
 #### Application accepted
