@@ -31,7 +31,6 @@ export default class IntroScreen extends React.Component {
          joinedTeams.push(res[i]);
        }
      }
-     console.log(res);
      this.setState ({approvedTeams: approvedTeams, joinedTeams: joinedTeams});
     });
   }
@@ -40,6 +39,7 @@ export default class IntroScreen extends React.Component {
     da.postData(`/games`, {}, (err, res) => {
       if (err) throw new error();
       this.setState((prevState) => {return ({quizIsOpen: !prevState.quizIsOpen, roomNumber: res.password})});
+      this.props.getRoomNumber(res.password);
     });
   }
   openQuiz(){
