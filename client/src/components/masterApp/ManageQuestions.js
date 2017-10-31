@@ -3,6 +3,7 @@ import ShowGivenAwnsersScreen from './ShowGivenAwnsersScreen';
 import QuestionIsServedScreen from './QuestionIsServedScreen';
 import SelectAQuestionScreen from './SelectAQuestionScreen';
 import WinnerScreen from './WinnerScreen';
+import DataAccess from '../../scripts/DataAccess';
 
 export default class ManageQuestions extends React.Component {
   constructor(props){
@@ -15,14 +16,8 @@ export default class ManageQuestions extends React.Component {
       questionIsSendScreen: false,
       showGivenAwnsersScreen: false,
       valueOfTheSelectedQuestion: "",
-      availableQuestions: [
-        "Who wrote Twilight series of novels?",
-        "In the Adrian Mole Diaries, what is the surname of his girlfriend?",
-        "Who wrote the novel Revolutionary Road, which was made into a successful feature film?",
-        "What word does the bird constantly repeat in Edgar Allan Poe`s classic poem The Raven?",
-        "In Gullivers Travels, what is the name of the flying island?",
-        "Who was the author of Whisky Galore?"
-      ],
+      roomNumber: this.props.roomNumber,
+      availableQuestions: [],
       givenAwnsers: [
         "antwoord 1",
         "antwoord 2",
@@ -34,6 +29,17 @@ export default class ManageQuestions extends React.Component {
     this.sendQuestionToTheTeams = this.sendQuestionToTheTeams.bind(this);
     this.getAwnsers = this.getAwnsers.bind(this);
     this.resetStateAndScreens = this.resetStateAndScreens.bind(this);
+  }
+  componentDidMount(){
+    let da = new DataAccess();
+    da.getData(`/games/${this.state.roomNumber}/rounds/current/questions`, (err, res) => {
+      if(err) throw new error();
+      let questions = [];
+      for (let i = 0; i < res.length; i++) {
+        questions.push(res[i].question);
+      }
+      this.setState ({availableQuestions: questions});
+    });
   }
   getSelectedQuestion(e){
     this.setState({thereIsAQuestionSelected: true, valueOfTheSelectedQuestion: e.target.value});

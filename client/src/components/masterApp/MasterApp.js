@@ -23,21 +23,22 @@ export default class MasterApp extends React.Component {
   }
   goToSelectCategoryScreen(e) {
     e.preventDefault();
-    this.setState({introScreen: false, selectCategoryScreen: true, selectQuestionScreen: false});
     //Start the quiz
     let da = new DataAccess();
     da.postData(`/games/${this.state.roomNumber}/rounds`, {}, (err, res) => {
       if(err) throw error();
+      this.setState({introScreen: false, selectCategoryScreen: true, selectQuestionScreen: false});
       console.log('The quiz has started!');
     });
   }
   goToSelectQuestionScreen(e) {
     e.preventDefault();
-    this.setState({introScreen: false, selectCategoryScreen: false, selectQuestionScreen: true});
+    //Add the categories
     let da = new DataAccess();
-    da.postData(`/games/${this.state.roomNumber}/rounds/current/questions`, {catagories: this.state.selectedCategories}, (err, res) => {
+    da.postData(`/games/${this.state.roomNumber}/rounds/current/questions`, {categories: this.state.selectedCategories}, (err, res) => {
       if(err) throw error();
-      console.log('Catagories toegevoegd');
+      this.setState({introScreen: false, selectCategoryScreen: false, selectQuestionScreen: true});
+      console.log('Categories toegevoegd');
     });
   }
   stopGame(e){
@@ -54,10 +55,9 @@ export default class MasterApp extends React.Component {
     return (
       <div className="intro--header">
         <div className="inner--header">
-          {console.log(this.state.selectedCategories)}
           {this.state.introScreen && <IntroScreen goToSelectCategoryScreen={this.goToSelectCategoryScreen} getRoomNumber={(roomNumber) => this.passRoomNumber(roomNumber) } />}
           {this.state.selectCategoryScreen && <SelectCategoryScreen goToSelectQuestionScreen={this.goToSelectQuestionScreen} roomNumber={this.state.roomNumber} passSelectedCategories={(arr) => this.getSelectedCategories(arr) } />}
-          {this.state.selectQuestionScreen && <ManageQuestions anotherRound={this.goToSelectCategoryScreen} stopGame={this.stopGame} />}
+          {this.state.selectQuestionScreen && <ManageQuestions anotherRound={this.goToSelectCategoryScreen} stopGame={this.stopGame} roomNumber={this.state.roomNumber} />}
         </div>
       </div>
     );
