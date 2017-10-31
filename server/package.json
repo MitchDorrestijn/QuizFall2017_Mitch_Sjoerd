@@ -15,6 +15,7 @@
     "mocha": "^4.0.1",
     "mongoose": "^4.12.4",
     "mongoose-simple-random": "^0.4.1",
-    "randomstring": "^1.1.5"
+    "randomstring": "^1.1.5",
+    "socket.io": "^2.0.4"
   }
 }

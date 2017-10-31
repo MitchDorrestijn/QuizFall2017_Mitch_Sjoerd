@@ -1,4 +1,5 @@
 let randomstring = require ("randomstring");
+let http = require ("http");
 let express = require ("express");
 let bodyParser = require ("body-parser");
 let mongoose = require ("mongoose");
@@ -9,7 +10,7 @@ let games = require ("./schema/games.js").model;
 let teams = require ("./schema/teams.js").model;
 let cors = require ("cors");
 
-let port = 8081;
+let port = 8080;
 let questionsPerRound = 12;
 
 let app = express ();
@@ -21,6 +22,8 @@ mongoose.connect ("mongodb://localhost/quizzr", {useMongoClient: true}, (err) =>
 		console.log ("Connected to MongoDB");
 	}
 });
+let server = http.createServer (app);
+let io = require ("socket.io") (server);
 
 // Disable DeprecationWarning
 mongoose.Promise = global.Promise;
@@ -67,6 +70,12 @@ app.post ("/api/games", (req, res) => {
 				success: true,
 				error: null,
 				password: password
+			});
+			io.of (`/ws/${password}/master`).on ('connection', (socket) => {
+				socket.emit ('connected', {connected: true});
+			});
+			io.of (`/ws/${password}/scores`).on ('connection', (socket) => {
+				socket.emit ('connected', {connected: true});
 			});
 		}).catch ((err) => {
 			if (err) {
@@ -116,6 +125,10 @@ app.put ("/api/games/:gameId", (req, res) => {
 							if (err) {
 								reject (err.toString ());
 							} else {
+								for (let elem of game.teams) {
+									io.of (`/ws/game/${req.params.gameId}/teams/${elem._id}`).emit ('closeGame', {closeGame: true});
+								}
+								io.of (`/ws/game/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
 								resolve ();
 							}
 						});
@@ -262,6 +275,7 @@ app.put ("/api/games/:gameId/teams/:teamId", (req, res) => {
 						if (err) {
 							reject (err.toString ());
 						} else {
+							io.of (`/ws/game/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
 							resolve ();
 						}
 					});
@@ -271,6 +285,7 @@ app.put ("/api/games/:gameId/teams/:teamId", (req, res) => {
 					success: true,
 					error: null
 				});
+				io.of (`/ws/${req.params.gameId}/teams/${req.params.teamId}`).emit ('joinGame', {joinGame: true});
 			}).catch ((err) => {
 				res.json ({
 					success: false,
@@ -328,6 +343,7 @@ app.put ("/api/games/:gameId/teams/:teamId", (req, res) => {
 					success: true,
 					error: null
 				});
+				io.of (`/ws/${req.params.gameId}/teams/${req.params.teamId}`).emit ('joinGame', {joinGame: false});
 			}).catch ((err) => {
 				res.json ({
 					success: false,
@@ -362,6 +378,10 @@ app.post ("/api/games/:gameId/rounds", (req, res) => {
 							if (err) {
 								reject (err);
 							} else {
+								for (let elem of game.teams) {
+									io.of (`/ws/${req.params.gameId}/teams/${elem._id}`).emit ('changeRound', {changeRound: true});
+								}
+								io.of (`/ws/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
 								resolve (roundNumber);
 							}
 						});
@@ -376,7 +396,6 @@ app.post ("/api/games/:gameId/rounds", (req, res) => {
 					roundId: roundNumber
 				});
 			}).catch ((err) => {
-				console.log (err);
 				res.json ({
 					success: false,
 					error: err
@@ -595,6 +614,10 @@ app.put ("/api/games/:gameId/rounds/:roundId/questions/current", (req, res) => {
 						if (err) {
 							reject (err.toString ());
 						} else {
+							for (let elem of game.teams) {
+								io.of (`/ws/${req.params.gameId}/teams/${elem._id}`).emit ('closeQuestion', {closeQuestion: true});
+							}
+							io.of (`/ws/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
 							resolve ();
 						}
 					})
@@ -741,6 +764,10 @@ app.put ("/api/games/:gameId/rounds/:roundId", (req, res) => {
 						if (err) {
 							reject (err.toString ());
 						} else {
+							for (let elem of game.teams) {
+								io.of (`/ws/${req.params.gameId}/teams/${elem._id}`).emit ('changeQuestion', {changeQuestion: true});
+							}
+							io.of (`/ws/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
 							resolve ();
 						}
 					});
@@ -821,6 +848,11 @@ app.post ("/api/games/:gameId/teams", (req, res) => {
 					error: null,
 					teamId: team._id
 				});
+				io.of (`/ws/${req.params.gameId}/teams/${team._id}`).on ('connection', (socket) => {
+					socket.emit ('connected', {connected: true});
+				});
+				io.of (`/ws/${req.params.gameId}/master`).emit ('updateApplications', {updateApplications: true});
+				io.of (`/ws/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
 			}).catch ((err) => {
 				res.send ({
 					success: false,
@@ -993,6 +1025,7 @@ app.put ("/api/games/:gameId/rounds/:roundId/answers/current", (req, res) => {
 							if (err) {
 								reject (err.toString ());
 							} else {
+								io.of (`/ws/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
 								resolve ();
 							}
 						});
@@ -1045,6 +1078,7 @@ app.put ("/api/games/:gameId/rounds/:roundId/answers/current", (req, res) => {
 							if (err) {
 								reject (err.toString ());
 							} else {
+								io.of (`/ws/${req.params.gameId}/master`).emit ('updateAnswers', {updateAnswers: true});
 								resolve ();
 							}
 						});
@@ -1147,4 +1181,4 @@ app.get ("/api/games/:gameId/scores", (req, res) => {
 });
 
 // Start the server
-app.listen (port, () => console.log (`Server listening on port ${port}`));
+server.listen (port, () => console.log (`Server listening on port ${port}`));
