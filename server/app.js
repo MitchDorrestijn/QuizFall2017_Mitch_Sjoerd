@@ -4,12 +4,7 @@ let http = require ("http");
 let express = require ("express");
 let bodyParser = require ("body-parser");
 let mongoose = require ("mongoose");
-let gameExists = require ("./functions/gameExists.js");
 let reloadWebSockets = require ("./functions/reloadWebSockets.js");
-let calculateScores = require ("./functions/calculateScores.js");
-let questions = require ("./schema/questions.js").model;
-let games = require ("./schema/games.js").model;
-let teams = require ("./schema/teams.js").model;
 let cors = require ("cors");
 
 let config = JSON.parse (fs.readFileSync ("config.json"));
@@ -19,12 +14,16 @@ let questionsPerRound = config.questionsPerRound;
 
 let app = express ();
 
+console.log ("========================");
+console.log ("|    Quizzer Server    |");
+console.log ("========================");
+
 // DB connection
 mongoose.connect (`mongodb://${config.dbHost}/${config.dbName}`, {useMongoClient: true}, (err) => {
 	if (err) {
 		console.log ("Error: "+err);
 	} else {
-		console.log ("Connected to MongoDB");
+		console.log (`Connected to MongoDB at ${config.dbHost} using database "${config.dbName}"`);
 	}
 });
 
@@ -46,9 +45,6 @@ app.use (cors ({
 app.use (bodyParser.json ());
 
 let api = [];
-
-// QuizzMaster
-//
 
 // QuizzMaster
 api.push (require ("./functions/api/categories/get.js") (app));
@@ -73,9 +69,7 @@ api.push (require ("./functions/api/games/gameId/rounds/current/questions/curren
 api.push (require ("./functions/api/games/gameId/rounds/current/answers/current/put.js") (app, io));
 
 // QuizzScore
-api.push (require ("./functions/api/games/gameId/scores/get.js") (app));
-
-console.log (api);
+api.push (require ("./functions/api/games/gameId/scores/get.js") (app, questionsPerRound));
 
 // Serve client app from public folder
 app.use ('*', express.static ('public'));

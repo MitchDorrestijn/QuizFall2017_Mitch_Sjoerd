@@ -5,7 +5,7 @@ let questions = require ("../../../../../schema/questions.js").model;
 // Disable DeprecationWarning
 mongoose.Promise = global.Promise;
 
-let api = (app) => {
+let api = (app, questionsPerRound) => {
 	app.get ("/api/games/:gameId/scores", (req, res) => {
 		if (!req.params.gameId) {
 			res.json ({
@@ -26,8 +26,8 @@ let api = (app) => {
 							let score = {};
 							score.team = team.name;
 							score.roundPoints = team.roundPoints;
-							score.correctAnswers = 0;
 							if (round) {
+								score.correctAnswers = 0;
 								for (let answers of round.answers) {
 									for (let teamAnswer of answers.answers) {
 										if (teamAnswer.team === score.team && teamAnswer.approved) {
@@ -51,7 +51,9 @@ let api = (app) => {
 								}
 								let currentQuestion = {};
 								currentQuestion.closed = round.answers [round.activeAnswer].closed;
-								currentQuestion.teamAnswers = round.answers [round.activeAnswer].answers;
+								if (currentQuestion.closed) {
+									currentQuestion.teamAnswers = round.answers [round.activeAnswer].answers;
+								}
 								result.currentQuestion = currentQuestion;
 								questions.findOne ({_id: round.answers [round.activeAnswer].question}, (err, result2) => {
 									if (err) {
