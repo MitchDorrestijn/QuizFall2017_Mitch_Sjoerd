@@ -1,0 +1,6 @@
+{
+	"port": 8080,
+	"dbHost": "localhost:27017",
+	"dbName": "quizzr",
+	"questionsPerRound": 12
+}

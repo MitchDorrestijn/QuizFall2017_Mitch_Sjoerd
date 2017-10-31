@@ -1,3 +1,4 @@
+let fs = require ("fs");
 let randomstring = require ("randomstring");
 let http = require ("http");
 let express = require ("express");
@@ -10,18 +11,23 @@ let games = require ("./schema/games.js").model;
 let teams = require ("./schema/teams.js").model;
 let cors = require ("cors");
 
-let port = 8080;
-let questionsPerRound = 12;
+let config = JSON.parse (fs.readFileSync ("config.json"));
+
+let port = config.port;
+let questionsPerRound = config.questionsPerRound;
 
 let app = express ();
 
-mongoose.connect ("mongodb://localhost/quizzr", {useMongoClient: true}, (err) => {
+// DB connection
+mongoose.connect (`mongodb://${config.dbHost}/${config.dbName}`, {useMongoClient: true}, (err) => {
 	if (err) {
 		console.log ("Error: "+err);
 	} else {
 		console.log ("Connected to MongoDB");
 	}
 });
+
+// Setup HTTP and WebSockets server
 let server = http.createServer (app);
 let io = require ("socket.io") (server);
 
@@ -1179,6 +1185,9 @@ app.get ("/api/games/:gameId/scores", (req, res) => {
 			});
 	}
 });
+
+// Serve client app from public folder
+app.use ('*', express.static ('public'));
 
 // Start the server
 server.listen (port, () => console.log (`Server listening on port ${port}`));
