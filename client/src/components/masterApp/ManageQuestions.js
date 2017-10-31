@@ -8,7 +8,6 @@ import DataAccess from '../../scripts/DataAccess';
 export default class ManageQuestions extends React.Component {
   constructor(props){
     super(props);
-    // TODO: GET 12 RANDOM QUESTIONS FROM THE DATABASE BASED ON THE SELECTED CATEGORY.
     // TODO: SET ALL BOOLEANS BELOW TO FALSE WHEN 12 QUESTIONS HAVE BEEN AWNSERED.
     this.state = {
       selectAQuestionScreen: true,
@@ -55,15 +54,18 @@ export default class ManageQuestions extends React.Component {
     da.putData(`/games/${this.state.roomNumber}/rounds/current`, {nextQuestion: this.state.questionIds[objectIdIndex]}, (err, res) => {
       if (err) throw new error();
       this.setState({selectAQuestionScreen: false, questionIsSendScreen: true});
-      console.log('Question has been send to the participating teams.');
+      console.log('The question has been send to the participating teams.');
+    });
+  }
+  getAwnsers(e){
+    e.preventDefault();
+    let da = new DataAccess();
+    da.putData(`/games/${this.state.roomNumber}/rounds/current/questions/current`, {close: true}, (err, res) => {
+      if (err) throw new error();
+      this.setState({questionIsSendScreen: false, showGivenAwnsersScreen: true});
+      console.log('The question has been closed successfully');
     });
 
-
-    // console.log('De geselecteerde vraag: ' + this.state.valueOfTheSelectedQuestion);
-    // console.log(this.state.questionIds[objectIdIndex]);
-  }
-  getAwnsers(){
-    this.setState({questionIsSendScreen: false, showGivenAwnsersScreen: true});
   }
   resetStateAndScreens(){
     this.setState(this.baseState);
