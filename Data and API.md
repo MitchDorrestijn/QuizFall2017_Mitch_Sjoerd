@@ -128,7 +128,7 @@ Note: all `POST`, `PUT` and `DELETE` APIs will return a message with the followi
 4. Start a quiz round (12 questions) by selecting three categories and pressing the start round button.
    - `GET /api/categories`
    - `POST /api/games/:gameId/rounds/current/questions`
-     - `{catagories: [String, String, ...]`
+     - `{categories: [String, String, ...]`
 5. Select the next question and start the selected question by pressing a button.
    - `GET /api/games/:gameId/rounds/current/questions`
    - `PUT /api/games/:gameId/rounds/current`
