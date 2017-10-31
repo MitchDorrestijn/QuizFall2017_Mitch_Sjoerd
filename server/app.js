@@ -5,6 +5,7 @@ let express = require ("express");
 let bodyParser = require ("body-parser");
 let mongoose = require ("mongoose");
 let gameExists = require ("./functions/gameExists.js");
+let reloadWebSockets = require ("./functions/reloadWebSockets.js");
 let calculateScores = require ("./functions/calculateScores.js");
 let questions = require ("./schema/questions.js").model;
 let games = require ("./schema/games.js").model;
@@ -30,6 +31,9 @@ mongoose.connect (`mongodb://${config.dbHost}/${config.dbName}`, {useMongoClient
 // Setup HTTP and WebSockets server
 let server = http.createServer (app);
 let io = require ("socket.io") (server);
+
+// Reload Socket.IO namespaces for open games (in case of a server crash)
+reloadWebSockets (io);
 
 // Disable DeprecationWarning
 mongoose.Promise = global.Promise;
