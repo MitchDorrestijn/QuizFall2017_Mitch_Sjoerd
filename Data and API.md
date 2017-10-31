@@ -75,10 +75,10 @@ Event: `closeQuestion`
 
 Message: `{ closeQuestion: true }`
 
-#### Round closed
-Event: `closeRound`
+#### Game closed
+Event: `closeGame`
 
-Message: `{ closeRound: true }`
+Message: `{ closeGame: true }`
 
 ### QuizMaster
 The following WebSocket is expected to be opened after the user opens the game for applications.
