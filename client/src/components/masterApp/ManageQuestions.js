@@ -16,8 +16,10 @@ export default class ManageQuestions extends React.Component {
       questionIsSendScreen: false,
       showGivenAwnsersScreen: false,
       valueOfTheSelectedQuestion: "",
+      valueOfTheSelectedQuestionId: "",
       roomNumber: this.props.roomNumber,
       availableQuestions: [],
+      questionIds: [],
       givenAwnsers: [
         "antwoord 1",
         "antwoord 2",
@@ -35,10 +37,12 @@ export default class ManageQuestions extends React.Component {
     da.getData(`/games/${this.state.roomNumber}/rounds/current/questions`, (err, res) => {
       if(err) throw new error();
       let questions = [];
+      let questionObjectIds = [];
       for (let i = 0; i < res.length; i++) {
         questions.push(res[i].question);
+        questionObjectIds.push(res[i].questionId);
       }
-      this.setState ({availableQuestions: questions});
+      this.setState ({availableQuestions: questions, questionIds: questionObjectIds});
     });
   }
   getSelectedQuestion(e){
@@ -46,9 +50,17 @@ export default class ManageQuestions extends React.Component {
   }
   sendQuestionToTheTeams(e){
     e.preventDefault();
-    this.setState({selectAQuestionScreen: false, questionIsSendScreen: true});
-    // TODO: PUT THE SELCTED QUESTION IN THE DATABASE.
-    console.log('De geselecteerde vraag: ' + this.state.valueOfTheSelectedQuestion);
+    let objectIdIndex = this.state.availableQuestions.indexOf(this.state.valueOfTheSelectedQuestion);
+    let da = new DataAccess();
+    da.putData(`/games/${this.state.roomNumber}/rounds/current`, {nextQuestion: this.state.questionIds[objectIdIndex]}, (err, res) => {
+      if (err) throw new error();
+      this.setState({selectAQuestionScreen: false, questionIsSendScreen: true});
+      console.log('Question has been send to the participating teams.');
+    });
+
+
+    // console.log('De geselecteerde vraag: ' + this.state.valueOfTheSelectedQuestion);
+    // console.log(this.state.questionIds[objectIdIndex]);
   }
   getAwnsers(){
     this.setState({questionIsSendScreen: false, showGivenAwnsersScreen: true});
