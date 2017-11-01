@@ -25,6 +25,7 @@ let loop = (round, maxRounds, prevPercent) => {
 		question.save ((err) => {
 			if (err) {
 				console.log (err.toString ());
+				process.exit ();
 			} else {
 				loop (round+1, maxRounds, percentage);
 			}
@@ -41,6 +42,7 @@ process.stdin.on ('data', () => {
 	mongoose.connect (`mongodb://${config.dbHost}/${config.dbName}`, {useMongoClient: true}, (err) => {
 		if (err) {
 			console.log ("Error: " + err);
+			process.exit ();
 		} else {
 			process.stdout.write (`Importing questions...`);
 			loop (0, questions.length, 0);
