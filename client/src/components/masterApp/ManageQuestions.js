@@ -70,7 +70,20 @@ export default class ManageQuestions extends React.Component {
     });
   }
   resetStateAndScreens(){
-    this.setState(this.baseState);
+    //this.setState(this.baseState);
+    let da = new DataAccess();
+    da.getData(`/games/${this.state.roomNumber}/rounds/current/questions`, (err, res) => {
+      loadQuestions();
+      this.setState({
+        selectAQuestionScreen: true,
+        thereIsAQuestionSelected: false,
+        questionIsSendScreen: false,
+        showGivenAnswersScreen: false,
+        valueOfTheSelectedQuestion: "",
+        valueOfTheSelectedQuestionId: "",
+        answerToTheCurrentQuestion: 0,
+      });
+    });
   }
   getAllGivenAnswers(allGivenAnswers){
     this.setState({ givenAnswers: allGivenAnswers })
