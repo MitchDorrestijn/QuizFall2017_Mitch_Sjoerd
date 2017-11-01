@@ -21,7 +21,7 @@ export default class IntroScreen extends React.Component {
   getjoinedTeams(){
     let da = new DataAccess();
     da.getData(`/games/${this.state.roomNumber}/teams`, (err, res) => {
-      if(err) throw new error();
+      if(err) console.log (err.toString ());
       let approvedTeams = [];
       let joinedTeams = [];
       for (let i = 0; i < res.length; i++) {
@@ -40,6 +40,7 @@ export default class IntroScreen extends React.Component {
       if (err) throw new error();
       this.setState((prevState) => {return ({quizIsOpen: !prevState.quizIsOpen, roomNumber: res.password})});
       this.props.getRoomNumber(res.password);
+      this.props.initWebSocket (res.password, this.getjoinedTeams);
     });
   }
   openQuiz(){

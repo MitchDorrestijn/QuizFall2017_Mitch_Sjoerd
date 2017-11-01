@@ -25,6 +25,7 @@
     "react-router-dom": "^4.1.2",
     "react-select": "^1.0.0-rc.10",
     "sass-loader": "^6.0.6",
+    "socket.io-client": "^2.0.4",
     "style-loader": "^0.18.2",
     "webpack": "^3.1.0",
     "webpack-dev-server": "^2.5.1"
