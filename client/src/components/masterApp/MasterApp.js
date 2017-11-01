@@ -1,4 +1,5 @@
 import React from 'react';
+import openSocket from 'socket.io-client';
 import IntroScreen from './IntroScreen';
 import SelectCategoryScreen from './SelectCategoryScreen';
 import ManageQuestions from './ManageQuestions';
@@ -19,8 +20,20 @@ export default class MasterApp extends React.Component {
     this.stopGame = this.stopGame.bind(this);
     this.passRoomNumber = this.passRoomNumber.bind(this);
     this.getSelectedCategories = this.getSelectedCategories.bind(this);
+    this.initWebSocket = this.initWebSocket.bind (this);
     this.baseState = this.state;
+    this.socket = null;
   }
+  initWebSocket(room, updateFunction) {
+    this.socket = openSocket(`http://localhost:8081/ws/${room}/master`);
+    this.socket.on('connected', (data) => {
+      console.log(data);
+    });
+    this.socket.on ('updateApplications', (data) => {
+      console.log(data);
+	  updateFunction ();
+    });
+  };
   goToSelectCategoryScreen(e) {
     e.preventDefault();
     //Start the quiz
@@ -55,7 +68,7 @@ export default class MasterApp extends React.Component {
     return (
       <div className="intro--header">
         <div className="inner--header">
-          {this.state.introScreen && <IntroScreen goToSelectCategoryScreen={this.goToSelectCategoryScreen} getRoomNumber={(roomNumber) => this.passRoomNumber(roomNumber) } />}
+          {this.state.introScreen && <IntroScreen socket={this.state.socket} initWebSocket={this.initWebSocket} goToSelectCategoryScreen={this.goToSelectCategoryScreen} getRoomNumber={(roomNumber) => this.passRoomNumber(roomNumber) } />}
           {this.state.selectCategoryScreen && <SelectCategoryScreen goToSelectQuestionScreen={this.goToSelectQuestionScreen} roomNumber={this.state.roomNumber} passSelectedCategories={(arr) => this.getSelectedCategories(arr) } />}
           {this.state.selectQuestionScreen && <ManageQuestions anotherRound={this.goToSelectCategoryScreen} stopGame={this.stopGame} roomNumber={this.state.roomNumber} />}
         </div>
