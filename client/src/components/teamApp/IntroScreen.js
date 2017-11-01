@@ -9,7 +9,8 @@ export default class IntroScreen extends React.Component {
     this.handleCreateTeamClick = this.handleCreateTeamClick.bind(this);
     this.state = {
       joinTeamClicked: false,
-      createTeamClicked: false
+      createTeamClicked: false,
+      roomNumber: window.location.pathname.replace("/quiz/", "")
     }
   }
   handleJoinTeamClick(){
@@ -24,8 +25,7 @@ export default class IntroScreen extends React.Component {
         <div className="inner--header">
           {this.state.joinTeamClicked && <GameRules />}
           {this.state.createTeamClicked && <CreateTeam />}
-
-          {this.state.joinTeamClicked || this.state.createTeamClicked || <h1>Welkom in kamer [getRoomNumber]</h1>}
+          {this.state.joinTeamClicked || this.state.createTeamClicked || <h1>Welkom in kamer <span className="success">{this.state.roomNumber}</span></h1>}
           {this.state.joinTeamClicked || (<button id="joinBtn" onClick={this.handleJoinTeamClick}>{this.state.createTeamClicked ? 'Of bekijk de spelregels' : 'Bekijk spelregels'}</button>)}
           {this.state.createTeamClicked || (<button onClick={this.handleCreateTeamClick}>{this.state.joinTeamClicked ? 'Begrepen, laat we spelen!' : 'Maak een team'}</button>)}
         </div>

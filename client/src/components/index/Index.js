@@ -1,19 +1,31 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
+import DataAccess from '../../scripts/DataAccess';
 
 export default class Index extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      redirect: null,
+      error: false
+    }
     this.handleForm = this.handleForm.bind(this);
   }
-
-  handleForm(e) {
+  handleForm(e){
     e.preventDefault();
-    const givenRoomNumber = document.getElementById('roomNumber').value;
-    console.log('Check if roomNumber with number ' + givenRoomNumber + ' exists in the database.');
-    // TODO: IF GIVEN ROOMNUMBER EXISTS IN DATABASE, REDIRECT THE USER TO /player/{givenRoomNumber}
+    let givenRoomNumber = document.getElementById('roomNumber').value;
+    if(givenRoomNumber === "") givenRoomNumber = " ";
+    let da = new DataAccess();
+    let linkToRedirectTo = `/quiz/${givenRoomNumber}`;
+    let redirect = <Redirect to={linkToRedirectTo} />;
+    da.getData(`/games/${givenRoomNumber}/rounds/current`, (err, res) => {
+    if(err){
+       this.setState ({error: true});
+     } else {
+       this.setState ({redirect: redirect});
+     }
+    });
   }
-
   render() {
     return (
       <div className="intro--header">
@@ -22,6 +34,8 @@ export default class Index extends React.Component {
           <form className="createTeam full-width-form">
             <input id="roomNumber" placeholder="Type hier een kamercode" type="text"></input>
             <input onClick={this.handleForm} type="submit" value="&#9758; Join kamer"></input>
+            {this.state.error && <strong className="error block">Deze kamer bestaat niet!</strong>}
+            {this.state.redirect}
           </form>
           <Link className="btnLink" to="/master">Of maak een Quiz aan</Link>
         </div>
