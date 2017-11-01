@@ -21,7 +21,8 @@ export default class ManageQuestions extends React.Component {
       availableQuestions: [],
       questionIds: [],
       answers: [],
-      givenAnswers: []
+      givenAnswers: [],
+      correctAnswers: []
     }
     this.baseState = this.state;
     this.getSelectedQuestion = this.getSelectedQuestion.bind(this);
@@ -29,6 +30,7 @@ export default class ManageQuestions extends React.Component {
     this.closeQuestion = this.closeQuestion.bind(this);
     this.resetStateAndScreens = this.resetStateAndScreens.bind(this);
     this.getAllGivenAnswers = this.getAllGivenAnswers.bind(this);
+    this.getAllCorrectAnswers = this.getAllCorrectAnswers.bind(this);
   }
   componentDidMount(){
     let da = new DataAccess();
@@ -66,7 +68,6 @@ export default class ManageQuestions extends React.Component {
       this.setState({questionIsSendScreen: false, showGivenAnswersScreen: true});
       console.log('The question has been closed successfully');
     });
-
   }
   resetStateAndScreens(){
     this.setState(this.baseState);
@@ -74,6 +75,9 @@ export default class ManageQuestions extends React.Component {
   getAllGivenAnswers(allGivenAnswers){
     this.setState({ givenAnswers: allGivenAnswers })
   }
+  getAllCorrectAnswers(answer) {
+      this.setState({ correctAnswers: answer })
+    }
   render(){
     return (
       <div>
@@ -103,6 +107,7 @@ export default class ManageQuestions extends React.Component {
             answer={this.state.answerToTheCurrentQuestion}
             roomNumber={this.state.roomNumber}
             getAllGivenAnswers={(allGivenAnswers) => this.getAllGivenAnswers(allGivenAnswers)}
+            getAllCorrectAnswers={(answer) => this.getAllCorrectAnswers(answer) }
           />}
       </div>
     );

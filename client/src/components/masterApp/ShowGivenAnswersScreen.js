@@ -18,19 +18,16 @@ export default class ShowGivenAnswersScreen extends React.Component {
     da.getData(`/games/${this.props.roomNumber}/rounds/current/answers/current`, (err, res) => {
       if(err) throw new error();
       let allGivenAnswers = [];
-      for (let i = 0; i < res.length; i++) {
-        allGivenAnswers.push(res[i].teamAnswers.answer);
+      for (let i = 0; i < res.teamAnswers.length; i++) {
+        allGivenAnswers.push(res.teamAnswers[i]);
       }
       this.setState({givenAnswers: allGivenAnswers});
       this.props.getAllGivenAnswers(allGivenAnswers);
-      console.log("resultaat is"+res);
     });
   }
-
-
-
   handleCorrectQuestions(answer) {
     this.setState({correctGivenAnswers: answer});
+    this.props.getAllCorrectAnswers(answer);
   }
   render(){
     return(
@@ -43,7 +40,7 @@ export default class ShowGivenAnswersScreen extends React.Component {
           multi={true}
           closeOnSelect={false}
           placeholder="Klik hier om de goede antwoorden te selecteren."
-          options={this.props.correctGivenAnswers.map(i => { return { label: i, value: i }; })}
+          options={this.props.correctGivenAnswers.map((answers, i) => { return ({label: answers.team + ": " + answers.answer, value: answers.answer} ); })}
           value={this.state.correctGivenAnswers}
           noResultsText="Geen antwoorden gevonden"
           className="selectField"
@@ -51,7 +48,8 @@ export default class ShowGivenAnswersScreen extends React.Component {
         <button onClick={this.props.resetStateAndScreens} type="submit">Selecteer een nieuwe vraag</button>
         {
           // TODO: AWARD POINTS TO THE TEAMS THAT HAVE THE ANSWER CORRECT.
-          console.log(this.state.correctGivenAnswers)}
+          //console.log(this.state.correctGivenAnswers)}
+        }
       </div>
     );
   }
