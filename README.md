@@ -37,7 +37,7 @@ From your command line:
 $ git clone https://github.com/HANICA-DWA/fall2017-quizz-MitchEnSjoerd.git
 ```
 
-By default, the application runs on port 8080, and expects a local Mongo database to be running by the name of `quizzr`. One round in a game has twelve questions. To change this behaviour, edit the `config.json` file in the server directory.
+By default, the application runs on port 8080, and expects a local Mongo database to be running by the name of `quizzer`. One round in a game has twelve questions. To change this behaviour, edit the `config.json` file in the server directory.
 
 Finally, to run the application:
 ```bash
@@ -49,6 +49,15 @@ $ npm install
 
 # Run the Quizzer
 $ node app.js
+```
+
+If you want to run tests for the Mongoose schemas and the API, you need to have `mocha` installed. Make sure the server is running and run:
+```bash
+# Go into the server directory
+$ cd fall2017-quizz-MitchEnSjoerd/server
+
+# Run the tests
+$ mocha
 ```
 
 Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` / `yarn` from the command prompt.

@@ -2,13 +2,13 @@
  * Reload Socket.IO namespaces for open games
  */
 
-mongoose = require ("mongoose");
-games = require ("../schema/games.js").model;
+let mongoose = require ("mongoose");
+let games = require ("../schema/games.js").model;
 
 // Disable DeprecationWarning
 mongoose.Promise = global.Promise;
 
-reloadWebSockets = (io) => {
+let reloadWebSockets = (io) => {
 	return new Promise ((resolve, reject) => {
 		games.find ({closed: false}, (err, result) => {
 			if (err) {
@@ -17,6 +17,7 @@ reloadWebSockets = (io) => {
 				resolve (result);
 			}
 		}).then ((games) => {
+			let gameIds = [];
 			for (let elem of games) {
 				io.of (`/ws/${elem._id}/master`).on ('connection', (socket) => {
 					socket.emit ('connected', {connected: true});
@@ -29,6 +30,14 @@ reloadWebSockets = (io) => {
 						socket.emit ('connected', {connected: true});
 					});
 				}
+				gameIds.push (elem._id);
+			}
+			if (gameIds.length > 0) {
+				let plural = "";
+				if (gameIds.length > 1) {
+					plural += "s";
+				}
+				console.log (`WebSockets restored for ${gameIds.length} open game${plural}`);
 			}
 			resolve ();
 		}).catch ((err) => {

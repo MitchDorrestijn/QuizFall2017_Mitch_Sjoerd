@@ -162,18 +162,6 @@ describe ('Schema', () => {
 			});
 		});
 
-		it ("Answers should be a TeamAnswer", (done) => {
-			let answer = Answer ({
-				question: objectIdMock,
-				closed: false,
-				answers: ["A string"]
-			});
-			answer.validate ((err) => {
-				assert.ok (err.errors.answers);
-				done ();
-			});
-		});
-
 		it ("Answers may be empty", (done) => {
 			let answer = Answer ({
 				question: objectIdMock,
@@ -208,7 +196,7 @@ describe ('Schema', () => {
 				activeAnswer: "A string"
 			});
 			round.validate ((err) => {
-				assert.ok (err.errors.answers);
+				assert.ok (typeof round.answers [0] !== "string");
 				assert.ok (err.errors.activeAnswer);
 				done ();
 			});
@@ -309,9 +297,9 @@ describe ('Schema', () => {
 				activeRound: "A string"
 			});
 			game.validate ((err) => {
-				assert.ok (err.errors.playedQuestions);
-				assert.ok (err.errors.teams);
-				assert.ok (err.errors.rounds);
+				assert.ok (typeof game.playedQuestions [0] !== "string");
+				assert.ok (typeof game.teams [0] !== "string");
+				assert.ok (typeof game.rounds [0] !== "string");
 				assert.ok (err.errors.activeRound);
 				done ();
 			});
