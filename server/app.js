@@ -1,5 +1,5 @@
 let fs = require ("fs");
-let randomstring = require ("randomstring");
+let path = require ("path");
 let http = require ("http");
 let express = require ("express");
 let bodyParser = require ("body-parser");
@@ -72,7 +72,10 @@ api.push (require ("./functions/api/games/gameId/rounds/current/answers/current/
 api.push (require ("./functions/api/games/gameId/scores/get.js") (app, questionsPerRound));
 
 // Serve client app from public folder
-app.use ('*', express.static ('public'));
+app.use (express.static (path.join (__dirname, "./public")));
+app.use ("*", (req, res) => {
+	res.sendFile (path.join (__dirname, "./public/index.html"));
+});
 
 // Start the server
 server.listen (port, () => console.log (`Server listening on port ${port}`));
