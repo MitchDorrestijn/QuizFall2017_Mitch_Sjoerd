@@ -76,8 +76,8 @@ export default class ManageQuestions extends React.Component {
     this.setState({ givenAnswers: allGivenAnswers })
   }
   getAllCorrectAnswers(answer) {
-      this.setState({ correctAnswers: answer })
-    }
+    this.setState({ correctAnswers: answer })
+  }
   render(){
     return (
       <div>
