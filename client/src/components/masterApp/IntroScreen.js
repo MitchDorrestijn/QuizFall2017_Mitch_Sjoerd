@@ -82,7 +82,6 @@ export default class IntroScreen extends React.Component {
         <ul className="teamList">
           {teamNames}
         </ul>
-
         {this.state.approvedTeams.length >= 1 && (
           <div className="spacingUp">
             <span>Hieronder staan de teams die mee gaan doen met de Quizzer:</span>

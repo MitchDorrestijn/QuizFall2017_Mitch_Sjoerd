@@ -46,10 +46,6 @@ export default class ShowGivenAnswersScreen extends React.Component {
           className="selectField"
         />
         <button onClick={this.props.resetStateAndScreens} type="submit">Selecteer een nieuwe vraag</button>
-        {
-          // TODO: AWARD POINTS TO THE TEAMS THAT HAVE THE ANSWER CORRECT.
-          //console.log(this.state.correctGivenAnswers)}
-        }
       </div>
     );
   }

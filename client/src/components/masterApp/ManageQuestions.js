@@ -8,7 +8,6 @@ import DataAccess from '../../scripts/DataAccess';
 export default class ManageQuestions extends React.Component {
   constructor(props){
     super(props);
-    // TODO: SET ALL BOOLEANS BELOW TO FALSE WHEN 12 QUESTIONS HAVE BEEN ANSWERED.
     this.state = {
       selectAQuestionScreen: true,
       thereIsAQuestionSelected: false,

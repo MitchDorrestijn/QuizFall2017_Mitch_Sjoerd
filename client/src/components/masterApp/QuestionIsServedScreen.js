@@ -1,7 +1,6 @@
 import React from 'react';
 
 const QuestionIsServedScreen = (props) => {
-  // TODO: COUNT HOW MANY TEAMS HAVE ANSWERED THE QUESTION.
   return(
     <div className="question--wrapper">
       <h1>{props.valueOfTheSelectedQuestion}</h1>
