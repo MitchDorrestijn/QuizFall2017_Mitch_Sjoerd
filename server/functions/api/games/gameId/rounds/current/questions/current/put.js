@@ -29,6 +29,7 @@ let api = (app, io) => {
 										reject ("Question is already closed");
 									} else {
 										game.rounds [roundId].answers [activeAnswer].closed = true;
+										game.playedQuestions.push (game.rounds [roundId].answers [activeAnswer].question);
 										resolve (game);
 									}
 								} else {

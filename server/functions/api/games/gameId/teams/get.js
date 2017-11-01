@@ -1,5 +1,6 @@
 let mongoose = require ("mongoose");
-let teams = require ("../../../../../schema/teams.js");
+let teams = require ("../../../../../schema/teams.js").model;
+let gameExists = require ("../../../../../functions/gameExists.js");
 
 // Disable DeprecationWarning
 mongoose.Promise = global.Promise;
