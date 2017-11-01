@@ -1,7 +1,7 @@
 //THIS FILE CONTAINS ALL THE STYLING FOR THE ManageQuestions COMPONENT.
 
 @import './QuestionIsServedScreen';
-@import './ShowGivenAwnsersScreen';
+@import './ShowGivenAnswersScreen';
 @import './WinnerScreen';
 
 .questionList {
@@ -31,7 +31,7 @@
   }
 }
 
-.showAwnser--wrapper {
+.showAnswer--wrapper {
   .selectField {
     margin-top: $defaultSpacing;
     margin-bottom: $defaultSpacing;

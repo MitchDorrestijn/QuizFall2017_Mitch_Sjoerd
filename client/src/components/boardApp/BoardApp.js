@@ -6,7 +6,7 @@ export default class BoardApp extends React.Component {
     // TODO: GET CURRENT QUESTION, CATEGORY AND ROUNDNUMBER FROM THE DATABASE AND BOOLEANS FROM THE QUIZMASTER.
     this.state = {
       questionIsClosed: false,
-      showGivenAwnsers: false,
+      showGivenAnswers: false,
       currentQuestion: "Who wrote the novel Revolutionary Road, which was made into a successful feature film?",
       currentCategory: "Algemeen",
       roundNumber: 1,
@@ -14,7 +14,7 @@ export default class BoardApp extends React.Component {
         ['teamName',          true,                 true,                   1,                  10],
         ['anotherTeamName',   false,                false,                  5,                  10],
         ['yetanother',        true,                 false,                  8,                  10]
-        //[teamName, teamHasSubmittedAnAwnser, teamHadAcorrectAwnser, amountOfGoodQuestions, roundPoints]
+        //[teamName, teamHasSubmittedAnAnswer, teamHadAcorrectAnswer, amountOfGoodQuestions, roundPoints]
         //    0                 1                       2                     3                  4
       ]
     }
@@ -29,10 +29,10 @@ export default class BoardApp extends React.Component {
             <li>Aantal roundpoints: {teamStatus[4]}</li>
           </ul>
           {teamStatus[1] ? <span className="success">Dit team heeft de huidige vraag zojuist beantwoord</span> : <span className="error">Dit team heeft de huidige vraag nog niet beantwoord</span>}
-          {this.state.showGivenAwnsers ?
+          {this.state.showGivenAnswers ?
             <div>
               <strong className="rightOrWrong">Dit team had deze vraag als volgd beantwoord:</strong>
-              <span className="awnser">[getTeamAwnser]</span>
+              <span className="answer">[getTeamAnswer]</span>
               {teamStatus[2] ? <strong className="success">GOED BEANTWOORD!</strong> : <strong className="error">FOUT BEANTWOORD!</strong>}
             </div>
             :

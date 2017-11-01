@@ -1,5 +1,5 @@
 import React from 'react';
-import ShowGivenAwnsersScreen from './ShowGivenAwnsersScreen';
+import ShowGivenAnswersScreen from './ShowGivenAnswersScreen';
 import QuestionIsServedScreen from './QuestionIsServedScreen';
 import SelectAQuestionScreen from './SelectAQuestionScreen';
 import WinnerScreen from './WinnerScreen';
@@ -8,28 +8,27 @@ import DataAccess from '../../scripts/DataAccess';
 export default class ManageQuestions extends React.Component {
   constructor(props){
     super(props);
-    // TODO: SET ALL BOOLEANS BELOW TO FALSE WHEN 12 QUESTIONS HAVE BEEN AWNSERED.
+    // TODO: SET ALL BOOLEANS BELOW TO FALSE WHEN 12 QUESTIONS HAVE BEEN ANSWERED.
     this.state = {
       selectAQuestionScreen: true,
       thereIsAQuestionSelected: false,
       questionIsSendScreen: false,
-      showGivenAwnsersScreen: false,
+      showGivenAnswersScreen: false,
       valueOfTheSelectedQuestion: "",
       valueOfTheSelectedQuestionId: "",
+      answerToTheCurrentQuestion: 0,
       roomNumber: this.props.roomNumber,
       availableQuestions: [],
       questionIds: [],
-      givenAwnsers: [
-        "antwoord 1",
-        "antwoord 2",
-        "antwoord 3"
-      ]
+      answers: [],
+      givenAnswers: []
     }
     this.baseState = this.state;
     this.getSelectedQuestion = this.getSelectedQuestion.bind(this);
     this.sendQuestionToTheTeams = this.sendQuestionToTheTeams.bind(this);
-    this.getAwnsers = this.getAwnsers.bind(this);
+    this.closeQuestion = this.closeQuestion.bind(this);
     this.resetStateAndScreens = this.resetStateAndScreens.bind(this);
+    this.getAllGivenAnswers = this.getAllGivenAnswers.bind(this);
   }
   componentDidMount(){
     let da = new DataAccess();
@@ -37,11 +36,13 @@ export default class ManageQuestions extends React.Component {
       if(err) throw new error();
       let questions = [];
       let questionObjectIds = [];
+      let answersToTheQuestions = [];
       for (let i = 0; i < res.length; i++) {
         questions.push(res[i].question);
         questionObjectIds.push(res[i].questionId);
+        answersToTheQuestions.push(res[i].answer);
       }
-      this.setState ({availableQuestions: questions, questionIds: questionObjectIds});
+      this.setState ({availableQuestions: questions, questionIds: questionObjectIds, answers: answersToTheQuestions});
     });
   }
   getSelectedQuestion(e){
@@ -53,22 +54,25 @@ export default class ManageQuestions extends React.Component {
     let da = new DataAccess();
     da.putData(`/games/${this.state.roomNumber}/rounds/current`, {nextQuestion: this.state.questionIds[objectIdIndex]}, (err, res) => {
       if (err) throw new error();
-      this.setState({selectAQuestionScreen: false, questionIsSendScreen: true});
+      this.setState({selectAQuestionScreen: false, questionIsSendScreen: true, answerToTheCurrentQuestion: this.state.answers[objectIdIndex]});
       console.log('The question has been send to the participating teams.');
     });
   }
-  getAwnsers(e){
+  closeQuestion(e){
     e.preventDefault();
     let da = new DataAccess();
     da.putData(`/games/${this.state.roomNumber}/rounds/current/questions/current`, {close: true}, (err, res) => {
       if (err) throw new error();
-      this.setState({questionIsSendScreen: false, showGivenAwnsersScreen: true});
+      this.setState({questionIsSendScreen: false, showGivenAnswersScreen: true});
       console.log('The question has been closed successfully');
     });
 
   }
   resetStateAndScreens(){
     this.setState(this.baseState);
+  }
+  getAllGivenAnswers(allGivenAnswers){
+    this.setState({ givenAnswers: allGivenAnswers })
   }
   render(){
     return (
@@ -88,14 +92,18 @@ export default class ManageQuestions extends React.Component {
           />}
         {this.state.questionIsSendScreen &&
           <QuestionIsServedScreen
-            getAwnsers={this.getAwnsers}
+            closeQuestion={this.closeQuestion}
             valueOfTheSelectedQuestion={this.state.valueOfTheSelectedQuestion}
           />}
-        {this.state.showGivenAwnsersScreen &&
-          <ShowGivenAwnsersScreen
+        {this.state.showGivenAnswersScreen &&
+          <ShowGivenAnswersScreen
             valueOfTheSelectedQuestion={this.state.valueOfTheSelectedQuestion}
-            givenAwnsers={this.state.givenAwnsers}
-            resetStateAndScreens={this.resetStateAndScreens} />}
+            correctGivenAnswers={this.state.givenAnswers}
+            resetStateAndScreens={this.resetStateAndScreens}
+            answer={this.state.answerToTheCurrentQuestion}
+            roomNumber={this.state.roomNumber}
+            getAllGivenAnswers={(allGivenAnswers) => this.getAllGivenAnswers(allGivenAnswers)}
+          />}
       </div>
     );
   }
