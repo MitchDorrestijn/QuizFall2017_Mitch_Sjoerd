@@ -6,12 +6,7 @@ const WinnerScreen = (props) => {
   return (
     <div>
       <h1>De quiz is afgelopen</h1>
-      <span>De quiz is ten einde, u kunt nu de winnaar uitroepen.</span><br/>
-      <strong className="success">Team [getTeamnamFromDatabase] is de winnaar!</strong>
-      <ul className="leaderboard">
-        <li>Team [getTeamnamFromDatabase] heeft [getTeamPointsFromDatabase] punten behaald.</li>
-        <li>Team [getTeamnamFromDatabase] heeft [getTeamPointsFromDatabase] punten behaald.</li>
-      </ul>
+      <span className="block">De quiz is ten einde, raadpleeg het scorebord voor de winnaar.</span><br/>
       <button onClick={props.anotherRound}>Speel nog een ronde</button>
       <button onClick={props.stopGame}>Sluit de Quizzer</button>
     </div>

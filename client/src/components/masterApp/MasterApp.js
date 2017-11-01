@@ -56,7 +56,10 @@ export default class MasterApp extends React.Component {
   }
   stopGame(e){
     e.preventDefault();
-    this.setState(this.baseState);
+    let da = new DataAccess();
+    da.putData(`/games/${this.state.roomNumber}`, {closed: true}, (err, res) => {
+      this.setState(this.baseState);
+    });
   }
   passRoomNumber(roomNumber) {
     this.setState({ roomNumber: roomNumber });

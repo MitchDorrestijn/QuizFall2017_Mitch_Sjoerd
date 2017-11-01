@@ -118,7 +118,6 @@ export default class IntroScreen extends React.Component {
   render(){
     return (
       <div>
-        <button onClick={this.getjoinedTeams}>refresh teams</button>
         {this.state.quizIsOpen ? this.manageTeams() : this.openQuiz()}
         {this.state.approvedTeams.length >= 2 && this.continue()}
       </div>
