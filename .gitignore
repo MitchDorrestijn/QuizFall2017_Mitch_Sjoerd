@@ -60,3 +60,5 @@ typings/
 
 # webstorm specific
 /.idea
+
+/client/public/bundle.js

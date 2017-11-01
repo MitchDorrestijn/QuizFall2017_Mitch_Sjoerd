@@ -123,6 +123,8 @@ export default class ManageQuestions extends React.Component {
           <QuestionIsServedScreen
             closeQuestion={this.closeQuestion}
             valueOfTheSelectedQuestion={this.state.valueOfTheSelectedQuestion}
+            wsRefreshGivenAnswers={this.props.wsRefreshGivenAnswers}
+            roomNumber={this.state.roomNumber}
           />}
         {this.state.showGivenAnswersScreen &&
           <ShowGivenAnswersScreen

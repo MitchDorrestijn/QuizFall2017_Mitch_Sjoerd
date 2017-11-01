@@ -19,7 +19,7 @@ let loop = (round, maxRounds, prevPercent) => {
 				process.stdout.write (" "+percentage+"%...");
 			}
 		}
-		let result = questions [0];
+		let result = questions [round];
 		result._id = new mongoose.Types.ObjectId ();
 		let question = new Question (result);
 		question.save ((err) => {
