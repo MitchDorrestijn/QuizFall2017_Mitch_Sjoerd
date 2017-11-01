@@ -70,20 +70,33 @@ export default class ManageQuestions extends React.Component {
     });
   }
   resetStateAndScreens(){
-    //this.setState(this.baseState);
     let da = new DataAccess();
     da.getData(`/games/${this.state.roomNumber}/rounds/current/questions`, (err, res) => {
-      loadQuestions();
-      this.setState({
-        selectAQuestionScreen: true,
-        thereIsAQuestionSelected: false,
-        questionIsSendScreen: false,
-        showGivenAnswersScreen: false,
-        valueOfTheSelectedQuestion: "",
-        valueOfTheSelectedQuestionId: "",
-        answerToTheCurrentQuestion: 0,
+      if(err) throw new error();
+        let questions = [];
+        let questionObjectIds = [];
+        let answersToTheQuestions = [];
+        for (let i = 0; i < res.length; i++) {
+          questions.push(res[i].question);
+          questionObjectIds.push(res[i].questionId);
+          answersToTheQuestions.push(res[i].answer);
+        }
+        this.setState({
+          selectAQuestionScreen: true,
+          thereIsAQuestionSelected: false,
+          questionIsSendScreen: false,
+          showGivenAnswersScreen: false,
+          valueOfTheSelectedQuestion: "",
+          valueOfTheSelectedQuestionId: "",
+          answerToTheCurrentQuestion: 0,
+          availableQuestions: questions,
+          questionIds: questionObjectIds,
+          answers: answersToTheQuestions
+        });
+        if(questions < 1){
+          this.setState({selectAQuestionScreen: false});
+        }
       });
-    });
   }
   getAllGivenAnswers(allGivenAnswers){
     this.setState({ givenAnswers: allGivenAnswers })
