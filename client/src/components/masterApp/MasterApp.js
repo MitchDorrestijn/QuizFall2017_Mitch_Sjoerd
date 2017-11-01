@@ -21,6 +21,7 @@ export default class MasterApp extends React.Component {
     this.passRoomNumber = this.passRoomNumber.bind(this);
     this.getSelectedCategories = this.getSelectedCategories.bind(this);
     this.initWebSocket = this.initWebSocket.bind (this);
+	this.wsRefreshGivenAnswers = this.wsRefreshGivenAnswers.bind (this);
     this.baseState = this.state;
     this.socket = null;
   }
@@ -34,6 +35,12 @@ export default class MasterApp extends React.Component {
 	  updateFunction ();
     });
   };
+  wsRefreshGivenAnswers (updateFunction) {
+	this.socket.on ('updateAnswers', (data) => {
+	 console.log(data);
+	 updateFunction ();
+	});
+  }
   goToSelectCategoryScreen(e) {
     e.preventDefault();
     //Start the quiz
@@ -73,7 +80,7 @@ export default class MasterApp extends React.Component {
         <div className="inner--header">
           {this.state.introScreen && <IntroScreen socket={this.state.socket} initWebSocket={this.initWebSocket} goToSelectCategoryScreen={this.goToSelectCategoryScreen} getRoomNumber={(roomNumber) => this.passRoomNumber(roomNumber) } />}
           {this.state.selectCategoryScreen && <SelectCategoryScreen goToSelectQuestionScreen={this.goToSelectQuestionScreen} roomNumber={this.state.roomNumber} passSelectedCategories={(arr) => this.getSelectedCategories(arr) } />}
-          {this.state.selectQuestionScreen && <ManageQuestions anotherRound={this.goToSelectCategoryScreen} stopGame={this.stopGame} roomNumber={this.state.roomNumber} />}
+          {this.state.selectQuestionScreen && <ManageQuestions wsRefreshGivenAnswers={this.wsRefreshGivenAnswers} anotherRound={this.goToSelectCategoryScreen} stopGame={this.stopGame} roomNumber={this.state.roomNumber} />}
         </div>
       </div>
     );
