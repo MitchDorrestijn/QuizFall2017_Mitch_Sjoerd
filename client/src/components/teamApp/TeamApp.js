@@ -35,7 +35,7 @@ export default class TeamApp extends React.Component {
   openWebSocket (gameId, teamId, teamName) {
   	this.getTeamName(teamName);
 	console.log (gameId, teamId);
-    this.socket = openSocket (`http://localhost:8081/ws/${gameId}/teams/${teamId}`);
+    this.socket = openSocket (`/ws/${gameId}/teams/${teamId}`);
     console.log (this.socket);
 	this.socket.on ('joinGame', (data) => {
 		if (data.joinGame) {
@@ -98,8 +98,8 @@ export default class TeamApp extends React.Component {
     da.getData(`/games/${this.state.roomNumber}/exists`, (err, res) => {
       if(err){
         this.setState({roomIsValid: false});
+	    this.setState ({redirect: redirect});
       } else {
-        this.setState ({redirect: redirect});
       }
     });
   }

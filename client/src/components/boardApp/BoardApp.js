@@ -23,7 +23,7 @@ export default class BoardApp extends React.Component {
 
 	componentWillMount () {
 		this.getScoreBoard ();
-		this.socket = openSocket (`http://localhost:8081/ws/${this.state.roomNumber}/scores`);
+		this.socket = openSocket (`/ws/${this.state.roomNumber}/scores`);
 		this.socket.on ('updateScore', () => {
 			this.getScoreBoard ();
 		});

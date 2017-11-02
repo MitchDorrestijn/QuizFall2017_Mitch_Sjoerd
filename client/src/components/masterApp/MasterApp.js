@@ -26,7 +26,7 @@ export default class MasterApp extends React.Component {
     this.socket = null;
   }
   initWebSocket(room, updateFunction) {
-    this.socket = openSocket(`http://localhost:8081/ws/${room}/master`);
+    this.socket = openSocket(`/ws/${room}/master`);
     this.socket.on('connected', (data) => {
       console.log(data);
     });
