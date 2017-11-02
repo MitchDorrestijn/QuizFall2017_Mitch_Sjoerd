@@ -5,6 +5,7 @@ import QuestionScreen from './QuestionScreen';
 import GameOverScreen from './GameOverScreen';
 import DataAccess from '../../scripts/DataAccess';
 import WaitingScreen from './WaitingScreen';
+import {Redirect} from 'react-router-dom';
 
 export default class TeamApp extends React.Component {
   constructor(props){
@@ -18,16 +19,19 @@ export default class TeamApp extends React.Component {
       teamName: "",
       approved: false,
       currentQuestion: "",
-      roomNumber: window.location.pathname.replace("/quiz/", "")
+      roomNumber: window.location.pathname.replace("/quiz/", ""),
+      roomIsValid: true,
+      redirect: null
     };
     this.backToIntroScreen = this.backToIntroScreen.bind(this);
     this.getTeamName = this.getTeamName.bind(this);
     this.getApproval = this.getApproval.bind(this);
     this.print = this.print.bind(this);
     this.openWebSocket = this.openWebSocket.bind (this);
-	this.checkIfQuizmasterHasApprovedTheTeam = this.checkIfQuizmasterHasApprovedTheTeam.bind (this);
-	this.isThereAQuestionStarted = this.isThereAQuestionStarted.bind(this);
-	this.socket = null;
+    this.checkIfQuizmasterHasApprovedTheTeam = this.checkIfQuizmasterHasApprovedTheTeam.bind (this);
+    this.isThereAQuestionStarted = this.isThereAQuestionStarted.bind(this);
+    this.socket = null;
+    this.checkIfRoomExists = this.checkIfRoomExists.bind(this);
   }
   openWebSocket (gameId, teamId, teamName) {
   	this.getTeamName(teamName);
@@ -87,9 +91,24 @@ export default class TeamApp extends React.Component {
       }
     });
   }
+
+  checkIfRoomExists(){
+    let da = new DataAccess();
+    let linkToRedirectTo = `/`;
+    let redirect = <Redirect to={linkToRedirectTo} />;
+    da.getData(`/games/${this.state.roomNumber}/teams`, (err, res) => {
+      if(err === "No teams have applied yet"){
+        this.setState({roomIsValid: false});
+      } else {
+        this.setState ({redirect: redirect});
+      }
+    });
+  }
   render(){
     return (
       <div>
+        {this.state.redirect}
+        {this.state.roomIsValid && this.checkIfRoomExists()}
         {this.state.waiting && <WaitingScreen />}
         {this.state.introScreen &&
           <IntroScreen
