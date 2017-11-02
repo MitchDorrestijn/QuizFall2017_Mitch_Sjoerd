@@ -28,6 +28,7 @@
     "socket.io-client": "^2.0.4",
     "style-loader": "^0.18.2",
     "webpack": "^3.1.0",
-    "webpack-dev-server": "^2.5.1"
+    "webpack-dev-server": "^2.5.1",
+    "whatwg-fetch": "^2.0.3"
   }
 }
