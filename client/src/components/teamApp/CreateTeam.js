@@ -6,18 +6,25 @@ export default class CreateTeam extends React.Component {
     super(props);
     this.showForm = this.showForm.bind(this);
     this.handleForm = this.handleForm.bind(this);
+    this.stripColon = this.stripColon.bind (this);
     this.state = {
       formSubmitted: false,
       errors: false,
       teamInfo: [],
-      teamExists: false
+      teamExists: false,
+      teamName: ""
+    }
+  }
+  stripColon (evt) {
+    if (!evt.target.value.includes (":")) {
+      this.setState ({teamName: evt.target.value});
     }
   }
   showForm(){
     return (
       <div className="createTeam">
         <form id="createTeam">
-          <input id="teamName" placeholder="Type hier je teamnaam" type="text"></input>
+          <input id="teamName" placeholder="Type hier je teamnaam" value={this.state.teamName} onChange={this.stripColon} type="text"></input>
           <input onClick={this.handleForm} type="submit" value="&#9758; maak aan"></input>
         </form>
       </div>
