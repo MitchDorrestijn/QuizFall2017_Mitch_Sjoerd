@@ -51,8 +51,15 @@ let api = (app, questionsPerRound) => {
 								}
 								let currentQuestion = {};
 								currentQuestion.closed = round.answers [round.activeAnswer].closed;
-								if (currentQuestion.closed) {
-									currentQuestion.teamAnswers = round.answers [round.activeAnswer].answers;
+								currentQuestion.teamAnswers = [];
+								for (let i = 0; i < round.answers [round.activeAnswer].answers.length; i++) {
+									let teamAnswerSource = round.answers [round.activeAnswer].answers [i];
+									let teamAnswer = {team: teamAnswerSource.team};
+									if (currentQuestion.closed) {
+										teamAnswer.answer = teamAnswerSource.answer;
+										teamAnswer.approved = teamAnswerSource.approved;
+									}
+									currentQuestion.teamAnswers.push (teamAnswer);
 								}
 								result.currentQuestion = currentQuestion;
 								questions.findOne ({_id: round.answers [round.activeAnswer].question}, (err, result2) => {
