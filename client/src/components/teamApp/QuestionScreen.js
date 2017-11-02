@@ -1,4 +1,5 @@
 import React from 'react';
+import DataAccess from '../../scripts/DataAccess';
 
 export default class QuestionScreen extends React.Component {
   constructor(props){
@@ -17,9 +18,7 @@ export default class QuestionScreen extends React.Component {
   }
   getQuestion(){
     return (
-      // TODO: GET SELECTED QUESTION FROM THE QUIZMASTER.
-      //TODO: ADD A QUESTION QOUNTER.
-      <h1>1/12: Which letter of the alphabet appears only once in the names of all English and Scottish league football teams and not at all in the names of the elements in the Periodic Table?</h1>
+      <h1>{this.props.currentQuestion}?</h1>
     );
   }
   typeAnswer(){
@@ -40,7 +39,12 @@ export default class QuestionScreen extends React.Component {
       //TODO: CHECK IF THERE WAS AN ANSWER ALLREADY SUBMITTED.
       // TODO: ADD THE ANSWER TO THE DATABASE.
       console.log('The given answer to this question by this team is: ' + answer);
-      this.setState({formSubmitted: true, errors: false});
+
+      let da = new DataAccess();
+      da.putData(`/games/${this.props.roomNumber}/rounds/current/answers/current`, {team: this.props.teamName, answer: answer}, (err, res) => {
+        if (err) throw new error();
+        this.setState({formSubmitted: true, errors: false});
+      });
     } else {
       this.setState({errors: true});
     }
