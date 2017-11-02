@@ -6,7 +6,6 @@ export default class CreateTeam extends React.Component {
     super(props);
     this.showForm = this.showForm.bind(this);
     this.handleForm = this.handleForm.bind(this);
-    this.checkIfQuizmasterHasApprovedTheTeam = this.checkIfQuizmasterHasApprovedTheTeam.bind(this);
     this.state = {
       formSubmitted: false,
       errors: false,
@@ -35,6 +34,7 @@ export default class CreateTeam extends React.Component {
         } else {
           document.getElementById("joinBtn").remove();
           this.setState({teamExists: false, formSubmitted: true, errors: false, teamInfo: res});
+	      this.props.openSocket (this.props.roomNumber, res.teamId, teamName);
         }
       });
       this.props.passTeamname(teamName);
@@ -42,20 +42,11 @@ export default class CreateTeam extends React.Component {
       this.setState({errors: true});
     }
   }
-  checkIfQuizmasterHasApprovedTheTeam(){
-    let da = new DataAccess();
-    da.getData(`/games/${this.props.roomNumber}/teams/${this.state.teamInfo.teamId}`, (err, res) => {
-      if(err) throw new error();
-      this.props.passApproval(res.approved);
-    });
-  }
   render(){
     return (
       <div>
         <h1>Een team opgeven</h1>
-        <button onClick={this.checkIfQuizmasterHasApprovedTheTeam}>Is het team goedgekeurd?</button>
         {this.state.formSubmitted || this.showForm()}
-        {this.checkIfQuizmasterHasApprovedTheTeam}
         {this.state.formSubmitted && <div className="underH1"><p>Bedankt voor het meedoen. <br /> De quizmaster gaat beslissen of je mee mag doen.</p></div>}
         {this.state.errors && <strong className="error">Je teamnaam mag niet leeg zijn!</strong>}
         {this.state.teamExists && <strong className="error">Deze teamnaam is al door een ander opgegeven!</strong>}

@@ -1,9 +1,10 @@
 import React from 'react';
+import openSocket from 'socket.io-client';
 import IntroScreen from './IntroScreen';
 import QuestionScreen from './QuestionScreen';
 import GameOverScreen from './GameOverScreen';
-import WaitingScreen from './WaitingScreen';
 import DataAccess from '../../scripts/DataAccess';
+import WaitingScreen from './WaitingScreen';
 
 export default class TeamApp extends React.Component {
   constructor(props){
@@ -18,14 +19,48 @@ export default class TeamApp extends React.Component {
       approved: false,
       currentQuestion: "",
       roomNumber: window.location.pathname.replace("/quiz/", "")
-    }
+    };
     this.backToIntroScreen = this.backToIntroScreen.bind(this);
     this.getTeamName = this.getTeamName.bind(this);
     this.getApproval = this.getApproval.bind(this);
-    this.printAccept = this.printAccept.bind(this);
-    this.isThereAQuestionStarted = this.isThereAQuestionStarted.bind(this);
-    this.checkIfQuestionIsClosed = this.checkIfQuestionIsClosed.bind(this);
+    this.print = this.print.bind(this);
+    this.openWebSocket = this.openWebSocket.bind (this);
+	this.checkIfQuizmasterHasApprovedTheTeam = this.checkIfQuizmasterHasApprovedTheTeam.bind (this);
+	this.isThereAQuestionStarted = this.isThereAQuestionStarted.bind(this);
+	this.socket = null;
   }
+  openWebSocket (gameId, teamId, teamName) {
+  	this.getTeamName(teamName);
+	console.log (gameId, teamId);
+    this.socket = openSocket (`http://localhost:8081/ws/${gameId}/teams/${teamId}`);
+    console.log (this.socket);
+	this.socket.on ('joinGame', (data) => {
+		if (data.joinGame) {
+			this.checkIfQuizmasterHasApprovedTheTeam(gameId, teamId);
+		} else {
+			this.setState ({waiting: false, introScreen: true, approved: false});
+		}
+	});
+	this.socket.on ('changeQuestion', () => {
+		this.isThereAQuestionStarted()
+	});
+	this.socket.on ('closeQuestion', () => {
+		this.setState ({waiting: true, questions: false});
+	});
+	this.socket.on ('closeGame', () => {
+		this.setState ({waiting: false, gameOver: true});
+	});
+  }
+	checkIfQuizmasterHasApprovedTheTeam(gameId, teamId){
+		let da = new DataAccess();
+		da.getData(`/games/${gameId}/teams/${teamId}`, (err, res) => {
+			if(err) throw new error();
+			if (res.approved) {
+				this.getApproval(res.approved);
+				this.print ();
+			}
+		});
+	}
   backToIntroScreen(e) {
     e.preventDefault();
     this.setState({gameOver: false, questions: false, introScreen: true});
@@ -36,8 +71,7 @@ export default class TeamApp extends React.Component {
   getApproval(approved){
     this.setState({approved: approved});
   }
-  printAccept(){
-    console.log(this.state.approved);
+  print(){
     if(this.state.approved){
       this.setState({introScreen: false, waiting: true});
     }
@@ -53,20 +87,15 @@ export default class TeamApp extends React.Component {
       }
     });
   }
-  //This must also be checked with websockets.
-  checkIfQuestionIsClosed(){
-
-  }
   render(){
     return (
       <div>
-        <button onClick={this.printAccept}>check if team is accepted</button>
-        <button onClick={this.isThereAQuestionStarted}>check if a question has been started</button>
-        <button onClick={this.checkIfQuestionIsClosed}>check if a question has been closed</button>
-
         {this.state.waiting && <WaitingScreen />}
         {this.state.introScreen &&
           <IntroScreen
+            print={this.print}
+            socket={this.socket}
+            openSocket={this.openWebSocket}
             roomNumber={this.state.roomNumber}
             getTeamName={(teamName) => this.getTeamName(teamName)}
             getApproval={(approved) => this.getApproval(approved)}

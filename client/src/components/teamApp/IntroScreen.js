@@ -33,6 +33,9 @@ export default class IntroScreen extends React.Component {
           {this.state.joinTeamClicked && <GameRules />}
           {this.state.createTeamClicked &&
             <CreateTeam
+              print={this.props.print}
+              socket={this.props.socket}
+              openSocket={this.props.openSocket}
               roomNumber={this.props.roomNumber}
               passTeamname={(teamName) => this.passTeamName(teamName)}
               passApproval={(approved) => this.passApproval(approved)}
