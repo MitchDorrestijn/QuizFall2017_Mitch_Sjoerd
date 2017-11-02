@@ -36,10 +36,7 @@ export default class QuestionScreen extends React.Component {
     const answer = document.getElementById('answer').value
     this.setState({givenAnswer: answer})
     if(answer !== ''){
-      //TODO: CHECK IF THERE WAS AN ANSWER ALLREADY SUBMITTED.
-      // TODO: ADD THE ANSWER TO THE DATABASE.
       console.log('The given answer to this question by this team is: ' + answer);
-
       let da = new DataAccess();
       da.putData(`/games/${this.props.roomNumber}/rounds/current/answers/current`, {team: this.props.teamName, answer: answer}, (err, res) => {
         if (err) throw new error();

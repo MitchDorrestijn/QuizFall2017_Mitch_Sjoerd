@@ -10,7 +10,6 @@ import {Redirect} from 'react-router-dom';
 export default class TeamApp extends React.Component {
   constructor(props){
     super(props);
-    // TODO: MANAGE BOOLEANS BASED ON WHAT THE QUIZMASTER SELECTED.
     this.state = {
       introScreen: true,
       questions: false,

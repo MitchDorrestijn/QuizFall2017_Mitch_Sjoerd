@@ -5,7 +5,6 @@ import DataAccess from '../../scripts/DataAccess';
 export default class BoardApp extends React.Component {
 	constructor (props) {
 		super (props);
-		// TODO: GET CURRENT QUESTION, CATEGORY AND ROUNDNUMBER FROM THE DATABASE AND BOOLEANS FROM THE QUIZMASTER.
 		this.state = {
 			roomNumber: window.location.pathname.replace ("/bord/", ""),
 			question: null,
