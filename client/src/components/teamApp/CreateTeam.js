@@ -10,7 +10,8 @@ export default class CreateTeam extends React.Component {
     this.state = {
       formSubmitted: false,
       errors: false,
-      teamInfo: []
+      teamInfo: [],
+      teamExists: false
     }
   }
   showForm(){
@@ -29,9 +30,12 @@ export default class CreateTeam extends React.Component {
     if(teamName !== ''){
       let da = new DataAccess();
       da.postData(`/games/${this.props.roomNumber}/teams`, {name: teamName}, (err, res) => {
-        if(err) throw new error();
-        document.getElementById("joinBtn").remove();
-        this.setState({formSubmitted: true, errors: false, teamInfo: res});
+        if(err){
+          this.setState({teamExists: true});
+        } else {
+          document.getElementById("joinBtn").remove();
+          this.setState({teamExists: false, formSubmitted: true, errors: false, teamInfo: res});
+        }
       });
       this.props.passTeamname(teamName);
     } else {
@@ -54,6 +58,7 @@ export default class CreateTeam extends React.Component {
         {this.checkIfQuizmasterHasApprovedTheTeam}
         {this.state.formSubmitted && <div className="underH1"><p>Bedankt voor het meedoen. <br /> De quizmaster gaat beslissen of je mee mag doen.</p></div>}
         {this.state.errors && <strong className="error">Je teamnaam mag niet leeg zijn!</strong>}
+        {this.state.teamExists && <strong className="error">Deze teamnaam is al door een ander opgegeven!</strong>}
       </div>
     );
   }
