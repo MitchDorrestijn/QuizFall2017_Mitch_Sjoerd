@@ -60,7 +60,7 @@ let api = (app, io) => {
 							if (err) {
 								reject (err.toString ());
 							} else {
-								io.of (`/ws/game/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
+								io.of (`/ws/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
 								resolve ();
 							}
 						});
@@ -129,6 +129,7 @@ let api = (app, io) => {
 						error: null
 					});
 					io.of (`/ws/${req.params.gameId}/teams/${req.params.teamId}`).emit ('joinGame', {joinGame: false});
+					io.of (`/ws/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
 				}).catch ((err) => {
 					res.json ({
 						success: false,

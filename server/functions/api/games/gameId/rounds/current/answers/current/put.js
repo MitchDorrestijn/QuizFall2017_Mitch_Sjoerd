@@ -103,6 +103,7 @@ let api = (app, io) => {
 									reject (err.toString ());
 								} else {
 									io.of (`/ws/${req.params.gameId}/master`).emit ('updateAnswers', {updateAnswers: true});
+									io.of (`/ws/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
 									resolve ();
 								}
 							});

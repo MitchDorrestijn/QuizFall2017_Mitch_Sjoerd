@@ -1,78 +1,125 @@
 import React from 'react';
+import openSocket from 'socket.io-client';
 import DataAccess from '../../scripts/DataAccess';
 
 export default class BoardApp extends React.Component {
-  constructor(props){
-    super(props);
-    // TODO: GET CURRENT QUESTION, CATEGORY AND ROUNDNUMBER FROM THE DATABASE AND BOOLEANS FROM THE QUIZMASTER.
-    this.state = {
-      roomNumber: window.location.pathname.replace("/bord/", ""),
-      result: []
-    }
-  }
+	constructor (props) {
+		super (props);
+		// TODO: GET CURRENT QUESTION, CATEGORY AND ROUNDNUMBER FROM THE DATABASE AND BOOLEANS FROM THE QUIZMASTER.
+		this.state = {
+			roomNumber: window.location.pathname.replace ("/bord/", ""),
+			question: null,
+			roundNumber: null,
+			category: null,
+			closed: false,
+			questionNumber: null,
+			maxQuestions: null,
+			result: []
+		};
+		this.socket = null;
+		this.getScoreBoard = this.getScoreBoard.bind (this);
+	}
 
-  //
-  // {
-  //  roundNumber: Number,
-  //  questionNumber: Number,
-  //  maxQuestions: Number,
-  //  scores: [{
-  //   team: String,
-  //   correctAnswers: Number,
-  //   roundPoints: Number
-  //  }],
-  //  currentQuestion: {
-  //   name: String,
-  //   category: String,
-  //   closed: Boolean,
-  //   teamsAnswered: [{
-  //    team: String,
-  //    answer: String,
-  //    approved: Boolean
-  //   }]
-  //  }
-  // }
+	componentWillMount () {
+		this.getScoreBoard ();
+		this.socket = openSocket (`http://localhost:8081/ws/${this.state.roomNumber}/scores`);
+		this.socket.on ('updateScore', () => {
+			this.getScoreBoard ();
+		});
+	}
 
-  renderTeamInfo(){
-    let da = new DataAccess();
-    da.getData(`/games/${this.state.roomNumber}/scores`, (err, res) => {
-      if (err) {
-        console.log (err);
-      } else {
-        let items = [];
-        for (let i = 0; i < res.scores.length; i++) {
-          let subItem;
-          let item;
-          for (let j = 0; j < res.teamAnswers.length; j++) {
-            if (res.scores [i].team === res.teamAnswers[j].team) {
-              if (res.closed) {
-                subItem = (<div><strong className="rightOrWrong">Dit team had deze vraag als volgd beantwoord:</strong><span className={res.teamAnswers[i].approved ? "rightAnswer" : "wrongAnswer"}>{res.teamAnswers[j].answer}</span></div>);
-                  } else {
-                    subItem = (<div><strong className="rightOrWrong">Zodra de quizmaster de vraag sluit verschijnt hier het antwoord.</strong></div>);
-                  }
-                }
-              }
-              item = (<div><h4>{res.scores[i].team}</h4>
-              <ul>
-                <li>{res.scores[i].correctAnswers}</li>
-                <li>{res.scores[i].roundPoints}</li>
-              </ul>
-              {subItem}</div>);
-              items.push (item);
-            }
-          }
-          this.setState ({result: items});
-        });
-      }
+	getScoreBoard () {
+		let da = new DataAccess ();
+		da.getData (`/games/${this.state.roomNumber}/scores`, (err, res) => {
+			if (err) {
+				console.log (err);
+			} else {
+				let items = [];
+				console.log (res);
+				for (let i = 0; i < res.scores.length; i++) {
+					let subItem;
+					let item;
+					for (let j = 0; j < res.currentQuestion.teamAnswers.length; j++) {
+						if (res.scores [i].team === res.currentQuestion.teamAnswers [j].team) {
+							if (res.currentQuestion.closed) {
+								if (res.currentQuestion.teamAnswers [j].answer) {
+									subItem = (
+										<div>
+											<strong className="rightOrWrong">
+												Dit team had deze vraag als volgt beantwoord:
+											</strong>
+											<span
+												className={res.currentQuestion.teamAnswers[i].approved ? "rightAnswer" : "wrongAnswer"}>&nbsp;
+												{res.currentQuestion.teamAnswers[j].answer}
+											</span>
+										</div>);
+								} else {
+									subItem = (
+										<div>
+											<strong className="rightOrWrong">
+												Dit team had deze vraag niet beantwoord
+											</strong>
+										</div>);
+								}
+							} else {
+								subItem = (
+									<div>
+										<strong className="rightOrWrong">
+											Dit team had deze vraag beantwoord
+										</strong>
+									</div>);
+							}
+						}
+					}
+					item = (<li className="singleTeam">
+						<h4>{res.scores[i].team}</h4>
+						<ul>
+							<li>Aantal vragen goed: {res.scores[i].correctAnswers}</li>
+							<li>Aantal Round Points: {res.scores[i].roundPoints}</li>
+						</ul>
+						{subItem}
+					</li>);
+					items.push (item);
+				}
+				this.setState ({
+					result: items,
+					closed: res.currentQuestion.closed,
+					category: res.currentQuestion.category,
+					question: res.currentQuestion.name,
+					roundNumber: res.roundNumber,
+					questionNumber: res.questionNumber,
+					maxQuestions: res.maxQuestions
+				});
+				console.log (items);
+			}
+		});
+	}
 
-  render(){
-    return (
-      <div className="scorebord--wrapper intro--header">
-        <div className="inner--header">
-          {this.renderTeamInfo()}
-          {this.state.result}
-        </div>
-      </div>
-    );
-  }
+	render () {
+		let result = this.state.result.map ((elem, iterator) => {
+			return <div key={iterator}>{elem}</div>;
+		});
+		return (
+			<div className="scorebord--wrapper intro--header">
+				<div className="inner--header">
+					<h1 className="question">{this.state.questionNumber}/{this.state.maxQuestions} {this.state.question}</h1>
+					{this.state.closed ?
+						<strong className="error questionStatus">
+							De vraag is gesloten. De quizmaster keurt nu uw antwoorden
+						</strong> :
+						<strong className="success questionStatus">
+							Geef alstublieft nu een antwoord
+						</strong>}
+					<ul className="teamScores">
+						{result}
+					</ul>
+					<small className="roundInfo">
+						Dit is ronde <i>
+						{this.state.roundNumber}
+					</i>, deze vraag is afkomstig uit de <i>{this.state.category}</i> categorie.
+					</small>
+				</div>
+			</div>
+		);
+	}
 }
