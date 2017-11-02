@@ -10,6 +10,12 @@
     font-family: $biggestTitleFont;
     text-align: center;
   }
+  .rightAnswer {
+    color: #27AE60;
+  }
+  .wrongAnswer {
+    color: #E74C3C;
+  }
   .teamScores {
     list-style: none;
     overflow: auto;

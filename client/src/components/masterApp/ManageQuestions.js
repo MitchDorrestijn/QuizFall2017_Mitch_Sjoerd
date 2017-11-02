@@ -98,10 +98,38 @@ export default class ManageQuestions extends React.Component {
       });
   }
   getAllGivenAnswers(allGivenAnswers){
-    this.setState({ givenAnswers: allGivenAnswers })
+    this.setState({ givenAnswers: allGivenAnswers });
+	for (let elem of allGivenAnswers) {
+      console.log ("givenAnswers: ", elem);
+    }
   }
   getAllCorrectAnswers(answer) {
-    this.setState({ correctAnswers: answer })
+    this.setState({ correctAnswers: answer });
+    let givenTeams = this.state.givenAnswers.map ((elem) => {
+      return elem.team;
+    });
+    let rightTeams = answer.map ((elem) => {
+      return elem.label.split (": ")[0];
+    });
+    let wrongTeams = givenTeams.filter ((val) => { return !rightTeams.includes (val) });
+	  for (let elem of rightTeams) {
+		  console.log ("correctTeam: ", elem);
+		  let da = new DataAccess ();
+		  da.putData (`/games/${this.state.roomNumber}/rounds/current/answers/current`, {team: elem, correct: true}, (err) => {
+			  if (err) {
+				  console.log (err.toString ());
+			  }
+		  });
+	  }
+	  for (let elem of wrongTeams) {
+		  console.log ("wrongTeams: ", elem);
+		  let da = new DataAccess ();
+		  da.putData (`/games/${this.state.roomNumber}/rounds/current/answers/current`, {team: elem, correct: false}, (err) => {
+			  if (err) {
+				  console.log (err.toString ());
+			  }
+		  });
+	  }
   }
   render(){
     return (

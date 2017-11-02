@@ -102,22 +102,34 @@ export default class BoardApp extends React.Component {
 		return (
 			<div className="scorebord--wrapper intro--header">
 				<div className="inner--header">
-					<h1 className="question">{this.state.questionNumber}/{this.state.maxQuestions} {this.state.question}</h1>
-					{this.state.closed ?
-						<strong className="error questionStatus">
-							De vraag is gesloten. De quizmaster keurt nu uw antwoorden
-						</strong> :
-						<strong className="success questionStatus">
-							Geef alstublieft nu een antwoord
-						</strong>}
+					{
+						this.state.questionNumber !== null ?
+						<h1 className="question">{this.state.questionNumber}/{this.state.maxQuestions} {this.state.question}</h1> :
+						<div>
+							<h1 className="question">Welkom!</h1>
+						</div>
+					}
+					{
+						this.state.questionNumber !== null &&
+						(this.state.closed ?
+							<strong className="error questionStatus">
+								De vraag is gesloten. De quizmaster keurt nu uw antwoorden
+							</strong> :
+							<strong className="success questionStatus">
+								Geef alstublieft nu een antwoord
+							</strong>)
+					}
 					<ul className="teamScores">
 						{result}
 					</ul>
-					<small className="roundInfo">
-						Dit is ronde <i>
-						{this.state.roundNumber}
-					</i>, deze vraag is afkomstig uit de <i>{this.state.category}</i> categorie.
-					</small>
+					{
+						this.state.questionNumber !== null &&
+						<small className="roundInfo">
+							Dit is ronde <i>
+							{this.state.roundNumber}
+						</i>, deze vraag is afkomstig uit de <i>{this.state.category}</i> categorie.
+						</small>
+					}
 				</div>
 			</div>
 		);
