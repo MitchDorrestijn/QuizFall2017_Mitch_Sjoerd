@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Teamlist = () => {
+const Rules = () => {
   return (
     <div>
       <h1>Spelregels</h1>
@@ -11,4 +11,4 @@ const Teamlist = () => {
   );
 }
 
-export default Teamlist;
+export default Rules;
