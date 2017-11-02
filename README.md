@@ -34,29 +34,30 @@ You need a Mongo DB server (without authentication) to run this application.
 To clone this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer.
 From your command line:
 ```bash
+# Clone the repo
 $ git clone https://github.com/HANICA-DWA/fall2017-quizz-MitchEnSjoerd.git
-```
 
-By default, the application runs on port 8080, and expects a local Mongo database to be running by the name of `quizzer`. One round in a game has twelve questions. To change this behaviour, edit the `config.json` file in the server directory.
-
-Finally, to run the application:
-```bash
 # Go into the server directory
 $ cd fall2017-quizz-MitchEnSjoerd/server
 
 # Install dependencies
 $ npm install
+```
 
-# Run the Quizzer
+By default, the application runs on port 8080, and expects a local Mongo database to be running by the name of `quizzer`. One round in a game has twelve questions. To change this behaviour, edit the `config.json` file in the server directory.
+
+After setting up `config.json` you can install the questions to the Mongo server by running:
+```bash
+$ node setup.js
+```
+
+Finally, to run the application:
+```bash
 $ node app.js
 ```
 
 If you want to run tests for the Mongoose schemas and the API, you need to have `mocha` installed. Make sure the server is running and run:
 ```bash
-# Go into the server directory
-$ cd fall2017-quizz-MitchEnSjoerd/server
-
-# Run the tests
 $ mocha
 ```
 
