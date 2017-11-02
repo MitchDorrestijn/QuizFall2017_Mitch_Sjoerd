@@ -50,6 +50,7 @@ let api = [];
 api.push (require ("./functions/api/categories/get.js") (app));
 api.push (require ("./functions/api/games/post.js") (app, io));
 api.push (require ("./functions/api/games/gameId/put.js") (app, io));
+api.push (require ("./functions/api/games/gameId/exists/get.js") (app));
 api.push (require ("./functions/api/games/gameId/teams/get.js") (app));
 api.push (require ("./functions/api/games/gameId/teams/teamId/put.js") (app, io));
 api.push (require ("./functions/api/games/gameId/rounds/post.js") (app, io));
