@@ -38,9 +38,9 @@ let api = (app, io) => {
 									reject (err.toString ());
 								} else {
 									for (let elem of game.teams) {
-										io.of (`/ws/game/${req.params.gameId}/teams/${elem._id}`).emit ('closeGame', {closeGame: true});
+										io.of (`/ws/${req.params.gameId}/teams/${elem._id}`).emit ('closeGame', {closeGame: true});
 									}
-									io.of (`/ws/game/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
+									io.of (`/ws/${req.params.gameId}/scores`).emit ('updateScore', {updateScore: true});
 									resolve ();
 								}
 							});
