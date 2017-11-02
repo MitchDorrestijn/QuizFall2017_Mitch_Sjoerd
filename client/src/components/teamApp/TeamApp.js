@@ -95,8 +95,8 @@ export default class TeamApp extends React.Component {
     let da = new DataAccess();
     let linkToRedirectTo = `/`;
     let redirect = <Redirect to={linkToRedirectTo} />;
-    da.getData(`/games/${this.state.roomNumber}/teams`, (err, res) => {
-      if(err === "No teams have applied yet"){
+    da.getData(`/games/${this.state.roomNumber}/exists`, (err, res) => {
+      if(err){
         this.setState({roomIsValid: false});
       } else {
         this.setState ({redirect: redirect});
