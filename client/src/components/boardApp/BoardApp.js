@@ -1,6 +1,7 @@
 import React from 'react';
 import openSocket from 'socket.io-client';
 import DataAccess from '../../scripts/DataAccess';
+import {Redirect} from 'react-router-dom';
 
 export default class BoardApp extends React.Component {
 	constructor (props) {
@@ -13,7 +14,8 @@ export default class BoardApp extends React.Component {
 			closed: false,
 			questionNumber: null,
 			maxQuestions: null,
-			result: []
+			result: [],
+			redirect: null
 		};
 		this.socket = null;
 		this.getScoreBoard = this.getScoreBoard.bind (this);
@@ -31,7 +33,8 @@ export default class BoardApp extends React.Component {
 		let da = new DataAccess ();
 		da.getData (`/games/${this.state.roomNumber}/scores`, (err, res) => {
 			if (err) {
-				console.log (err);
+				let redirect = <Redirect to="/" />;
+				this.setState ({redirect: redirect});
 			} else {
 				let items = [];
 				console.log (res);
@@ -93,13 +96,13 @@ export default class BoardApp extends React.Component {
 			}
 		});
 	}
-
 	render () {
 		let result = this.state.result.map ((elem, iterator) => {
 			return <div key={iterator}>{elem}</div>;
 		});
 		return (
 			<div className="scorebord--wrapper intro--header">
+					{this.state.redirect}
 				<div className="inner--header">
 					{
 						this.state.questionNumber !== null ?
