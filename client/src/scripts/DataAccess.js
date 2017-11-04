@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 export default class DataAccess {
 	constructor (authString) {
-		this.api = "http://localhost:8081/api";
+		this.api = "/api";
 	}
 
 	_fetchApi (request, cb) {
