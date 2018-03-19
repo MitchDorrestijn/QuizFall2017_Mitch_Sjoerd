@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://github.com/HANICA-DWA/fall2017-quizz-MitchEnSjoerd/blob/master/quizzerLogo.png?raw=true" alt="Quizzer" width="500">
+  <img src="https://github.com/MitchDorrestijn/QuizFall2017_Mitch_Sjoerd/blob/master/quizzerLogo.png?raw=true" alt="Quizzer" width="500">
   <br><br>
   fall2017-quizz-MitchEnSjoerd
   <br>
@@ -35,7 +35,7 @@ To clone this application, you'll need [Git](https://git-scm.com) and [Node.js](
 From your command line:
 ```bash
 # Clone the repo
-$ git clone https://github.com/HANICA-DWA/fall2017-quizz-MitchEnSjoerd.git
+$ git clone https://github.com/MitchDorrestijn/QuizFall2017_Mitch_Sjoerd.git
 
 # Go into the server directory
 $ cd fall2017-quizz-MitchEnSjoerd/server
